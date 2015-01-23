@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package epic.platformer.game;
 
 
 import com.badlogic.gdx.Gdx;
@@ -22,12 +22,12 @@ import java.util.Random;
  */
 public class GameScreen implements Screen {
 
-    MyGdxGame game;
+    Platformer game;
     OrthographicCamera camera;
     Random random;
 
 
-    public GameScreen(MyGdxGame game){
+    public GameScreen(Platformer game){
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);

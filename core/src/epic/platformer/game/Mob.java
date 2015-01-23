@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package epic.platformer.game;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;

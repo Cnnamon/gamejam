@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package epic.platformer.game;
 
 /**
  * Created by god on 15.1.1.
