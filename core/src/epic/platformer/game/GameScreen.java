@@ -32,7 +32,6 @@ public class GameScreen implements Screen {
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
-        game.batch = new SpriteBatch();
         engine = new Engine(game);
         //Gdx.graphics.setContinuousRendering(false);
         Rects.addRect(new CollisionObject(160, 320, 600, 16));
