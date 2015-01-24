@@ -1,6 +1,8 @@
 package epic.platformer.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import screens.HighScoreScreen;
 import screens.MenuScreen;
@@ -27,8 +29,12 @@ public class Platformer extends Game {
 //	HighScoreScreen highScoreScreen;
 	public SpriteBatch batch;
 
+	public Preferences prefs;
+
 	@Override
 	public void create() {
+		prefs = Gdx.app.getPreferences("Platformer");
+
 		Assets.load();
 //		gameScreen = new GameScreen(this);
 //		setScreen(gameScreen);
@@ -42,5 +48,11 @@ public class Platformer extends Game {
 //aaa
 //		highScoreScreen = new HighScoreScreen(this, 502f); // Dominykas FTW 3
 //		setScreen(highScoreScreen);
+	}
+
+	@Override
+	public void dispose() {
+		prefs.flush();
+		super.dispose();
 	}
 }
