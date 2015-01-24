@@ -25,7 +25,6 @@ public class GameScreen implements Screen {
     Platformer game;
     OrthographicCamera camera;
     Engine engine;
-    CollisionObject object;
 
 
 
@@ -36,7 +35,8 @@ public class GameScreen implements Screen {
         game.batch = new SpriteBatch();
         engine = new Engine(game);
         //Gdx.graphics.setContinuousRendering(false);
-        object = new CollisionObject(160, 320, 600, 32);
+        Rects.addRect(new CollisionObject(160, 320, 600, 16));
+        Rects.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.sprite1.getHeight()));
 
 
     }
@@ -93,8 +93,9 @@ public class GameScreen implements Screen {
 
         //game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
         drawMob(engine.getPlayer());
-        Rects.drawRect(game.batch, object);
-
+        for(CollisionObject object: Rects.rectList){
+            Rects.drawRect(game.batch, object);
+        }
 
         game.batch.end();
     }
