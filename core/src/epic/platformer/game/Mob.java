@@ -74,8 +74,6 @@ public abstract class Mob extends CollisionObject{
             y += yForce * Delta;
         }
         if(playerFoundation != null) {
-            if(this instanceof Snail) { System.out.println("Snail on platform.");}
-            //if(this instanceof Player) { System.out.println("Player on platform.");}
             x += playerFoundation.xForce*2;
         }
         x += xForce * Delta;
