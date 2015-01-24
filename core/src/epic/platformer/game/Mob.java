@@ -80,6 +80,7 @@ public abstract class Mob extends CollisionObject{
 
             }
         }
+
 //        if(Assets.world[(int)x][(int)y] == 1){
 //            inAir = false;
 //            y -= yForce*Delta;
