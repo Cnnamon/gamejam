@@ -24,7 +24,7 @@ public class GameScreen implements Screen {
 
     Platformer game;
     OrthographicCamera camera;
-    Random random;
+
 
 
     public GameScreen(Platformer game){
@@ -32,7 +32,6 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
         game.batch = new SpriteBatch();
-        random = new Random();
         //Gdx.graphics.setContinuousRendering(false);
 
 
@@ -77,7 +76,7 @@ public class GameScreen implements Screen {
         for (int i=0;i<Assets.screenSizeHeight;i+=16) {
             for (int j = 0; j < Assets.screenSizeWidth; j += 16) {
                 if(Assets.world[j][i] == 1){
-                    game.batch.draw(Assets.sprite1, j, i);
+                    game.batch.draw(Assets.sprite3, j, i);
                 }
             }
         }

@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 
+import javax.swing.*;
+
 /**
  * Created by god on 15.1.23.
  */
@@ -14,8 +16,10 @@ public class Player extends Mob {
     private boolean aKey;
     private boolean sKey;
 
+
     public Player(float width, float height, Texture icon){
         super(width, height, icon);
+
     }
 
     private void handleInput(){
@@ -29,8 +33,17 @@ public class Player extends Mob {
         sKey = false;
     }
 
-    public void update(){
+    public void update(float Delta){
+        super.update(Delta);
         handleInput();
+
+        if(wKey){
+            inAir = true;
+            yForce += 10;
+        }
+        if(dKey) x += 200*Delta;
+        if(aKey) x -= 200*Delta;
+        if(sKey) y -= 1000*Delta;
     }
 
 }
