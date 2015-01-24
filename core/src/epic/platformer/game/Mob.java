@@ -11,10 +11,12 @@ public abstract class Mob extends Rectangle{
     protected boolean inAir;
     protected float yForce;
 
-    public Mob(float width, float height, Texture icon){
+    public Mob(int x, int y, float width, float height, Texture icon){
         this.icon = icon;
         this.width = width;
         this.height = height;
+        this.x = x;
+        this.y = y;
 
         inAir = true;
         yForce = 0;
@@ -28,6 +30,9 @@ public abstract class Mob extends Rectangle{
         if(inAir){
             yForce -= 0.2;
             y += yForce * Delta;
+        }
+        if(Assets.world[(int)x][(int)y] == 1){
+            inAir = false;
         }
     }
 }
