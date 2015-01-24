@@ -7,34 +7,44 @@ import java.util.Random;
  */
 public class Map {
 
-    static void generate() {
-//        Rects.addRect(new CollisionObject(160, 320, 600, 32));
+    static final int MIN_PLATFORM_WIDTH = 85;
+    static final int MAX_PLATFORM_WIDTH = 300;
+    static final int MIN_VERT_DIST_BETWEEN_PLATFORMS = 70;
+    static final int LEVELS = 7;
+    static final int BUFFER = 20;
+    static final int HEIGHT = (Assets.screenSizeHeight - 2 * BUFFER) / LEVELS;
 
-        int levels = 7;
-        int buffer = 20;
-        int maxWidth = 300;
-        int minWidth = 50;
+    static void generate() {
+        int minGapWidth = 60;
+        int maxGapWidth = 300;
         int h = 10;
 
-        int height = (Assets.screenSizeHeight - buffer) / levels;
+        int y = BUFFER;
 
-
-        int y = 0;
-        for (int i = 0; i < levels; i++) {
+        for (int i = 0; i < LEVELS; i++) {
             Random rand = new Random();
-            int x, w;
-            y += height;
+            int x;
+            y += HEIGHT;
             x = 0;
 
+            x += rand.nextInt(maxGapWidth/2 - minGapWidth);
+            x += drawPlatform(x, y, h);
 
             while (x < Assets.screenSizeWidth) {
-                w = rand.nextInt(maxWidth);
-                Rects.addRect(new CollisionObject(x, y, w, h));
+                x += minGapWidth + rand.nextInt(maxGapWidth - minGapWidth);
 
-                x += w + minWidth + rand.nextInt(maxWidth - minWidth);
+                x += drawPlatform(x, y, h);
             }
-
         }
 
+    }
+
+    private static int drawPlatform(int x, int y, int h) {
+        Random rand = new Random();
+        int w = MIN_PLATFORM_WIDTH + rand.nextInt(MAX_PLATFORM_WIDTH - MIN_PLATFORM_WIDTH);
+        int platformY = y - (HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS) / 2 + rand.nextInt(HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS);
+        Rects.addRect(new CollisionObject(x, platformY, w, h));
+
+        return w;
     }
 }
