@@ -6,14 +6,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Timer;
 
 import java.text.DecimalFormat;
-import java.util.Random;
 
 
 /**
@@ -46,7 +44,7 @@ public class GameScreen implements Screen {
         engine = new Engine(game);
         //Gdx.graphics.setContinuousRendering(false);
         Map.generate();
-        Rects.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.sprite1.getHeight(), 1));
+        World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.sprite1.getHeight(), 1));
 //
 
     }
@@ -115,8 +113,8 @@ public class GameScreen implements Screen {
 
         //game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
         drawMob(engine.getPlayer());
-        for(CollisionObject object: Rects.rectList){
-            Rects.drawRect(game.batch, object);
+        for(CollisionObject object: World.rectList){
+            World.drawRect(game.batch, object);
         }
 
         if(((timeLeft/60 <= 9) && (timeLeft%60 > 9)) || (((timeLeft/60 > 9) && (timeLeft%60 <= 9)))) {

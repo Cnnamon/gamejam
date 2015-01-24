@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by god on 15.1.24.
  */
-public class Rects {
+public class World {
 
     public static int worldType; //todo implement enum for different world types (for better perception)
     /*

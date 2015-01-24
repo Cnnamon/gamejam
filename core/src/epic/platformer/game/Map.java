@@ -43,7 +43,7 @@ public class Map {
         Random rand = new Random();
         int w = MIN_PLATFORM_WIDTH + rand.nextInt(MAX_PLATFORM_WIDTH - MIN_PLATFORM_WIDTH);
         int platformY = y - (HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS) / 2 + rand.nextInt(HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS);
-        Rects.addRect(new CollisionObject(x, platformY, w, h, 1));
+        World.addRect(new CollisionObject(x, platformY, w, h, 1));
 
         return w;
     }

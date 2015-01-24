@@ -34,7 +34,7 @@ public abstract class Mob extends CollisionObject{
             Vector2 center1 = new Vector2(this.x+this.width/2, this.y+this.height/2);
             Vector2 center2;
             float coordinate = y;
-            for(CollisionObject obj : Rects.rectList) {
+            for(CollisionObject obj : World.rectList) {
                 center2 = new Vector2(obj.x+obj.width/2, obj.y+obj.height/2);
                 if (this.overlaps(obj) && center2.sub(center1).y > 0) {
                     collided = true;
@@ -56,7 +56,7 @@ public abstract class Mob extends CollisionObject{
             Vector2 center2;
             float coordinate = this.y;
             //todo current collision cant properly check from which direction we ram into something. This should be addressed
-            for(CollisionObject obj : Rects.rectList) {
+            for(CollisionObject obj : World.rectList) {
                 center2 = new Vector2(obj.x+obj.width/2, obj.y+obj.height/2);
                 if (this.overlaps(obj)) {
                     collided = true;

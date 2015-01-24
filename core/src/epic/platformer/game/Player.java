@@ -2,10 +2,7 @@ package epic.platformer.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-
-import javax.swing.*;
 
 /**
  * Created by god on 15.1.23.
@@ -70,13 +67,13 @@ public class Player extends Mob {
         //world scrolling stuff
         if(x > 450){
             //loop through all game objects, subtract their x by (x-450)
-            for(CollisionObject object : Rects.rectList){
+            for(CollisionObject object : World.rectList){
                 object.x -= x-450;
             }
             x = 450;
         }
         if(x<200){
-            for(CollisionObject object : Rects.rectList){
+            for(CollisionObject object : World.rectList){
                 object.x += 200-x;
             }
             x = 200;
@@ -93,7 +90,7 @@ public class Player extends Mob {
     {
         //Fails if trying to jump while moving, collects yForce.TODO Should fix this
         inAir = true;
-        for(CollisionObject obj : Rects.rectList) {
+        for(CollisionObject obj : World.rectList) {
             if (this.overlaps(obj)) {
                 inAir = false;
                 break;
