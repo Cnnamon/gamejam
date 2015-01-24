@@ -52,12 +52,14 @@ public class GameScreen implements Screen {
 
         camera.update();
 
+
         game.batch.setProjectionMatrix(camera.combined);
         //drawMob(engine.getPlayer());
 
         engine.update(delta);
 
         game.batch.begin();
+        game.batch.draw(Assets.textureBack, 0, 0);
 //        for (int i=0;i<Assets.screenSizeHeight;i+=16){
 //            for(int j=0;j<Assets.screenSizeWidth;j+=16){
 //                switch (random.nextInt(5)){
@@ -87,7 +89,8 @@ public class GameScreen implements Screen {
             }
         }
 
-        game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
+        //game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
+        drawMob(engine.getPlayer());
 
 
         game.batch.end();
