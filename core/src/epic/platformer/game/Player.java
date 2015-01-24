@@ -71,7 +71,7 @@ public class Player extends Mob {
             x -= 200*Delta;
             fallIfNotOnGround();
         }
-        if(sKey && inAir != true) y -= 1000*Delta;
+        if(sKey && !inAir) y -= 1000*Delta;
 
 
         //world scrolling stuff
