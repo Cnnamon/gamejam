@@ -12,10 +12,9 @@ public class Map {
     static final List<Platform> platforms = new ArrayList<Platform>();
     static final int MIN_PLATFORM_WIDTH = 85;
     static final int MAX_PLATFORM_WIDTH = 300;
-    static final int MIN_VERT_DIST_BETWEEN_PLATFORMS = 80;
-    static final int LEVELS = 7;
+    static final int MIN_VERT_DIST_BETWEEN_PLATFORMS = 100;
     static final int BUFFER = 20;
-    static final int HEIGHT = (Assets.screenSizeHeight - 2 * BUFFER) / LEVELS;
+    static final int HEIGHT = 110;
 
     static void generate() {
         int minGapWidth = 60;
@@ -24,7 +23,7 @@ public class Map {
 
         int y = BUFFER;
 
-        for (int i = 0; i < LEVELS; i++) {
+        while (y < Assets.screenSizeHeight*3) {
             Random rand = new Random();
             int x;
             y += HEIGHT;
@@ -40,9 +39,8 @@ public class Map {
             }
         }
 
-
-        World.addRect(new CollisionObject(0, 0, 32, Assets.screenSizeHeight, 1));
-        World.addRect(new CollisionObject(Assets.screenSizeWidth*3, 0, 32, Assets.screenSizeHeight, 1));
+        World.addRect(new CollisionObject(0, 0, 32, Assets.screenSizeHeight*4, 1));
+        World.addRect(new CollisionObject(Assets.screenSizeWidth*3, 0, 32, Assets.screenSizeHeight*4, 1));
     }
 
     private static int drawPlatform(int x, int y, int h) {
