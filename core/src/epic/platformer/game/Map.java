@@ -42,7 +42,7 @@ public class Map {
 
 
         World.addRect(new CollisionObject(0, 0, 32, Assets.screenSizeHeight, 1));
-        World.addRect(new CollisionObject(Assets.screenSizeWidth*3, 0, 32, Assets.screenSizeHeight, 2));
+        World.addRect(new CollisionObject(Assets.screenSizeWidth*3, 0, 32, Assets.screenSizeHeight, 1));
     }
 
     private static int drawPlatform(int x, int y, int h) {
