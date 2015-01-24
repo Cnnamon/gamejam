@@ -1,5 +1,6 @@
 package epic.platformer.game;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class World {
 
     public static Player player;
     public static float gravity = 1.0F; //on world switch, change gravity
-    public static int worldType; //todo implement enum for different world types (for better perception)
+    public static int worldType = 1; //todo implement enum for different world types (for better perception)
     /*
     *Possible world types:
     * 1. Normal (nothing out of the ordinary)
@@ -29,15 +30,39 @@ public class World {
     }
 
     public static void drawRect(SpriteBatch batch, CollisionObject object){
+        Sprite wall;
+        Sprite corner;
+
+        switch (worldType){
+            case 1:
+                wall = Assets.fireWall;
+                corner = Assets.fireWallCorner;
+                break;
+            case 2:
+                wall = Assets.earthWall;
+                corner = Assets.earthWallCorner;
+                break;
+            case 3:
+                wall = Assets.iceWall;
+                corner = Assets.iceWallCorner;
+                break;
+            case 4:
+                wall = Assets.spaceWall;
+                corner = Assets.spaceWallCorner;
+                break;
+            default:
+                wall = Assets.earthWall;
+                corner = Assets.earthWallCorner;
+        }
+
         float middle = object.width - 16*2;
         int x = 0;
         while(middle > 0){
-            batch.draw(Assets.wallSprite, object.x + 16 + x, object.y);
+            batch.draw(wall, object.x + 16 + x, object.y);
             x += 16;
             middle -= 16;
         }
-        batch.draw(Assets.wallSprite, object.x, object.y);
-        batch.draw(Assets.darkEdgeSprite, object.x+x, object.y);
-        batch.draw(Assets.darkEdgeSprite, object.x, object.y);
+        batch.draw(corner, object.x+x, object.y);
+        batch.draw(corner, object.x, object.y);
     }
 }

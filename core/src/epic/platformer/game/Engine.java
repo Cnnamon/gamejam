@@ -34,9 +34,10 @@ public class Engine {
         World.addRect(new CollisionObject(50, 250, 500, 16, 1));
         World.addRect(new CollisionObject(550, 100, 50, 16, 1));
         World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, 16, 1));
+
         Relations.addCollision(1, 2);
         Relations.addCollision(2, 1);
-
+        Relations.addCollision(1, 1);
 
     }
 

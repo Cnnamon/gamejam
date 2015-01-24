@@ -74,11 +74,12 @@ public class GameScreen implements Screen {
 
         camera.update();
 
-
         game.batch.setProjectionMatrix(camera.combined);
         //drawMob(engine.getPlayer());
 
         engine.update(delta);
+
+        Map.updateMovingPlatforms(delta);
 
         game.batch.begin();
         game.batch.draw(Assets.textureBack, 0, 0);
