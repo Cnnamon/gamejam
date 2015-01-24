@@ -86,6 +86,8 @@ public class GameScreen implements Screen {
             }
         }
 
+        game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
+
 
         game.batch.end();
     }
