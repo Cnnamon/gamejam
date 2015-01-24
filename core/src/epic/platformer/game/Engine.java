@@ -15,15 +15,20 @@ public class Engine {
 
     private final int snailId = 0;
 
+    private final int snailSpawnY = Assets.screenSizeHeight - 100;
+    private final int snailSpawnX = Assets.screenSizeWidth / 4;
+
     public Engine(Platformer game){
         this.game = game;
         mobList = new ArrayList<Mob>();
         player = new Player(40, 100, 16, 16, Assets.sprite1);
+        //mobList.add(new Snail(snailSpawnX,snailSpawnY, ));
 
     }
 
     public void addMob(Mob mob, int x, int y){
        // mobList.add();
+        mobList.add(mob);
 
     }
 
