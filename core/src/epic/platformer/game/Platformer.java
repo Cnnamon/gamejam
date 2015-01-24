@@ -11,6 +11,7 @@ public class Platformer extends Game {
 	*	Todo: add different properties to the worlds;
 	*	Todo: add more objects (enemies, traps, health, coins and so on)
 	*	Todo: add random properties to those items
+	*	Todo: extend on the current ceiling grappling move
 	*
 	*
 	 */

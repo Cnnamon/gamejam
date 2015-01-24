@@ -30,7 +30,7 @@ public class Map {
             x += rand.nextInt(maxGapWidth/2 - minGapWidth);
             x += drawPlatform(x, y, h);
 
-            while (x < Assets.screenSizeWidth) {
+            while (x < Assets.screenSizeWidth*3) {
                 x += minGapWidth + rand.nextInt(maxGapWidth - minGapWidth);
 
                 x += drawPlatform(x, y, h);

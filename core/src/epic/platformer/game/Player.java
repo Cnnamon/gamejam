@@ -61,6 +61,22 @@ public class Player extends Mob {
             fallIfNotOnGround();
         }
         if(sKey && inAir != true) y -= 1000*Delta;
+
+
+        //world scrolling stuff todo: generate a world bigger than 1920 width
+        if(x > 450){
+            //loop through all game objects, subtract their x by (x-450)
+            for(CollisionObject object : Rects.rectList){
+                object.x -= x-450;
+            }
+            x = 450;
+        }
+        if(x<200){
+            for(CollisionObject object : Rects.rectList){
+                object.x += 200-x;
+            }
+            x = 200;
+        }
     }
 
     private void fallIfNotOnGround()

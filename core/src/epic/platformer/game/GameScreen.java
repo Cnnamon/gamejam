@@ -19,11 +19,6 @@ import java.util.Random;
 /**
  * Created by god on 14.12.31.
  * The class that shall be handling drawing and shit
- * TODO: Make 64x64 sprites
- * todo: Write a code that generates terrain (it needs to generate a path the unit could walk on)
- * todo: AI for the troops/offensive units (path finding, in general)
- * todo: Collision detection
- * todo: Figure out what genre/style/system I want to work with next
  */
 public class GameScreen implements Screen {
 
