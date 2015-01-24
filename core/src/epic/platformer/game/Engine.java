@@ -25,6 +25,7 @@ public class Engine {
         this.game = game;
         mobList = new ArrayList<Mob>();
         player = new Player(500, 1000, 50, 50, Assets.playerSprite);
+        World.player = player;
         player.group = 2;
         mobList.add(new Snail(snailSpawnX, snailSpawnY, snailWidth, snailHeight, Assets.enemySprite));
         World.addRect(new CollisionObject(50, 250, 500, 16, 1));

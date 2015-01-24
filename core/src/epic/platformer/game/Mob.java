@@ -45,7 +45,6 @@ public abstract class Mob extends CollisionObject{
             }
             if(collided)
             {
-                System.out.print("what");
                 yForce = 0;
             }
         }
@@ -62,7 +61,7 @@ public abstract class Mob extends CollisionObject{
                 center2 = new Vector2(obj.x+obj.width/2, obj.y+obj.height/2);
                 if (this.overlaps(obj)) {
                     collided = true;
-                    collider = obj;
+                    //collider = obj;
                     coordinate = obj.y + obj.height;
                     break;
                 }
@@ -75,11 +74,14 @@ public abstract class Mob extends CollisionObject{
             {
                 inAir = false;
                 yForce = 0;
-                //y = coordinate;
-                while (this.overlaps(collider))this.y+=0.2;
+                System.out.print(coordinate + " ");
+                y = coordinate;
+                System.out.print(y + " ");
+                //while (this.overlaps(collider))this.y+=0.2;
 
             }
         }
+
 //        if(Assets.world[(int)x][(int)y] == 1){
 //            inAir = false;
 //            y -= yForce*Delta;

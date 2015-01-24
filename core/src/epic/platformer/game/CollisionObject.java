@@ -4,9 +4,11 @@ package epic.platformer.game;
  * Created by laurynas on 2015.01.24.
  */
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 public class CollisionObject extends Rectangle {
     int group;
+    public enum CollisionSide { NONE, LEFT, RIGHT, TOP, BOTTOM }
 
     public CollisionObject()
     {
@@ -28,6 +30,69 @@ public class CollisionObject extends Rectangle {
         else
         {
             return false;
+        }
+    }
+
+    public CollisionSide collisionSide(CollisionObject other)
+    {
+        if(this.overlaps(other))
+        {
+            float thisCollisionPointX = 0;
+            float thisCollisionPointY = 0;
+            float otherCollisionPointX = 0;
+            float otherCollisionPointY = 0;
+
+            if(this.getX() > other.getX())
+            {
+                // X
+                thisCollisionPointX = this.getX();
+                otherCollisionPointX = other.getX() + other.getWidth();
+            }
+            else
+            {
+                 // X + H
+                thisCollisionPointX = this.getX() + this.getWidth();
+                otherCollisionPointX = other.getX();
+            }
+            if(this.getY() > other.getY())
+            {
+                // Y
+                thisCollisionPointY = this.getY();
+                otherCollisionPointY = other.getY() + other.getHeight();
+            }
+            else
+            {
+                thisCollisionPointY = this.getY() + this.getHeight();
+                otherCollisionPointY = other.getY();
+            }
+            float resultX = thisCollisionPointX - otherCollisionPointX;
+            float resultY = thisCollisionPointY - otherCollisionPointY;
+            if(Math.abs(resultX) > Math.abs(resultY))
+            {
+                if(resultY > 0)
+                {
+                    return CollisionSide.TOP;
+                }
+                else
+                {
+                    return CollisionSide.BOTTOM;
+                }
+            }
+            else
+            {
+                if(resultX > 0)
+                {
+                    return CollisionSide.RIGHT;
+                }
+                else
+                {
+                    return CollisionSide.LEFT;
+                }
+            }
+        }
+        else
+        {
+            return CollisionSide.NONE;
         }
     }
 

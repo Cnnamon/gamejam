@@ -9,6 +9,8 @@ import java.util.ArrayList;
  */
 public class World {
 
+
+    public static Player player;
     public static float gravity = 1.0F; //on world switch, change gravity
     public static int worldType; //todo implement enum for different world types (for better perception)
     /*
@@ -36,6 +38,6 @@ public class World {
         }
         batch.draw(Assets.wallSprite, object.x, object.y);
         batch.draw(Assets.darkEdgeSprite, object.x+x, object.y);
-        batch.draw(Assets.darkEdgeSprite, object.x, object.y);
+        batch.draw(Assets.darkEdgeSprite, object.x-16, object.y);
     }
 }
