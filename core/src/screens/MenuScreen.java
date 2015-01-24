@@ -1,12 +1,22 @@
 package screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
+import epic.platformer.game.Platformer;
 
 /**
  * Created by d.vilimas on 2015.01.24.
  */
 public class MenuScreen implements Screen {
 
+    Platformer game;
+
+    public MenuScreen(Platformer game) {
+        this.game = game;
+    };
+
+//test
     @Override
     public void show() {
 
@@ -14,7 +24,8 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
+        Gdx.graphics.getGL20().glClearColor( 1, 1, 0, 1 );
+        Gdx.graphics.getGL20().glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
     }
 
     @Override
