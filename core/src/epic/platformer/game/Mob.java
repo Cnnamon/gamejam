@@ -29,11 +29,13 @@ public abstract class Mob extends Rectangle{
 
     public void update(float Delta){
         if(inAir){
-            yForce -= 0.2;
+            yForce -= 0.6;
             y += yForce * Delta;
         }
         if(Assets.world[(int)x][(int)y] == 1){
             inAir = false;
+            y -= yForce*Delta;
+            yForce = 0;
         }
     }
 }
