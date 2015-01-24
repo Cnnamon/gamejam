@@ -13,6 +13,7 @@ public class Platformer extends Game {
 	*	Todo: add random properties to those items
 	*	Todo: extend on the current ceiling grappling move
 	*	Todo: add a status system for the different worlds (do they affect all mobs?)
+	*	Todo: implement a die method
 	*
 	*
 	 */

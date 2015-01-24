@@ -67,7 +67,7 @@ public class Player extends Mob {
         if(sKey && inAir != true) y -= 1000*Delta;
 
 
-        //world scrolling stuff todo: generate a world bigger than 1920 width
+        //world scrolling stuff
         if(x > 450){
             //loop through all game objects, subtract their x by (x-450)
             for(CollisionObject object : Rects.rectList){
@@ -81,6 +81,12 @@ public class Player extends Mob {
             }
             x = 200;
         }
+
+
+//        //if below zero, game over screen
+//        if(y<0){
+//            //gameover
+//        }
     }
 
     private void fallIfNotOnGround()
