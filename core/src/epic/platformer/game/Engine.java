@@ -46,11 +46,21 @@ public class Engine {
     public void update(float Delta){
         //updating cycle
 
+        //chasing player
+
+
+        for (Mob b: mobList){
+            b.update(Delta);
+        }
         player.update(Delta);
 
     }
 
     public Player getPlayer() {
         return player;
+    }
+
+    public ArrayList<Mob> getMobList() {
+        return mobList;
     }
 }
