@@ -68,7 +68,7 @@ public class GameScreen implements Screen {
                 if(timeLeft <= 0) {
                     timeLeft = timeMapSwap;
                 }
-                score = score + 1*scoreConstant;
+                score = score + 10 * scoreConstant;
             }
         }
                 , 0    //    (delay)
