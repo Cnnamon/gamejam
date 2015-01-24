@@ -12,6 +12,8 @@ public class Bat extends Mob {
 
     public Bat(int x, int y, float width, float height, Texture icon) {
         super(x, y, width, height, icon);
+        inAir = false;
+        group = 3;
     }
 
     @Override
