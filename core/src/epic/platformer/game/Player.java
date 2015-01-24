@@ -60,7 +60,7 @@ public class Player extends Mob {
             x -= 200*Delta;
             fallIfNotOnGround();
         }
-        if(sKey) y -= 1000*Delta;
+        if(sKey && inAir != true) y -= 1000*Delta;
     }
 
     private void fallIfNotOnGround()
