@@ -22,6 +22,10 @@ public class World {
     * 4. Frost  (Gets cold unless you constantly move)
     *
      */
+    static Sprite wall;
+    static Sprite lCorner;
+    static Sprite rCorner;
+
 
     public static ArrayList<CollisionObject> rectList = new ArrayList<CollisionObject>();
 
@@ -29,31 +33,47 @@ public class World {
         rectList.add(object);
     }
 
-    public static void drawRect(SpriteBatch batch, CollisionObject object){
-        Sprite wall;
-        Sprite corner;
 
-        switch (worldType){
+    public static void changeWorld(int a){
+        worldType = a;
+        switch (a){
             case 1:
                 wall = Assets.fireWall;
-                corner = Assets.fireWallCorner;
+                lCorner = Assets.fireWallCorner;
+                rCorner = Assets.fireWallRightCorner;
+                gravity = 0.8f;
                 break;
             case 2:
                 wall = Assets.earthWall;
-                corner = Assets.earthWallCorner;
+                lCorner = Assets.earthWallCorner;
+                rCorner = Assets.earthWallRightCorner;
+                gravity = 1f;
                 break;
             case 3:
                 wall = Assets.iceWall;
-                corner = Assets.iceWallCorner;
+                lCorner = Assets.iceWallCorner;
+                rCorner = Assets.iceWallRightCorner;
+                gravity = 1.2f;
                 break;
             case 4:
                 wall = Assets.spaceWall;
-                corner = Assets.spaceWallCorner;
+                lCorner = Assets.spaceWallCorner;
+                rCorner = Assets.spaceWallCorner;
+                gravity = 0.4f;
                 break;
             default:
                 wall = Assets.earthWall;
-                corner = Assets.earthWallCorner;
+                lCorner = Assets.earthWallCorner;
+                rCorner = Assets.earthWallCorner;
+                gravity = 1f;
+                break;
         }
+    }
+
+    public static void drawRect(SpriteBatch batch, CollisionObject object){
+
+
+
 
         float middle = object.width - 32*2;
         int x = 0;
@@ -62,7 +82,7 @@ public class World {
             x += 32;
             middle -= 32;
         }
-        batch.draw(corner, object.x+x, object.y);
-        batch.draw(corner, object.x, object.y);
+        batch.draw(rCorner, object.x+object.width-32, object.y);
+        batch.draw(lCorner, object.x, object.y);
     }
 }
