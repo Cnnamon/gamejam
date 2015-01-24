@@ -34,6 +34,9 @@ public abstract class Mob extends CollisionObject{
         CollisionSide colSide = CollisionSide.NONE;
         for(CollisionObject obj : World.rectList) {
             colSide = this.collisionSide(obj);
+            if(colSide == CollisionSide.RIGHT || colSide == CollisionSide.LEFT)
+            {
+            }
             if(colSide != CollisionSide.NONE)
             {
                 if(inAir)
@@ -52,15 +55,14 @@ public abstract class Mob extends CollisionObject{
                     }
                     if(colSide == CollisionSide.RIGHT)
                     {
-
                     }
                 }
-                if(colSide == CollisionSide.RIGHT && xForce > 0)
+                if(colSide == CollisionSide.RIGHT)
                 {
                     xForce = 0;
                     x = obj.getX() - this.getWidth();
                 }
-                if(colSide == CollisionSide.LEFT && xForce < 0)
+                if(colSide == CollisionSide.LEFT)
                 {
                     xForce = 0;
                     x = obj.getX() + obj.getWidth();
