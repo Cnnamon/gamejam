@@ -2,6 +2,7 @@ package epic.platformer.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import screens.HighScoreScreen;
 
 
 public class Platformer extends Game {
@@ -22,6 +23,7 @@ public class Platformer extends Game {
 	GameScreen gameScreen;
 //	GameOverScreen gameOverScreen;
 //	MenuScreen menuScreen;
+	HighScoreScreen highScoreScreen;
 	public SpriteBatch batch;
 
 	@Override
@@ -36,5 +38,8 @@ public class Platformer extends Game {
 //aaa
 //		menuScreen = new MenuScreen(this); // Dominykas FTW 2
 //		setScreen(menuScreen);
+//aaa
+//		highScoreScreen = new HighScoreScreen(this, 502f); // Dominykas FTW 3
+//		setScreen(highScoreScreen);
 	}
 }

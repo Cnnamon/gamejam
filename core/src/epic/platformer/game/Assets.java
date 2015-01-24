@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class Assets {
 
+    public static final int timeMapSwap = 60;
 
     public static Texture textureBack;
     public static Sprite spriteBack;

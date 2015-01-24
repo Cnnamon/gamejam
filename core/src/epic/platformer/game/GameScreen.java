@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.Timer;
 
 import java.text.DecimalFormat;
 
+import static epic.platformer.game.Assets.timeMapSwap;
+
 
 /**
  * Created by god on 14.12.31.
@@ -29,7 +31,7 @@ public class GameScreen implements Screen {
     float scoreConstant = 1f; // zie more, zie better
     float score = 0f; // zie more, zie better
     float timeConstant = 1f; // zie less, zie fastah
-    int timeLeft=160;
+    int timeLeft=20;
     int timeScale=5;
 
     Label timeText;
@@ -55,6 +57,17 @@ public class GameScreen implements Screen {
             @Override
             public void run() {
                 timeLeft--;
+                if(timeLeft <= 9) {
+                    if((timeLeft%2)==0) {
+                        timeText.setColor(Color.WHITE);
+                    } else {
+                        timeText.setColor(Color.RED);
+                    }
+
+                }
+                if(timeLeft <= 0) {
+                    timeLeft = timeMapSwap;
+                }
                 score = score + 1*scoreConstant;
             }
         }
@@ -137,7 +150,7 @@ public class GameScreen implements Screen {
 
         timeText.setFontScale(timeScale, timeScale);
         timeText.setPosition(Assets.screenSizeWidth-timeText.getWidth()*timeScale, Assets.screenSizeHeight-timeText.getHeight()*timeScale);
-        timeText.draw(game.batch, 0.5f);
+        timeText.draw(game.batch, 1f);
 
         scoreText.setText(new DecimalFormat("#").format(score));
         scoreText.setFontScale(timeScale, timeScale);
