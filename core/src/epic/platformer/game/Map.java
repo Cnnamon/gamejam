@@ -16,7 +16,7 @@ public class Map {
         }
 
         for(int x=160;x<=640;x+=16){
-            world[x][160] = 1;
+                world[x][160] = 1;
         }
     }
 }

@@ -17,6 +17,18 @@ public class CollisionObject extends Rectangle {
         super(x, y, w, h);
     }
 
+    public boolean overlaps(CollisionObject other)
+    {
+        if(Relations.shouldCollide(this.getGroup(), other.getGroup()))
+        {
+            return super.overlaps(other);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public int getGroup() { return group; }
     public void setGroup(int group) { this.group = group; }
 }
