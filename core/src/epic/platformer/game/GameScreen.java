@@ -24,6 +24,7 @@ public class GameScreen implements Screen {
 
     Platformer game;
     OrthographicCamera camera;
+    Engine engine;
 
 
 
@@ -32,6 +33,7 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
         game.batch = new SpriteBatch();
+        engine = new Engine(game);
         //Gdx.graphics.setContinuousRendering(false);
 
 
@@ -39,6 +41,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
+
 
     }
 

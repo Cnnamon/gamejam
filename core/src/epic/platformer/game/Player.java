@@ -3,6 +3,7 @@ package epic.platformer.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import javax.swing.*;
 
@@ -17,8 +18,8 @@ public class Player extends Mob {
     private boolean sKey;
 
 
-    public Player(float width, float height, Texture icon){
-        super(width, height, icon);
+    public Player(int x, int y, float width, float height, Sprite icon){
+        super(x, y, width, height, icon);
 
     }
 

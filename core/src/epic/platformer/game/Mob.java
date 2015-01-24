@@ -1,17 +1,18 @@
 package epic.platformer.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Created by god on 15.1.23.
  */
 public abstract class Mob extends Rectangle{
-    protected Texture icon;
+    protected Sprite icon;
     protected boolean inAir;
     protected float yForce;
 
-    public Mob(int x, int y, float width, float height, Texture icon){
+    public Mob(int x, int y, float width, float height, Sprite icon){
         this.icon = icon;
         this.width = width;
         this.height = height;
@@ -22,7 +23,7 @@ public abstract class Mob extends Rectangle{
         yForce = 0;
     }
 
-    public Texture getIcon() {
+    public Sprite getIcon() {
         return icon;
     }
 

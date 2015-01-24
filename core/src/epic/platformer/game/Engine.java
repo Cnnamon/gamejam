@@ -16,7 +16,7 @@ public class Engine {
     public Engine(Platformer game){
         this.game = game;
         mobList = new ArrayList<Mob>();
-
+        player = new Player(40, 100, 16, 16, Assets.sprite1);
 
     }
 
