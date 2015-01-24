@@ -19,11 +19,11 @@ public class MenuScreen implements Screen {
 
     Platformer game;
 
+
     OrthographicCamera camera;
 
     Label playButton;
     float playButtonScale = 5;
-
 
     public MenuScreen(Platformer game) {
         this.game = game;
@@ -52,7 +52,7 @@ public class MenuScreen implements Screen {
 
         game.batch.begin();
             playButton.setFontScale(playButtonScale);
-            playButton.setPosition((float) Assets.screenSizeHeight/2-(float)playButton.getHeight()*playButtonScale/2, (float)Assets.screenSizeHeight/2-(float)playButton.getHeight()*playButtonScale/2);
+            playButton.setPosition((float) Assets.screenSizeWidth/2-(float)playButton.getWidth()*playButtonScale/2, (float)Assets.screenSizeHeight/2-(float)playButton.getHeight()*playButtonScale/2);
             playButton.draw(game.batch, 1f);
         game.batch.end();
     }

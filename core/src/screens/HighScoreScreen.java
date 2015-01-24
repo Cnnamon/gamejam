@@ -44,8 +44,6 @@ public class HighScoreScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.graphics.getGL20().glClearColor( 1, 0, 0, 1 );
-        Gdx.graphics.getGL20().glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
         camera.update();
 
