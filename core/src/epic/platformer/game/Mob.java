@@ -68,67 +68,14 @@ public abstract class Mob extends CollisionObject{
                 }
             }
         }
-//        if(inAir){
-//            boolean collided = false;
-//            Vector2 center1 = new Vector2(this.x+this.width/2, this.y+this.height/2);
-//            Vector2 center2;
-//            float coordinate = y;
-//            for(CollisionObject obj : World.rectList) {
-//                center2 = new Vector2(obj.x+obj.width/2, obj.y+obj.height/2);
-//                if (this.overlaps(obj) && center2.sub(center1).y > 0) {
-//                    collided = true;
-//                    coordinate = obj.y - this.height;
-//                    y = coordinate;
-//                    break;
-//                }
-//            }
-//            if(collided)
-//            {
-//                yForce = 0;
-//            }
-//        }
         if(inAir)
         {
-//            boolean collided = false;
-//            Vector2 center1 = new Vector2(this.x+this.width/2, this.y+this.height/2);
-//            Vector2 center2;
-//            float coordinate = this.y;
-//            //todo current collision cant properly check from which direction we ram into something. This should be addressed
-//            //perhaps with a custom overlapping method?
-//            CollisionObject collider = null;
-//            for(CollisionObject obj : World.rectList) {
-//                center2 = new Vector2(obj.x+obj.width/2, obj.y+obj.height/2);
-//                if (this.overlaps(obj)) {
-//                    collided = true;
-//                    //collider = obj;
-//                    coordinate = obj.y + obj.height;
-//                    break;
-//                }
-//            }
-
             yForce -= 9.8 * World.gravity;
             y += yForce * Delta;
-//            else
-//            {
-//                inAir = false;
-//                yForce = 0;
-//                System.out.print(coordinate + " ");
-//                y = coordinate;
-//                System.out.print(y + " ");
-//                //while (this.overlaps(collider))this.y+=0.2;
-//
-//            }
         }
         if(playerFoundation != null) {
             x += playerFoundation.xForce*2;
         }
         x += xForce * Delta;
-
-
-//        if(Assets.world[(int)x][(int)y] == 1){
-//            inAir = false;
-//            y -= yForce*Delta;
-//            yForce = 0;
-//        }
     }
 }
