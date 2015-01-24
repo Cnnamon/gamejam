@@ -38,6 +38,6 @@ public class World {
         }
         batch.draw(Assets.wallSprite, object.x, object.y);
         batch.draw(Assets.darkEdgeSprite, object.x+x, object.y);
-        batch.draw(Assets.darkEdgeSprite, object.x, object.y);
+        batch.draw(Assets.darkEdgeSprite, object.x-16, object.y);
     }
 }
