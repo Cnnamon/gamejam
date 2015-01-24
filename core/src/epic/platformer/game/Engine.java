@@ -13,6 +13,8 @@ public class Engine {
 
     private ArrayList<Mob> mobList;
 
+    private final int snailId = 0;
+
     public Engine(Platformer game){
         this.game = game;
         mobList = new ArrayList<Mob>();
@@ -20,7 +22,15 @@ public class Engine {
 
     }
 
-    private void addMob(Mob mob, int x, int y){
+    public void addMob(Mob mob, int x, int y){
        // mobList.add();
+
+    }
+
+    public void update(){
+        //updating cycle
+
+
+
     }
 }
