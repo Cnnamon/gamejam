@@ -9,7 +9,7 @@ public class Map {
     static void generate(int[][] world) {
         for (int i = 0; i < Assets.screenSizeWidth; i++) {
             for (int j = 0; j < Assets.screenSizeHeight; j++) {
-                if (i <= 16  || j <= 16 || i >= Assets.screenSizeWidth-16 || j >= Assets.screenSizeHeight - 16) {
+                if (i < 16  || j < 16 || i >= Assets.screenSizeWidth-16 || j > Assets.screenSizeHeight - 16) {
                     world[i][j] = 1;
                 }
             }

@@ -52,6 +52,7 @@ public class GameScreen implements Screen {
 
         camera.update();
 
+
         game.batch.setProjectionMatrix(camera.combined);
         //drawMob(engine.getPlayer());
 
@@ -87,7 +88,8 @@ public class GameScreen implements Screen {
             }
         }
 
-        game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
+        //game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
+        drawMob(engine.getPlayer());
 
 
         game.batch.end();
