@@ -8,6 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class CollisionObject extends Rectangle {
     int group;
+    protected float yForce;
+    public float xForce;
     public enum CollisionSide { NONE, LEFT, RIGHT, TOP, BOTTOM }
 
     public CollisionObject()
@@ -94,6 +96,7 @@ public class CollisionObject extends Rectangle {
         {
             return CollisionSide.NONE;
         }
+
     }
 
     public int getGroup() { return group; }

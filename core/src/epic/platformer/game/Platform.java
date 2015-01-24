@@ -3,32 +3,32 @@ package epic.platformer.game;
 class Platform {
 
     private CollisionObject obj;
-    private float force;
+    //private float force;
     private int dir = 1;
 
     public Platform(CollisionObject obj, float force) {
         this.obj = obj;
-        this.force = force;
+        obj.xForce = force;
     }
 
     public void update(float delta) {
         for (CollisionObject collObj : World.rectList) {
             // Change direction for overlapping
             if (!collObj.equals(obj) && obj.overlaps(collObj))
-                dir *= -1;
+                obj.xForce *= -1;
             // and out of range
             else if (obj.getX() < 0 || obj.getX() > Assets.screenSizeWidth)
-                dir *= -1;
+                obj.xForce *= -1;
         }
 
-        obj.setX(obj.getX() + dir * force);
+        obj.setX(obj.getX() + obj.xForce);
     }
 
     public float getForce() {
-        return force;
+        return obj.xForce;
     }
 
     public void setForce(float force) {
-        this.force = force;
+        obj.xForce = force;
     }
 }
