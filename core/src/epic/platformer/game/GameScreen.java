@@ -3,10 +3,14 @@ package epic.platformer.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Timer;
 
 import java.util.Random;
 
@@ -26,6 +30,8 @@ public class GameScreen implements Screen {
     OrthographicCamera camera;
     Engine engine;
 
+    int timeLeft=80;
+    Label timeText;
 
 
     public GameScreen(Platformer game){
@@ -35,15 +41,26 @@ public class GameScreen implements Screen {
         game.batch = new SpriteBatch();
         engine = new Engine(game);
         //Gdx.graphics.setContinuousRendering(false);
-//        Rects.addRect(new CollisionObject(160, 320, 600, 32, 1));
-//        Rects.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, 32, 1));
+        Map.generate();
+        Rects.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.sprite1.getHeight()));
 
 
     }
 
     @Override
     public void show() {
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                Gdx.app.log("Time: ", "" + timeLeft);
+                timeLeft--;
+            }
+        }
+                , 0        //    (delay)
+                , 1    //    (seconds)
+        );
 
+        timeText = new Label("00:00", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
     }
 
@@ -61,8 +78,7 @@ public class GameScreen implements Screen {
         engine.update(delta);
 
         game.batch.begin();
-        //game.batch.draw(Assets.textureBack, 0, 0);
-
+        game.batch.draw(Assets.textureBack, 0, 0);
 //        for (int i=0;i<Assets.screenSizeHeight;i+=16){
 //            for(int j=0;j<Assets.screenSizeWidth;j+=16){
 //                switch (random.nextInt(5)){
@@ -83,20 +99,28 @@ public class GameScreen implements Screen {
 //                        break;
 //                }
 //            }
-//
+//        }
+        for (int i=0;i<Assets.screenSizeHeight;i+=16) {
+            for (int j = 0; j < Assets.screenSizeWidth; j += 16) {
+                if(Assets.world[j][i] == 1){
+                    game.batch.draw(Assets.sprite3, j, i);
+                }
+            }
+        }
 
         //game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
         drawMob(engine.getPlayer());
-//        for(CollisionObject object: Rects.rectList){
-//            Rects.drawRect(game.batch, object);
-//        }
-
-        for(CollisionObject obj : Rects.rectList)
-        {
-            Rects.drawRect(game.batch, obj);
+        for(CollisionObject object: Rects.rectList){
+            Rects.drawRect(game.batch, object);
         }
 
+        timeText.setFontScale(5f, 5f);
+        timeText.setText((timeLeft/60)+":"+(timeLeft%60));
+        timeText.setPosition(Assets.screenSizeWidth-timeText.getWidth()*5f, Assets.screenSizeHeight-timeText.getHeight()*5f);
+        timeText.draw(game.batch, 1f);
+
         game.batch.end();
+
     }
 
 

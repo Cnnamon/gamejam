@@ -15,6 +15,7 @@ public class Platformer extends Game {
 		Assets.load();
 		gameScreen = new GameScreen(this);
 		setScreen(gameScreen);
+		batch = new SpriteBatch();
 
 //		gameOverScreen = new GameOverScreen(this); // Dominykas FTW
 //		setScreen(gameOverScreen);
