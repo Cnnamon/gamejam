@@ -63,13 +63,19 @@ public class Player extends Mob {
         }
         if(dKey)
         {
-            x += 200*Delta;
+            //x += 200*Delta;
+            xForce = 200;
             fallIfNotOnGround();
         }
         if(aKey)
         {
-            x -= 200*Delta;
+            //x -= 200*Delta;
+            xForce = -200;
             fallIfNotOnGround();
+        }
+        if(!aKey && !dKey)
+        {
+            xForce = 0;
         }
         if(sKey && !inAir) y -= 1000*Delta;
 
