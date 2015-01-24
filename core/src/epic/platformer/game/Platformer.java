@@ -2,25 +2,24 @@ package epic.platformer.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import screens.GameOverScreen;
-import screens.MenuScreen;
+
 
 public class Platformer extends Game {
-//	GameScreen gameScreen;
+	GameScreen gameScreen;
 //	GameOverScreen gameOverScreen;
-	MenuScreen menuScreen;
+//	MenuScreen menuScreen;
 	public SpriteBatch batch;
 
 	@Override
 	public void create() {
 		Assets.load();
-//		gameScreen = new GameScreen(this);
-//		setScreen(gameScreen);
+		gameScreen = new GameScreen(this);
+		setScreen(gameScreen);
 
 //		gameOverScreen = new GameOverScreen(this); // Dominykas FTW
 //		setScreen(gameOverScreen);
 //aaa
-		menuScreen = new MenuScreen(this); // Dominykas FTW 2
-		setScreen(menuScreen);
+//		menuScreen = new MenuScreen(this); // Dominykas FTW 2
+//		setScreen(menuScreen);
 	}
 }

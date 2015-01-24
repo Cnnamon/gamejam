@@ -1,13 +1,12 @@
 package epic.platformer.game;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Rectangle;
+
 
 /**
  * Created by god on 15.1.23.
  */
-public abstract class Mob extends Rectangle{
+public abstract class Mob extends CollisionObject{
     protected Sprite icon;
     protected boolean inAir;
     protected float yForce;
