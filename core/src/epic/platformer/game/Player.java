@@ -48,7 +48,7 @@ public class Player extends Mob {
 
         if(wKey){
             inAir = true;
-            yForce += 180;
+            yForce += 450;
         }
         if(dKey)
         {
@@ -65,6 +65,7 @@ public class Player extends Mob {
 
     private void fallIfNotOnGround()
     {
+        //Fails if trying to jump while moving, collects yForce.TODO Should fix this
         inAir = true;
         for(CollisionObject obj : Rects.rectList) {
             if (this.overlaps(obj)) {

@@ -5,6 +5,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 public class Platformer extends Game {
+
+	/*
+	*	Todo: make a transition to another world;
+	*	Todo: add different properties to the worlds;
+	*	Todo: add more objects (enemies, traps, health, coins and so on)
+	*	Todo: add random properties to those items
+	*
+	*
+	 */
+
 	GameScreen gameScreen;
 //	GameOverScreen gameOverScreen;
 //	MenuScreen menuScreen;
