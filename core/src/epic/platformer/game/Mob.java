@@ -28,7 +28,6 @@ public abstract class Mob extends CollisionObject{
     }
 
     public void update(float Delta){
-        //todo the mob should fall according to the current worlds gravity, not standard
         if(inAir){
             boolean collided = false;
             Vector2 center1 = new Vector2(this.x+this.width/2, this.y+this.height/2);
@@ -56,6 +55,8 @@ public abstract class Mob extends CollisionObject{
             Vector2 center2;
             float coordinate = this.y;
             //todo current collision cant properly check from which direction we ram into something. This should be addressed
+            //perhaps with a custom overlapping method?
+
             for(CollisionObject obj : World.rectList) {
                 center2 = new Vector2(obj.x+obj.width/2, obj.y+obj.height/2);
                 if (this.overlaps(obj)) {
@@ -65,7 +66,7 @@ public abstract class Mob extends CollisionObject{
                 }
             }
             if(!collided) {
-                yForce -= 9.8;
+                yForce -= 9.8 * World.gravity;
                 y += yForce * Delta;
             }
             else

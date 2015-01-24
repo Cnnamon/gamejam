@@ -14,6 +14,8 @@ public class Player extends Mob {
     private boolean aKey;
     private boolean sKey;
 
+    private boolean isAlive;
+
 
     public Player(int x, int y, float width, float height, Sprite icon){
         super(x, y, width, height, icon);
@@ -21,6 +23,8 @@ public class Player extends Mob {
         dKey = false;
         aKey = false;
         sKey = false;
+
+        isAlive = true;
 
     }
 
@@ -50,6 +54,7 @@ public class Player extends Mob {
         if(wKey){
             inAir = true;
             yForce += 450;
+            if(yForce >= 700) yForce = 600;
         }
         if(dKey)
         {
@@ -80,10 +85,10 @@ public class Player extends Mob {
         }
 
 
-//        //if below zero, game over screen
-//        if(y<0){
-//            //gameover
-//        }
+        //if below zero, game over screen
+        if(y<0){
+            isAlive = false;
+        }
     }
 
     private void fallIfNotOnGround()
@@ -98,4 +103,7 @@ public class Player extends Mob {
         }
     }
 
+    public boolean isAlive() {
+        return isAlive;
+    }
 }

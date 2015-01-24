@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 public class World {
 
+    public static float gravity = 1.0F; //on world switch, change gravity
     public static int worldType; //todo implement enum for different world types (for better perception)
     /*
     *Possible world types:
