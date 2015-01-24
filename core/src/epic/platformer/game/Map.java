@@ -1,22 +1,50 @@
 package epic.platformer.game;
 
+import java.util.Random;
+
 /**
  * Created by god on 15.1.1.
- *
  */
 public class Map {
 
-    static void generate(int[][] world) {
-        for (int i = 0; i < Assets.screenSizeWidth; i++) {
-            for (int j = 0; j < Assets.screenSizeHeight; j++) {
-                if (i < 16  || j < 16 || i >= Assets.screenSizeWidth-16 || j > Assets.screenSizeHeight - 16) {
-                    world[i][j] = 1;
-                }
+    static final int MIN_PLATFORM_WIDTH = 85;
+    static final int MAX_PLATFORM_WIDTH = 300;
+    static final int MIN_VERT_DIST_BETWEEN_PLATFORMS = 70;
+    static final int LEVELS = 7;
+    static final int BUFFER = 20;
+    static final int HEIGHT = (Assets.screenSizeHeight - 2 * BUFFER) / LEVELS;
+
+    static void generate() {
+        int minGapWidth = 60;
+        int maxGapWidth = 300;
+        int h = 10;
+
+        int y = BUFFER;
+
+        for (int i = 0; i < LEVELS; i++) {
+            Random rand = new Random();
+            int x;
+            y += HEIGHT;
+            x = 0;
+
+            x += rand.nextInt(maxGapWidth/2 - minGapWidth);
+            x += drawPlatform(x, y, h);
+
+            while (x < Assets.screenSizeWidth*3) {
+                x += minGapWidth + rand.nextInt(maxGapWidth - minGapWidth);
+
+                x += drawPlatform(x, y, h);
             }
         }
 
-        for(int x=160;x<=640;x+=16){
-                world[x][160] = 1;
-        }
+    }
+
+    private static int drawPlatform(int x, int y, int h) {
+        Random rand = new Random();
+        int w = MIN_PLATFORM_WIDTH + rand.nextInt(MAX_PLATFORM_WIDTH - MIN_PLATFORM_WIDTH);
+        int platformY = y - (HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS) / 2 + rand.nextInt(HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS);
+        World.addRect(new CollisionObject(x, platformY, w, h, 1));
+
+        return w;
     }
 }

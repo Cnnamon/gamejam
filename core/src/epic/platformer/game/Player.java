@@ -2,10 +2,7 @@ package epic.platformer.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-
-import javax.swing.*;
 
 /**
  * Created by god on 15.1.23.
@@ -17,6 +14,8 @@ public class Player extends Mob {
     private boolean aKey;
     private boolean sKey;
 
+    private boolean isAlive;
+
 
     public Player(int x, int y, float width, float height, Sprite icon){
         super(x, y, width, height, icon);
@@ -24,6 +23,8 @@ public class Player extends Mob {
         dKey = false;
         aKey = false;
         sKey = false;
+
+        isAlive = true;
 
     }
 
@@ -38,6 +39,10 @@ public class Player extends Mob {
         if(!Gdx.input.isKeyPressed(Input.Keys.A)) aKey = false;
         if(!Gdx.input.isKeyPressed(Input.Keys.S)) sKey = false;
 
+        if(Gdx.input.isTouched()){
+
+        }
+
 
 
     }
@@ -48,13 +53,57 @@ public class Player extends Mob {
 
         if(wKey){
             inAir = true;
-            yForce += 180;
+            yForce += 450;
+            if(yForce >= 700) yForce = 600;
         }
-        if(dKey) x += 200*Delta;
-        if(aKey) x -= 200*Delta;
-        if(sKey) y -= 1000*Delta;
+        if(dKey)
+        {
+            x += 200*Delta;
+            fallIfNotOnGround();
+        }
+        if(aKey)
+        {
+            x -= 200*Delta;
+            fallIfNotOnGround();
+        }
+        if(sKey && inAir != true) y -= 1000*Delta;
 
 
+        //world scrolling stuff
+        if(x > 450){
+            //loop through all game objects, subtract their x by (x-450)
+            for(CollisionObject object : World.rectList){
+                object.x -= x-450;
+            }
+            x = 450;
+        }
+        if(x<200){
+            for(CollisionObject object : World.rectList){
+                object.x += 200-x;
+            }
+            x = 200;
+        }
+
+
+        //if below zero, game over screen
+        if(y<0){
+            isAlive = false;
+        }
     }
 
+    private void fallIfNotOnGround()
+    {
+        //Fails if trying to jump while moving, collects yForce.TODO Should fix this
+        inAir = true;
+        for(CollisionObject obj : World.rectList) {
+            if (this.overlaps(obj)) {
+                inAir = false;
+                break;
+            }
+        }
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
 }

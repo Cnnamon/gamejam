@@ -1,8 +1,6 @@
 package epic.platformer.game;
 
 
-import com.badlogic.gdx.graphics.Texture;
-
 import java.util.ArrayList;
 
 /**
@@ -26,8 +24,15 @@ public class Engine {
 
         this.game = game;
         mobList = new ArrayList<Mob>();
-        player = new Player(500, 75, 16, 16, Assets.sprite1);
-        mobList.add(new Snail(snailSpawnX,snailSpawnY, snailWidth, snailHeight, Assets.sprite5));
+        player = new Player(500, 1000, 16, 16, Assets.playerSprite);
+        player.group = 2;
+        mobList.add(new Snail(snailSpawnX, snailSpawnY, snailWidth, snailHeight, Assets.enemySprite));
+        World.addRect(new CollisionObject(50, 250, 500, 16, 1));
+        World.addRect(new CollisionObject(550, 100, 50, 16, 1));
+        World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, 16, 1));
+        Relations.addCollision(1, 2);
+        Relations.addCollision(2, 1);
+
 
     }
 
