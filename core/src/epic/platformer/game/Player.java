@@ -3,11 +3,7 @@ package epic.platformer.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
-
-import javax.xml.transform.Templates;
-import java.util.concurrent.RecursiveAction;
 
 /**
  * Created by god on 15.1.23.
@@ -104,7 +100,6 @@ public class Player extends Mob {
     private void fallIfNotOnGround()
     {
         if(inAir) return;
-        //Fails if trying to jump while moving, collects yForce.TODO Should fix this
         if(yForce > 0) { return; }
         inAir = true;
         for(CollisionObject obj : World.rectList) {
