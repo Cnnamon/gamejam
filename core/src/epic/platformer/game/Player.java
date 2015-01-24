@@ -63,12 +63,19 @@ public class Player extends Mob {
         }
         if(dKey)
         {
-            x += 200*Delta;
+            //x += 200*Delta;
+            xForce = 200;
             fallIfNotOnGround();
         }
         if(aKey)
         {
-            x -= 200*Delta;
+            //x -= 200*Delta;
+            xForce = -200;
+            fallIfNotOnGround();
+        }
+        if(!aKey && !dKey)
+        {
+            xForce = 0;
             fallIfNotOnGround();
         }
         if(sKey && !inAir) y -= 1000*Delta;
@@ -98,10 +105,12 @@ public class Player extends Mob {
 
     private void fallIfNotOnGround()
     {
+        if(inAir) return;
         //Fails if trying to jump while moving, collects yForce.TODO Should fix this
+        if(yForce > 0) { return; }
         inAir = true;
         for(CollisionObject obj : World.rectList) {
-            Rectangle rectangle = new Rectangle(x+0.05F, y, width, height);
+            Rectangle rectangle = new Rectangle(x, y, width, height);
             if (rectangle.overlaps(obj)) {
                 inAir = false;
                 break;

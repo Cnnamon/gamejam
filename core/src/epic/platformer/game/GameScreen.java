@@ -1,6 +1,7 @@
 package epic.platformer.game;
 
 
+import actors.MapChangeEvent;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -8,10 +9,14 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Timer;
 
 import java.text.DecimalFormat;
+
+import static epic.platformer.game.Assets.timeMapSwap;
 
 
 /**
@@ -29,7 +34,7 @@ public class GameScreen implements Screen {
     float scoreConstant = 1f; // zie more, zie better
     float score = 0f; // zie more, zie better
     float timeConstant = 1f; // zie less, zie fastah
-    int timeLeft=160;
+    int timeLeft=20;
     int timeScale=5;
 
     Label timeText;
@@ -55,7 +60,20 @@ public class GameScreen implements Screen {
             @Override
             public void run() {
                 timeLeft--;
-                score = score + 1*scoreConstant;
+                if(timeLeft <= 9) {
+                    if((timeLeft%2)==0) {
+                        timeText.setColor(Color.WHITE);
+                    } else {
+                        timeText.setColor(Color.RED);
+                    }
+
+                }
+                if(timeLeft <= 0) {
+                    timeLeft = timeMapSwap;
+                    new Actor().fire(new MapChangeEvent(scoreConstant, timeConstant));
+
+                }
+                score = score + 10 * scoreConstant;
             }
         }
                 , 0    //    (delay)
@@ -83,34 +101,7 @@ public class GameScreen implements Screen {
 
         game.batch.begin();
         game.batch.draw(Assets.textureBack, 0, 0);
-//        for (int i=0;i<Assets.screenSizeHeight;i+=16){
-//            for(int j=0;j<Assets.screenSizeWidth;j+=16){
-//                switch (random.nextInt(5)){
-//                    case 0:
-//                        batch.draw(Assets.playerSprite, i, j);
-//                        break;
-//                    case 1:
-//                        batch.draw(Assets.allySprite, i, j);
-//                        break;
-//                    case 2:
-//                        batch.draw(Assets.wallSprite, i, j);
-//                        break;
-//                    case 3:
-//                        batch.draw(Assets.edgeSprite, i, j);
-//                        break;
-//                    case 4:
-//                        batch.draw(Assets.enemySprite, i, j);
-//                        break;
-//                }
-//            }
-//        }
-//        for (int i=0;i<Assets.screenSizeHeight;i+=16) {
-//            for (int j = 0; j < Assets.screenSizeWidth; j += 16) {
-//                if(Assets.world[j][i] == 1){
-//                    game.batch.draw(Assets.wallSprite, j, i);
-//                }
-//            }
-//        }
+
 
         //game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
 
@@ -120,6 +111,8 @@ public class GameScreen implements Screen {
 
         drawMob(engine.getPlayer());
 
+        for(Mob m: engine.getMobList())
+        drawMob(m);
 
         if(((timeLeft/60 <= 9) && (timeLeft%60 > 9)) || (((timeLeft/60 > 9) && (timeLeft%60 <= 9)))) {
             if(timeLeft/60 <= 9) {
@@ -138,7 +131,7 @@ public class GameScreen implements Screen {
 
         timeText.setFontScale(timeScale, timeScale);
         timeText.setPosition(Assets.screenSizeWidth-timeText.getWidth()*timeScale, Assets.screenSizeHeight-timeText.getHeight()*timeScale);
-        timeText.draw(game.batch, 0.5f);
+        timeText.draw(game.batch, 1f);
 
         scoreText.setText(new DecimalFormat("#").format(score));
         scoreText.setFontScale(timeScale, timeScale);

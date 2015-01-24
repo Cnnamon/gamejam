@@ -52,7 +52,7 @@ public class Map {
         World.addRect(colObj);
 
         if (rand.nextDouble() < .5)
-            platforms.add(new Platform(colObj));
+            platforms.add(new Platform(colObj, 2));
 
         return w;
     }
