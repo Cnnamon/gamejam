@@ -1,5 +1,7 @@
 package epic.platformer.game;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -7,9 +9,10 @@ import java.util.Random;
  */
 public class Map {
 
+    static final List<Platform> platforms = new ArrayList<Platform>();
     static final int MIN_PLATFORM_WIDTH = 85;
     static final int MAX_PLATFORM_WIDTH = 300;
-    static final int MIN_VERT_DIST_BETWEEN_PLATFORMS = 70;
+    static final int MIN_VERT_DIST_BETWEEN_PLATFORMS = 80;
     static final int LEVELS = 7;
     static final int BUFFER = 20;
     static final int HEIGHT = (Assets.screenSizeHeight - 2 * BUFFER) / LEVELS;
@@ -41,10 +44,22 @@ public class Map {
 
     private static int drawPlatform(int x, int y, int h) {
         Random rand = new Random();
+
         int w = MIN_PLATFORM_WIDTH + rand.nextInt(MAX_PLATFORM_WIDTH - MIN_PLATFORM_WIDTH);
         int platformY = y - (HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS) / 2 + rand.nextInt(HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS);
-        World.addRect(new CollisionObject(x, platformY, w, h, 1));
+
+        CollisionObject colObj = new CollisionObject(x, platformY, w, h, 1);
+        World.addRect(colObj);
+
+        if (rand.nextDouble() < .5)
+            platforms.add(new Platform(colObj));
 
         return w;
+    }
+
+    public static void updateMovingPlatforms(float delta) {
+        for (Platform platform : platforms) {
+            platform.update(delta);
+        }
     }
 }
