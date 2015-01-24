@@ -7,11 +7,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Platformer extends Game {
 
 	/*
-	*	Todo: make a transition to another world;
+	*	Todo: make a transition to another world (transition effects?)
 	*	Todo: add different properties to the worlds;
 	*	Todo: add more objects (enemies, traps, health, coins and so on)
 	*	Todo: add random properties to those items
 	*	Todo: extend on the current ceiling grappling move
+	*	Todo: add a status system for the different worlds (do they affect all mobs?)
 	*
 	*
 	 */

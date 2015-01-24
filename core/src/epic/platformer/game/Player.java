@@ -38,6 +38,10 @@ public class Player extends Mob {
         if(!Gdx.input.isKeyPressed(Input.Keys.A)) aKey = false;
         if(!Gdx.input.isKeyPressed(Input.Keys.S)) sKey = false;
 
+        if(Gdx.input.isTouched()){
+
+        }
+
 
 
     }

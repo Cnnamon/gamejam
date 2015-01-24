@@ -10,6 +10,16 @@ import java.util.ArrayList;
  */
 public class Rects {
 
+    public static int worldType; //todo implement enum for different world types (for better perception)
+    /*
+    *Possible world types:
+    * 1. Normal (nothing out of the ordinary)
+    * 2. Space  (less gravity)
+    * 3. Fire   (lava at the bottom, gets hot the closer you are to it
+    * 4. Frost  (Gets cold unless you constantly move)
+    *
+     */
+
     public static ArrayList<CollisionObject> rectList = new ArrayList<CollisionObject>();
 
     public static void addRect(CollisionObject object){
