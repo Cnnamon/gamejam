@@ -1,13 +1,14 @@
 package epic.platformer.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Created by tautvis on 15.1.24.
  */
 public class Snail extends Mob {
 
-    private float speed = 1.0f;
+    private float speed = 10.0f;
 
 
     public Snail(int x, int y, float width, float height, Texture icon){
@@ -18,6 +19,26 @@ public class Snail extends Mob {
     public void update(float delta){
         super.update(delta);
 
+        float distance = Engine.player.getX() - this.getX();
+        xForce = speed * ((distance)/(Math.abs(distance)));
+        x += xForce * delta;
+
+        fallIfNotOnGround();
+    }
+
+    private void fallIfNotOnGround()
+    {
+        if(inAir) return;
+        //Fails if trying to jump while moving, collects yForce.TODO Should fix this
+        if(yForce > 0) { return; }
+        inAir = true;
+        for(CollisionObject obj : World.rectList) {
+            Rectangle rectangle = new Rectangle(x, y, width, height);
+            if (rectangle.overlaps(obj)) {
+                inAir = false;
+                break;
+            }
+        }
     }
 
 }

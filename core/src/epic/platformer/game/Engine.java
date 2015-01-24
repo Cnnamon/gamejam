@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Engine {
 
     private Platformer game;
-    private Player player;
+    public static Player player;
 
     private static ArrayList<Mob> mobList;
 
