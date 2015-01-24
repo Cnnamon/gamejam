@@ -3,10 +3,14 @@ package epic.platformer.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Timer;
 
 import java.util.Random;
 
@@ -26,12 +30,15 @@ public class GameScreen implements Screen {
     OrthographicCamera camera;
     Engine engine;
 
+    int timeLeft=80;
+    Label timeText;
 
 
     public GameScreen(Platformer game){
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
+        game.batch = new SpriteBatch();
         engine = new Engine(game);
         //Gdx.graphics.setContinuousRendering(false);
         Rects.addRect(new CollisionObject(160, 320, 600, 16));
@@ -42,7 +49,18 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                Gdx.app.log("Time: ", "" + timeLeft);
+                timeLeft--;
+            }
+        }
+                , 0        //    (delay)
+                , 1    //    (seconds)
+        );
 
+        timeText = new Label("00:00", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
     }
 
@@ -96,7 +114,13 @@ public class GameScreen implements Screen {
             Rects.drawRect(game.batch, object);
         }
 
+        timeText.setFontScale(5f, 5f);
+        timeText.setText((timeLeft/60)+":"+(timeLeft%60));
+        timeText.setPosition(Assets.screenSizeWidth-timeText.getWidth()*5f, Assets.screenSizeHeight-timeText.getHeight()*5f);
+        timeText.draw(game.batch, 1f);
+
         game.batch.end();
+
     }
 
 
