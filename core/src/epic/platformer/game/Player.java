@@ -50,11 +50,28 @@ public class Player extends Mob {
             inAir = true;
             yForce += 180;
         }
-        if(dKey) x += 200*Delta;
-        if(aKey) x -= 200*Delta;
+        if(dKey)
+        {
+            x += 200*Delta;
+            fallIfNotOnGround();
+        }
+        if(aKey)
+        {
+            x -= 200*Delta;
+            fallIfNotOnGround();
+        }
         if(sKey) y -= 1000*Delta;
+    }
 
-
+    private void fallIfNotOnGround()
+    {
+        inAir = true;
+        for(CollisionObject obj : Rects.rectList) {
+            if (this.overlaps(obj)) {
+                inAir = false;
+                break;
+            }
+        }
     }
 
 }

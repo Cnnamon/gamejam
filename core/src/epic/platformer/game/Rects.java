@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Rects {
 
-    static ArrayList<CollisionObject> rectList = new ArrayList<CollisionObject>();
+    public static ArrayList<CollisionObject> rectList = new ArrayList<CollisionObject>();
 
     public static void addRect(CollisionObject object){
         rectList.add(object);
@@ -26,5 +26,6 @@ public class Rects {
         }
         batch.draw(Assets.sprite3, object.x, object.y);
         batch.draw(Assets.sprite3, object.x+x, object.y);
+        batch.draw(Assets.sprite1, object.x, object.y);
     }
 }
