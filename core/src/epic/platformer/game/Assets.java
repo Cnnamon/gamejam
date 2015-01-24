@@ -45,7 +45,6 @@ public class Assets {
         screenSizeWidth = 1920;
         screenSizeHeight = 1080;
         world = new int[1920][1080];
-        Map.generate(world);
 
 
     }
