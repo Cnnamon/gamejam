@@ -59,6 +59,7 @@ public class GameScreen implements Screen {
         engine.update(delta);
 
         game.batch.begin();
+        game.batch.draw(Assets.textureBack, 0, 0);
 //        for (int i=0;i<Assets.screenSizeHeight;i+=16){
 //            for(int j=0;j<Assets.screenSizeWidth;j+=16){
 //                switch (random.nextInt(5)){
