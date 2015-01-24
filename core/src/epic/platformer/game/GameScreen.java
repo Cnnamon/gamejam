@@ -42,8 +42,8 @@ public class GameScreen implements Screen {
         engine = new Engine(game);
         //Gdx.graphics.setContinuousRendering(false);
         Map.generate();
-        Rects.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.sprite1.getHeight()));
-
+        Rects.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.sprite1.getHeight(), 1));
+//
 
     }
 
