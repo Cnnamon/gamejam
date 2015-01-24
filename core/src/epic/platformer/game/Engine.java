@@ -38,10 +38,10 @@ public class Engine {
 
     }
 
-    public void update(){
+    public void update(float Delta){
         //updating cycle
 
-
+        player.update(Delta);
 
     }
 

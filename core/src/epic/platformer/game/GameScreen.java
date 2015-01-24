@@ -55,6 +55,7 @@ public class GameScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
         //drawMob(engine.getPlayer());
 
+        engine.update(delta);
 
         game.batch.begin();
 //        for (int i=0;i<Assets.screenSizeHeight;i+=16){
