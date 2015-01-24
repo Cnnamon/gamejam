@@ -28,10 +28,13 @@ public class Assets {
 
     public static Sprite fireWall;
     public static Sprite fireWallCorner;
+    public static Sprite fireWallRightCorner;
     public static Sprite earthWall;
     public static Sprite earthWallCorner;
+    public static Sprite earthWallRightCorner;
     public static Sprite iceWall;
     public static Sprite iceWallCorner;
+    public static Sprite iceWallRightCorner;
     public static Sprite spaceWall;
     public static Sprite spaceWallCorner;
 
@@ -63,14 +66,18 @@ public class Assets {
         sunSprite = new Sprite(textureSheet, 16*5, 0, 16, 16);
         darkEdgeSprite = new Sprite(textureSheet, 16*6, 0, 16, 16);
 
-        fireWall = new Sprite(textureSheet, 32*0, 0, 32, 32);
-        fireWallCorner = new Sprite(textureSheet, 32*1, 0, 32, 32);
-        earthWall = new Sprite(textureSheet, 32*2, 0, 32, 32);
-        earthWallCorner = new Sprite(textureSheet, 32*3, 0, 32, 32);
-        iceWall = new Sprite(textureSheet, 32*4, 0, 32, 32);
-        iceWallCorner = new Sprite(textureSheet, 32*5, 0, 32, 32);
-        spaceWall = new Sprite(textureSheet, 32*6, 0, 32, 32);
-        spaceWallCorner = new Sprite(textureSheet, 32*7, 0, 32, 32);
+        fireWall = new Sprite(textureSheet, 32*0, 32*0, 32, 32);
+        fireWallCorner = new Sprite(textureSheet, 32*0, 32*1, 32, 32);
+        fireWallRightCorner = new Sprite(textureSheet, 32*0, 32*2, 32, 32);
+        spaceWall = new Sprite(textureSheet, 32*1, 32*0, 32, 32);
+        spaceWallCorner = new Sprite(textureSheet, 32*1, 32*0, 32, 32);
+        earthWall = new Sprite(textureSheet, 32*2, 32*0, 32, 32);
+        earthWallCorner = new Sprite(textureSheet, 32*2, 32*1, 32, 32);
+        earthWallRightCorner = new Sprite(textureSheet, 32*2, 32*2, 32, 32);
+        iceWall = new Sprite(textureSheet, 32*3, 32*0, 32, 32);
+        iceWallCorner = new Sprite(textureSheet, 32*3, 32*1, 32, 32);
+        iceWallRightCorner = new Sprite(textureSheet, 32*3, 32*2, 32, 32);
+
 
 
 

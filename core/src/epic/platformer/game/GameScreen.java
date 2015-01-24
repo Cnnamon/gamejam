@@ -49,7 +49,8 @@ public class GameScreen implements Screen {
         engine = new Engine(game);
         //Gdx.graphics.setContinuousRendering(false);
         Map.generate();
-        World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.playerSprite.getHeight(), 1));
+        //World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.playerSprite.getHeight(), 1));
+        World.changeWorld(1);
 //
 
     }
@@ -89,6 +90,8 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0F, 0F, 0F, 1F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+
 
         camera.update();
 

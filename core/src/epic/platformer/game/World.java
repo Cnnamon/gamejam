@@ -63,7 +63,6 @@ public class World {
             middle -= 32;
         }
         batch.draw(corner, object.x+x, object.y);
-        batch.draw(wall, object.x, object.y);
-        batch.draw(corner, object.x-16, object.y);
+        batch.draw(corner, object.x, object.y);
     }
 }
