@@ -84,15 +84,13 @@ public class Player extends Mob {
         //world scrolling stuff
         if(x > 450){
             //loop through all game objects, subtract their x by (x-450)
-            for(CollisionObject object : World.rectList){
-                object.x -= x-450;
-            }
+            for(CollisionObject object : World.rectList) object.x -= x-450;
+            for(Mob mob: Engine.getMobList())  mob.x -= x-450;
             x = 450;
         }
         if(x<200){
-            for(CollisionObject object : World.rectList){
-                object.x += 200-x;
-            }
+            for(CollisionObject object : World.rectList) object.x += 200-x;
+            for(Mob mob: Engine.getMobList())  mob.x += 200-x;
             x = 200;
         }
 

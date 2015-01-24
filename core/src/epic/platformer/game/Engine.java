@@ -11,7 +11,7 @@ public class Engine {
     private Platformer game;
     private Player player;
 
-    private ArrayList<Mob> mobList;
+    private static ArrayList<Mob> mobList;
 
     private final int snailId = 0;
 
@@ -66,7 +66,7 @@ public class Engine {
         return player;
     }
 
-    public ArrayList<Mob> getMobList() {
+    static public ArrayList<Mob> getMobList() {
         return mobList;
     }
 
