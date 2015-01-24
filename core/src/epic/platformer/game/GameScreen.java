@@ -35,8 +35,8 @@ public class GameScreen implements Screen {
         game.batch = new SpriteBatch();
         engine = new Engine(game);
         //Gdx.graphics.setContinuousRendering(false);
-        Rects.addRect(new CollisionObject(160, 320, 600, 32));
-        Rects.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, 32));
+        Rects.addRect(new CollisionObject(160, 320, 600, 16));
+        Rects.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, 16));
 
 
     }
