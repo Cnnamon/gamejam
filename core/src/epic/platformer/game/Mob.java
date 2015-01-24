@@ -56,11 +56,12 @@ public abstract class Mob extends CollisionObject{
             float coordinate = this.y;
             //todo current collision cant properly check from which direction we ram into something. This should be addressed
             //perhaps with a custom overlapping method?
-
+            CollisionObject collider = null;
             for(CollisionObject obj : World.rectList) {
                 center2 = new Vector2(obj.x+obj.width/2, obj.y+obj.height/2);
                 if (this.overlaps(obj)) {
                     collided = true;
+                    collider = obj;
                     coordinate = obj.y + obj.height;
                     break;
                 }
@@ -73,7 +74,9 @@ public abstract class Mob extends CollisionObject{
             {
                 inAir = false;
                 yForce = 0;
-                y = coordinate;
+                //y = coordinate;
+                while (this.overlaps(collider))this.y+=0.2;
+
             }
         }
 //        if(Assets.world[(int)x][(int)y] == 1){
