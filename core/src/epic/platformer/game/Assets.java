@@ -84,8 +84,8 @@ public class Assets {
 
 
 
-        screenSizeWidth = 1920;
-        screenSizeHeight = 1080;
+        screenSizeWidth = 1280;
+        screenSizeHeight = 720;
 
 
     }

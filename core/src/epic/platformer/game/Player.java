@@ -78,17 +78,30 @@ public class Player extends Mob {
 
 
         //world scrolling stuff
-        if(x > 450){
+        if(x > 550){
             //loop through all game objects, subtract their x by (x-450)
-            for(CollisionObject object : World.rectList) object.x -= x-450;
-            for(Mob mob: Engine.getMobList())  mob.x -= x-450;
-            x = 450;
+            for(CollisionObject object : World.rectList) object.x -= x-550;
+            for(Mob mob: Engine.getMobList())  mob.x -= x-550;
+            x = 550;
         }
-        if(x<200){
-            for(CollisionObject object : World.rectList) object.x += 200-x;
-            for(Mob mob: Engine.getMobList())  mob.x += 200-x;
-            x = 200;
+        if(x<300){
+            for(CollisionObject object : World.rectList) object.x += 300-x;
+            for(Mob mob: Engine.getMobList())  mob.x += 300-x;
+            x = 300;
         }
+
+        if(y>550){
+            for(CollisionObject object : World.rectList) object.y -= y-550;
+            for(Mob mob: Engine.getMobList())  mob.y -= y-550;
+            y = 550;
+        }
+        if(y<350){
+            for(CollisionObject object : World.rectList) object.y += 350-y;
+            for(Mob mob: Engine.getMobList())  mob.y += 350-y;
+            y = 350;
+        }
+
+
 
 
         //if below zero, game over screen

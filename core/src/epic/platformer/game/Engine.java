@@ -24,17 +24,19 @@ public class Engine {
 
         this.game = game;
         mobList = new ArrayList<Mob>();
-        player = new Player(500, 1000, 50, 50, Assets.playerSprite);
+        player = new Player(400, 400, 50, 50, Assets.playerSprite);
         World.player = player;
         player.group = 2;
         mobList.add(new Snail(snailSpawnX, snailSpawnY, snailWidth, snailHeight, Assets.enemySprite));
         //for(CollisionObject o in Map.){
 
         //}
+        //Todo delete these before launch
         World.addRect(new CollisionObject(50, 250, 500, 16, 1));
         World.addRect(new CollisionObject(550, 100, 50, 16, 1));
         World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth * 3, 16, 1));
 
+        //Required for working. Do not touch
         Relations.addCollision(1, 2);
         Relations.addCollision(2, 1);
         Relations.addCollision(1, 1);
