@@ -1,7 +1,6 @@
 package epic.platformer.game;
 
 
-import actors.MapChangeEvent;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -23,6 +22,9 @@ import static epic.platformer.game.Assets.timeMapSwap;
  * Created by god on 14.12.31.
  * The class that shall be handling drawing and shit
  */
+
+// prefs.putInteger("score", 99);
+
 public class GameScreen implements Screen {
 
     Platformer game;
@@ -71,8 +73,6 @@ public class GameScreen implements Screen {
                 }
                 if(timeLeft <= 0) {
                     timeLeft = timeMapSwap;
-                    new Actor().fire(new MapChangeEvent(scoreConstant, timeConstant));
-
                 }
                 score = score + 10 * scoreConstant;
             }

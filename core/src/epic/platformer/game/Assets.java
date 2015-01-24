@@ -1,6 +1,7 @@
 package epic.platformer.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -42,6 +43,7 @@ public class Assets {
     public static int screenSizeHeight;
 
     public static void load(){
+
         textureBack = new Texture(Gdx.files.internal("Background.png"));
         textureBack.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
