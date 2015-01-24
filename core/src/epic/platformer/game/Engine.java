@@ -28,6 +28,7 @@ public class Engine {
         World.player = player;
         player.group = 2;
         mobList.add(new Snail(snailSpawnX, snailSpawnY, snailWidth, snailHeight, Assets.enemySprite));
+        mobList.add(new Bat(Assets.screenSizeHeight / 2, Assets.screenSizeWidth / 2, 16, 16, Assets.enemySprite));
         //for(CollisionObject o in Map.){
 
         //}
