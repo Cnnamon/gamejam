@@ -1,12 +1,14 @@
 package epic.platformer.game;
 
 class Platform {
-    static final int PLATFORM_STEP = 2;
+
     private CollisionObject obj;
+    private float force;
     private int dir = 1;
 
-    public Platform(CollisionObject obj) {
+    public Platform(CollisionObject obj, float force) {
         this.obj = obj;
+        this.force = force;
     }
 
     public void update(float delta) {
@@ -19,6 +21,14 @@ class Platform {
                 dir *= -1;
         }
 
-        obj.setX(obj.getX() + dir * PLATFORM_STEP);
+        obj.setX(obj.getX() + dir * force);
+    }
+
+    public float getForce() {
+        return force;
+    }
+
+    public void setForce(float force) {
+        this.force = force;
     }
 }

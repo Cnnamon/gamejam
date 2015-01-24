@@ -26,6 +26,15 @@ public class Assets {
     public static Texture badLogic;
     public static int[][] world;
 
+    public static Sprite fireWall;
+    public static Sprite fireWallCorner;
+    public static Sprite earthWall;
+    public static Sprite earthWallCorner;
+    public static Sprite iceWall;
+    public static Sprite iceWallCorner;
+    public static Sprite spaceWall;
+    public static Sprite spaceWallCorner;
+
     public static int screenSizeWidth;
     public static int screenSizeHeight;
 
@@ -53,6 +62,18 @@ public class Assets {
 
         sunSprite = new Sprite(textureSheet, 16*5, 0, 16, 16);
         darkEdgeSprite = new Sprite(textureSheet, 16*6, 0, 16, 16);
+
+        fireWall = new Sprite(textureSheet, 16*0, 16, 16, 16);
+        fireWallCorner = new Sprite(textureSheet, 16*1, 16, 16, 16);
+        earthWall = new Sprite(textureSheet, 16*2, 16, 16, 16);
+        earthWallCorner = new Sprite(textureSheet, 16*3, 16, 16, 16);
+        iceWall = new Sprite(textureSheet, 16*4, 16, 16, 16);
+        iceWallCorner = new Sprite(textureSheet, 16*5, 16, 16, 16);
+        spaceWall = new Sprite(textureSheet, 16*6, 16, 16, 16);
+        spaceWallCorner = new Sprite(textureSheet, 16*7, 16, 16, 16);
+
+
+
 
         screenSizeWidth = 1920;
         screenSizeHeight = 1080;
