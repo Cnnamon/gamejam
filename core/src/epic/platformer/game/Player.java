@@ -2,9 +2,11 @@ package epic.platformer.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 
+import javax.xml.transform.Templates;
 import java.util.concurrent.RecursiveAction;
 
 /**
@@ -20,7 +22,7 @@ public class Player extends Mob {
     private boolean isAlive;
 
 
-    public Player(int x, int y, float width, float height, Sprite icon){
+    public Player(int x, int y, float width, float height, Texture icon){
         super(x, y, width, height, icon);
         wKey =false;
         dKey = false;
@@ -35,7 +37,7 @@ public class Player extends Mob {
         if(Gdx.input.isKeyPressed(Input.Keys.W) && !inAir) wKey = true;
         if(Gdx.input.isKeyPressed(Input.Keys.A)) aKey = true;
         if(Gdx.input.isKeyPressed(Input.Keys.D)) dKey = true;
-        if(Gdx.input.isKeyPressed(Input.Keys.S)) sKey = true;
+        //if(Gdx.input.isKeyPressed(Input.Keys.S)) sKey = true;
 
         if(!Gdx.input.isKeyPressed(Input.Keys.W) || inAir) wKey = false;
         if(!Gdx.input.isKeyPressed(Input.Keys.D)) dKey = false;
@@ -69,7 +71,7 @@ public class Player extends Mob {
             x -= 200*Delta;
             fallIfNotOnGround();
         }
-        if(sKey && inAir != true) y -= 1000*Delta;
+        if(sKey && !inAir) y -= 1000*Delta;
 
 
         //world scrolling stuff
@@ -99,7 +101,7 @@ public class Player extends Mob {
         //Fails if trying to jump while moving, collects yForce.TODO Should fix this
         inAir = true;
         for(CollisionObject obj : World.rectList) {
-            Rectangle rectangle = new Rectangle(x+0.5F, y, width, height);
+            Rectangle rectangle = new Rectangle(x+0.05F, y, width, height);
             if (rectangle.overlaps(obj)) {
                 inAir = false;
                 break;

@@ -1,5 +1,6 @@
 package epic.platformer.game;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
@@ -8,11 +9,11 @@ import com.badlogic.gdx.math.Vector2;
  * Created by god on 15.1.23.
  */
 public abstract class Mob extends CollisionObject{
-    protected Sprite icon;
+    protected Texture icon;
     protected boolean inAir;
     protected float yForce;
 
-    public Mob(int x, int y, float width, float height, Sprite icon){
+    public Mob(int x, int y, float width, float height, Texture icon){
         this.icon = icon;
         this.width = width;
         this.height = height;
@@ -23,7 +24,7 @@ public abstract class Mob extends CollisionObject{
         yForce = 0;
     }
 
-    public Sprite getIcon() {
+    public Texture getIcon() {
         return icon;
     }
 
@@ -80,6 +81,7 @@ public abstract class Mob extends CollisionObject{
 
             }
         }
+
 //        if(Assets.world[(int)x][(int)y] == 1){
 //            inAir = false;
 //            y -= yForce*Delta;

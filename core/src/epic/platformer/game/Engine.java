@@ -24,7 +24,8 @@ public class Engine {
 
         this.game = game;
         mobList = new ArrayList<Mob>();
-        player = new Player(500, 1000, 16, 16, Assets.playerSprite);
+        player = new Player(500, 1000, 50, 50, Assets.playerSprite);
+        World.player = player;
         player.group = 2;
         mobList.add(new Snail(snailSpawnX, snailSpawnY, snailWidth, snailHeight, Assets.enemySprite));
         World.addRect(new CollisionObject(50, 250, 500, 16, 1));
@@ -46,11 +47,21 @@ public class Engine {
     public void update(float Delta){
         //updating cycle
 
+        //chasing player
+
+
+        for (Mob b: mobList){
+            b.update(Delta);
+        }
         player.update(Delta);
 
     }
 
     public Player getPlayer() {
         return player;
+    }
+
+    public ArrayList<Mob> getMobList() {
+        return mobList;
     }
 }
