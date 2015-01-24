@@ -141,7 +141,7 @@ public class GameScreen implements Screen {
 
         timeText.setFontScale(timeScale, timeScale);
         timeText.setPosition(Assets.screenSizeWidth-timeText.getWidth()*timeScale, Assets.screenSizeHeight-timeText.getHeight()*timeScale);
-        timeText.draw(game.batch, 1f);
+        timeText.draw(game.batch, 0.5f);
 
         scoreText.setText(new DecimalFormat("#").format(score));
         scoreText.setFontScale(timeScale, timeScale);
