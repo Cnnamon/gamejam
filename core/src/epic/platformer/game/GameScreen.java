@@ -103,19 +103,22 @@ public class GameScreen implements Screen {
 //                }
 //            }
 //        }
-        for (int i=0;i<Assets.screenSizeHeight;i+=16) {
-            for (int j = 0; j < Assets.screenSizeWidth; j += 16) {
-                if(Assets.world[j][i] == 1){
-                    game.batch.draw(Assets.wallSprite, j, i);
-                }
-            }
-        }
+//        for (int i=0;i<Assets.screenSizeHeight;i+=16) {
+//            for (int j = 0; j < Assets.screenSizeWidth; j += 16) {
+//                if(Assets.world[j][i] == 1){
+//                    game.batch.draw(Assets.wallSprite, j, i);
+//                }
+//            }
+//        }
 
         //game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
-        drawMob(engine.getPlayer());
+
         for(CollisionObject object: World.rectList){
             World.drawRect(game.batch, object);
         }
+
+        drawMob(engine.getPlayer());
+
 
         if(((timeLeft/60 <= 9) && (timeLeft%60 > 9)) || (((timeLeft/60 > 9) && (timeLeft%60 <= 9)))) {
             if(timeLeft/60 <= 9) {

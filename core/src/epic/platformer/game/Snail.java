@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class Snail extends Mob {
 
-    public Snail(int x, int y, float width, float height, Sprite icon){
+    public Snail(int x, int y, float width, float height, Texture icon){
         super(x, y, width, height, icon);
 
     }
