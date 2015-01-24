@@ -19,17 +19,21 @@ public class Engine {
 
     private final int snailSpawnY = Assets.screenSizeHeight - 100;
     private final int snailSpawnX = Assets.screenSizeWidth / 4;
+    private final int snailWidth = 16;
+    private final int snailHeight = 16;
 
     public Engine(Platformer game){
+
         this.game = game;
         mobList = new ArrayList<Mob>();
         player = new Player(40, 100, 16, 16, Assets.sprite1);
-        //mobList.add(new Snail(snailSpawnX,snailSpawnY, ));
+        mobList.add(new Snail(snailSpawnX,snailSpawnY, snailWidth, snailHeight, Assets.sprite5));
 
     }
 
     public void addMob(Mob mob, int x, int y){
        // mobList.add();
+
         mobList.add(mob);
 
     }
