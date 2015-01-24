@@ -53,6 +53,8 @@ public class GameScreen implements Screen {
         camera.update();
 
         game.batch.setProjectionMatrix(camera.combined);
+        //drawMob(engine.getPlayer());
+
 
         game.batch.begin();
 //        for (int i=0;i<Assets.screenSizeHeight;i+=16){
@@ -112,5 +114,9 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    private void drawMob(Mob mob){
+        game.batch.draw(mob.getIcon(), mob.getX(), mob.getY());
     }
 }

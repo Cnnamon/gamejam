@@ -1,6 +1,8 @@
 package epic.platformer.game;
 
 
+import com.badlogic.gdx.graphics.Texture;
+
 import java.util.ArrayList;
 
 /**
@@ -37,5 +39,9 @@ public class Engine {
 
 
 
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

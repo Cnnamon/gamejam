@@ -18,6 +18,7 @@ public class Assets {
     public static Sprite sprite3;
     public static Sprite sprite4;
     public static Sprite sprite5;
+    public static Texture badLogic;
     public static int[][] world;
 
     public static int screenSizeWidth;
@@ -31,6 +32,9 @@ public class Assets {
         spriteBack.flip(false, true);
 
         textureSheet = new Texture(Gdx.files.internal("Test sheet.png"));
+
+        badLogic = new Texture(Gdx.files.internal("badlogic.jpg"));
+        badLogic.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         sprite1 = new Sprite(textureSheet, 16*0, 0, 16, 16);
         sprite2 = new Sprite(textureSheet, 16*1, 0, 16, 16);
