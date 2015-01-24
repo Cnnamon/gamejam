@@ -3,11 +3,7 @@ package epic.platformer.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
-
-import javax.xml.transform.Templates;
-import java.util.concurrent.RecursiveAction;
 
 /**
  * Created by god on 15.1.23.
@@ -71,7 +67,7 @@ public class Player extends Mob {
             x -= 200*Delta;
             fallIfNotOnGround();
         }
-        if(sKey && !inAir) y -= 1000*Delta;
+        if(sKey && inAir != true) y -= 1000*Delta;
 
 
         //world scrolling stuff
