@@ -82,34 +82,7 @@ public class GameScreen implements Screen {
 
         game.batch.begin();
         game.batch.draw(Assets.textureBack, 0, 0);
-//        for (int i=0;i<Assets.screenSizeHeight;i+=16){
-//            for(int j=0;j<Assets.screenSizeWidth;j+=16){
-//                switch (random.nextInt(5)){
-//                    case 0:
-//                        batch.draw(Assets.playerSprite, i, j);
-//                        break;
-//                    case 1:
-//                        batch.draw(Assets.allySprite, i, j);
-//                        break;
-//                    case 2:
-//                        batch.draw(Assets.wallSprite, i, j);
-//                        break;
-//                    case 3:
-//                        batch.draw(Assets.edgeSprite, i, j);
-//                        break;
-//                    case 4:
-//                        batch.draw(Assets.enemySprite, i, j);
-//                        break;
-//                }
-//            }
-//        }
-//        for (int i=0;i<Assets.screenSizeHeight;i+=16) {
-//            for (int j = 0; j < Assets.screenSizeWidth; j += 16) {
-//                if(Assets.world[j][i] == 1){
-//                    game.batch.draw(Assets.wallSprite, j, i);
-//                }
-//            }
-//        }
+
 
         //game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
 
@@ -119,6 +92,8 @@ public class GameScreen implements Screen {
 
         drawMob(engine.getPlayer());
 
+        for(Mob m: engine.getMobList())
+        drawMob(m);
 
         if(((timeLeft/60 <= 9) && (timeLeft%60 > 9)) || (((timeLeft/60 > 9) && (timeLeft%60 <= 9)))) {
             if(timeLeft/60 <= 9) {

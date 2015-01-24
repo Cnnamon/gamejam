@@ -15,8 +15,8 @@ public class Engine {
 
     private final int snailId = 0;
 
-    private final int snailSpawnY = Assets.screenSizeHeight - 100;
-    private final int snailSpawnX = Assets.screenSizeWidth / 4;
+    private final int snailSpawnY = Assets.screenSizeHeight / 2;
+    private final int snailSpawnX = Assets.screenSizeWidth / 2;
     private final int snailWidth = 16;
     private final int snailHeight = 16;
 
@@ -28,6 +28,9 @@ public class Engine {
         World.player = player;
         player.group = 2;
         mobList.add(new Snail(snailSpawnX, snailSpawnY, snailWidth, snailHeight, Assets.enemySprite));
+        //for(CollisionObject o in Map.){
+
+        //}
         World.addRect(new CollisionObject(50, 250, 500, 16, 1));
         World.addRect(new CollisionObject(550, 100, 50, 16, 1));
         World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, 16, 1));
@@ -53,6 +56,7 @@ public class Engine {
         for (Mob b: mobList){
             b.update(Delta);
         }
+
         player.update(Delta);
 
     }
@@ -64,4 +68,5 @@ public class Engine {
     public ArrayList<Mob> getMobList() {
         return mobList;
     }
+
 }
