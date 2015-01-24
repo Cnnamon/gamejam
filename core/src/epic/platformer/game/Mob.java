@@ -44,6 +44,7 @@ public abstract class Mob extends CollisionObject{
                         //inAir = false;
                         yForce = 1;
                         y = obj.getY() - this.getHeight();
+                        Sounds.playHitTop();
                     }
                     if(colSide == CollisionSide.BOTTOM)
                     {

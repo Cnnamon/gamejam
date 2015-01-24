@@ -56,6 +56,7 @@ public class Player extends Mob {
             inAir = true;
             yForce += 450;
             if(yForce >= 700) yForce = 600;
+            Sounds.playJump();
         }
         if(dKey)
         {
