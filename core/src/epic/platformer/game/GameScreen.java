@@ -44,7 +44,7 @@ public class GameScreen implements Screen {
         engine = new Engine(game);
         //Gdx.graphics.setContinuousRendering(false);
         Map.generate();
-        World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.sprite1.getHeight(), 1));
+        World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.playerSprite.getHeight(), 1));
 //
 
     }
@@ -86,19 +86,19 @@ public class GameScreen implements Screen {
 //            for(int j=0;j<Assets.screenSizeWidth;j+=16){
 //                switch (random.nextInt(5)){
 //                    case 0:
-//                        batch.draw(Assets.sprite1, i, j);
+//                        batch.draw(Assets.playerSprite, i, j);
 //                        break;
 //                    case 1:
-//                        batch.draw(Assets.sprite2, i, j);
+//                        batch.draw(Assets.allySprite, i, j);
 //                        break;
 //                    case 2:
-//                        batch.draw(Assets.sprite3, i, j);
+//                        batch.draw(Assets.wallSprite, i, j);
 //                        break;
 //                    case 3:
-//                        batch.draw(Assets.sprite4, i, j);
+//                        batch.draw(Assets.edgeSprite, i, j);
 //                        break;
 //                    case 4:
-//                        batch.draw(Assets.sprite5, i, j);
+//                        batch.draw(Assets.enemySprite, i, j);
 //                        break;
 //                }
 //            }
@@ -106,7 +106,7 @@ public class GameScreen implements Screen {
         for (int i=0;i<Assets.screenSizeHeight;i+=16) {
             for (int j = 0; j < Assets.screenSizeWidth; j += 16) {
                 if(Assets.world[j][i] == 1){
-                    game.batch.draw(Assets.sprite3, j, i);
+                    game.batch.draw(Assets.wallSprite, j, i);
                 }
             }
         }
