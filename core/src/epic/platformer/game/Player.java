@@ -20,18 +20,26 @@ public class Player extends Mob {
 
     public Player(int x, int y, float width, float height, Sprite icon){
         super(x, y, width, height, icon);
+        wKey =false;
+        dKey = false;
+        aKey = false;
+        sKey = false;
 
     }
 
     private void handleInput(){
-        if(Gdx.input.isButtonPressed(Input.Keys.W)) wKey = true;
-        if(Gdx.input.isButtonPressed(Input.Keys.A)) aKey = true;
-        if(Gdx.input.isButtonPressed(Input.Keys.D)) dKey = true;
-        if(Gdx.input.isButtonPressed(Input.Keys.S)) sKey = true;
-        wKey=false;
-        dKey = false;
-        aKey = false;
-        sKey = false;
+        if(Gdx.input.isKeyPressed(Input.Keys.W) && !inAir) wKey = true;
+        if(Gdx.input.isKeyPressed(Input.Keys.A)) aKey = true;
+        if(Gdx.input.isKeyPressed(Input.Keys.D)) dKey = true;
+        if(Gdx.input.isKeyPressed(Input.Keys.S)) sKey = true;
+
+        if(!Gdx.input.isKeyPressed(Input.Keys.W) || inAir) wKey = false;
+        if(!Gdx.input.isKeyPressed(Input.Keys.D)) dKey = false;
+        if(!Gdx.input.isKeyPressed(Input.Keys.A)) aKey = false;
+        if(!Gdx.input.isKeyPressed(Input.Keys.S)) sKey = false;
+
+
+
     }
 
     public void update(float Delta){
@@ -40,11 +48,13 @@ public class Player extends Mob {
 
         if(wKey){
             inAir = true;
-            yForce += 10;
+            yForce += 180;
         }
         if(dKey) x += 200*Delta;
         if(aKey) x -= 200*Delta;
         if(sKey) y -= 1000*Delta;
+
+
     }
 
 }
