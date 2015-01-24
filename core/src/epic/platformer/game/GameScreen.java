@@ -41,7 +41,7 @@ public class GameScreen implements Screen {
 
     Label timeText;
     Label scoreText;
-
+// neduoda pushint sry
 
     public GameScreen(Platformer game){
         this.game = game;
