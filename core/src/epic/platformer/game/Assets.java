@@ -62,21 +62,20 @@ public class Assets {
         sunSprite = new Sprite(textureSheet, 16*5, 0, 16, 16);
         darkEdgeSprite = new Sprite(textureSheet, 16*6, 0, 16, 16);
 
-        fireWall = new Sprite(textureSheet, 16*0, 16, 16, 16);
-        fireWallCorner = new Sprite(textureSheet, 16*1, 16, 16, 16);
-        earthWall = new Sprite(textureSheet, 16*2, 16, 16, 16);
-        earthWallCorner = new Sprite(textureSheet, 16*3, 16, 16, 16);
-        iceWall = new Sprite(textureSheet, 16*4, 16, 16, 16);
-        iceWallCorner = new Sprite(textureSheet, 16*5, 16, 16, 16);
-        spaceWall = new Sprite(textureSheet, 16*6, 16, 16, 16);
-        spaceWallCorner = new Sprite(textureSheet, 16*7, 16, 16, 16);
+        fireWall = new Sprite(textureSheet, 32*0, 0, 32, 32);
+        fireWallCorner = new Sprite(textureSheet, 32*1, 0, 32, 32);
+        earthWall = new Sprite(textureSheet, 32*2, 0, 32, 32);
+        earthWallCorner = new Sprite(textureSheet, 32*3, 0, 32, 32);
+        iceWall = new Sprite(textureSheet, 32*4, 0, 32, 32);
+        iceWallCorner = new Sprite(textureSheet, 32*5, 0, 32, 32);
+        spaceWall = new Sprite(textureSheet, 32*6, 0, 32, 32);
+        spaceWallCorner = new Sprite(textureSheet, 32*7, 0, 32, 32);
 
 
 
 
         screenSizeWidth = 1920;
         screenSizeHeight = 1080;
-        world = new int[1920][1080];
 
 
     }

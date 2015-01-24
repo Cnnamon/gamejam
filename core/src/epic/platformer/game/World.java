@@ -55,12 +55,12 @@ public class World {
                 corner = Assets.earthWallCorner;
         }
 
-        float middle = object.width - 16*2;
+        float middle = object.width - 32*2;
         int x = 0;
         while(middle > 0){
-            batch.draw(wall, object.x + 16 + x, object.y);
-            x += 16;
-            middle -= 16;
+            batch.draw(wall, object.x + 32 + x, object.y);
+            x += 32;
+            middle -= 32;
         }
         batch.draw(corner, object.x+x, object.y);
         batch.draw(corner, object.x, object.y);

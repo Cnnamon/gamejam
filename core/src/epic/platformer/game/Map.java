@@ -20,7 +20,7 @@ public class Map {
     static void generate() {
         int minGapWidth = 60;
         int maxGapWidth = 300;
-        int h = 16;
+        int h = 32;
 
         int y = BUFFER;
 
