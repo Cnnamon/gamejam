@@ -47,7 +47,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0F, 0F, 0F, 1F);
+        Gdx.gl.glClearColor(1F, 0F, 1F, 1F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
@@ -58,6 +58,8 @@ public class GameScreen implements Screen {
         engine.update(delta);
 
         game.batch.begin();
+
+        game.batch.draw(Assets.textureBack, 0, 0);
 //        for (int i=0;i<Assets.screenSizeHeight;i+=16){
 //            for(int j=0;j<Assets.screenSizeWidth;j+=16){
 //                switch (random.nextInt(5)){
@@ -86,6 +88,8 @@ public class GameScreen implements Screen {
                 }
             }
         }
+
+
 
         game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
 
