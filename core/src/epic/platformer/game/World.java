@@ -14,6 +14,7 @@ public class World {
     public static Player player;
     public static float gravity = 1.0F; //on world switch, change gravity
     public static int worldType = 1; //todo implement enum for different world types (for better perception)
+    public static ArrayList<CollisionObject> rectList = new ArrayList<CollisionObject>();
     /*
     *Possible world types:
     * 1. Normal (nothing out of the ordinary)
@@ -26,17 +27,14 @@ public class World {
     static Sprite lCorner;
     static Sprite rCorner;
 
-
-    public static ArrayList<CollisionObject> rectList = new ArrayList<CollisionObject>();
-
-    public static void addRect(CollisionObject object){
+    public static void addRect(CollisionObject object) {
         rectList.add(object);
     }
 
 
-    public static void changeWorld(int a){
+    public static void changeWorld(int a) {
         worldType = a;
-        switch (a){
+        switch (a) {
             case 1:
                 wall = Assets.fireWall;
                 lCorner = Assets.fireWallCorner;
@@ -70,19 +68,22 @@ public class World {
         }
     }
 
-    public static void drawRect(SpriteBatch batch, CollisionObject object){
-
-
-
-
-        float middle = object.width - 32*2;
+    public static void drawRect(SpriteBatch batch, CollisionObject object) {
+        float middle = object.width - 32 * 2;
         int x = 0;
-        while(middle > 0){
+        while (middle > 0) {
             batch.draw(wall, object.x + 32 + x, object.y);
             x += 32;
             middle -= 32;
         }
-        batch.draw(rCorner, object.x+object.width-32, object.y);
+        middle = object.height - 32;
+        int y = 0;
+        while (middle > 0) {
+            batch.draw(wall, object.x, object.y + 32 + y);
+            y += 32;
+            middle -= 32;
+        }
+        batch.draw(rCorner, object.x + object.width - 32, object.y);
         batch.draw(lCorner, object.x, object.y);
     }
 }
