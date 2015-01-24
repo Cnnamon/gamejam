@@ -11,10 +11,12 @@ public class CollisionObject extends Rectangle {
     public CollisionObject()
     {
         super(0, 0, 0, 0);
+        this.group = 1;
     }
-    public CollisionObject(float x, float y, float w, float h)
+    public CollisionObject(float x, float y, float w, float h, int group)
     {
         super(x, y, w, h);
+        this.group = group;
     }
 
     public boolean overlaps(CollisionObject other)

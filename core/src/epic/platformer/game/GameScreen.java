@@ -35,8 +35,8 @@ public class GameScreen implements Screen {
         game.batch = new SpriteBatch();
         engine = new Engine(game);
         //Gdx.graphics.setContinuousRendering(false);
-        Rects.addRect(new CollisionObject(160, 320, 600, 32));
-        Rects.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, 32));
+//        Rects.addRect(new CollisionObject(160, 320, 600, 32, 1));
+//        Rects.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, 32, 1));
 
 
     }
@@ -61,7 +61,8 @@ public class GameScreen implements Screen {
         engine.update(delta);
 
         game.batch.begin();
-        game.batch.draw(Assets.textureBack, 0, 0);
+        //game.batch.draw(Assets.textureBack, 0, 0);
+
 //        for (int i=0;i<Assets.screenSizeHeight;i+=16){
 //            for(int j=0;j<Assets.screenSizeWidth;j+=16){
 //                switch (random.nextInt(5)){
@@ -82,19 +83,17 @@ public class GameScreen implements Screen {
 //                        break;
 //                }
 //            }
-//        }
-        for (int i=0;i<Assets.screenSizeHeight;i+=16) {
-            for (int j = 0; j < Assets.screenSizeWidth; j += 16) {
-                if(Assets.world[j][i] == 1){
-                    game.batch.draw(Assets.sprite3, j, i);
-                }
-            }
-        }
+//
 
         //game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
         drawMob(engine.getPlayer());
-        for(CollisionObject object: Rects.rectList){
-            Rects.drawRect(game.batch, object);
+//        for(CollisionObject object: Rects.rectList){
+//            Rects.drawRect(game.batch, object);
+//        }
+
+        for(CollisionObject obj : Rects.rectList)
+        {
+            Rects.drawRect(game.batch, obj);
         }
 
         game.batch.end();
