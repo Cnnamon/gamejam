@@ -19,7 +19,7 @@ public class Platformer extends Game {
 
 //		gameOverScreen = new GameOverScreen(this); // Dominykas FTW
 //		setScreen(gameOverScreen);
-
+//aaa
 		menuScreen = new MenuScreen(this); // Dominykas FTW 2
 		setScreen(menuScreen);
 	}
