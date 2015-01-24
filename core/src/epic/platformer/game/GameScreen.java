@@ -56,7 +56,7 @@ public class GameScreen implements Screen {
                 timeLeft--;
             }
         }
-                , 0        //    (delay)
+                , 0    //    (delay)
                 , 1    //    (seconds)
         );
 
