@@ -41,6 +41,21 @@ public class Map {
 
         World.addRect(new CollisionObject(0, 0, 32, Assets.screenSizeHeight * 4, 1));
         World.addRect(new CollisionObject(Assets.screenSizeWidth * 3, 0, 32, Assets.screenSizeHeight * 4, 1));
+
+        switch(World.worldType){
+            case 1: //fire
+                World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                break;
+            case 2: //
+
+            case 3:
+
+            case 4:
+
+            default:
+                World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                break;
+        }
     }
 
     private static int drawPlatform(int x, int y, int h) {
