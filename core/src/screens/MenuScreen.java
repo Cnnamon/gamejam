@@ -51,7 +51,7 @@ public class MenuScreen implements Screen {
 //test
     @Override
     public void show() {
-        playButton = new Label("Play", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        playButton = new Label("CHALLENGED pLATFORMER", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         stage = new Stage();
         camera = new OrthographicCamera();
         this.camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
@@ -68,7 +68,7 @@ public class MenuScreen implements Screen {
         playTextButtonStyle.checked = skin.getDrawable("PLayP");
         playTextButton = new TextButton(null, playTextButtonStyle);
         stage.addActor(playTextButton);
-//        stage.addActor(playButton);
+        stage.addActor(playButton);
 
         playTextButton.addListener(playButtonClickListener = new ClickListener(){
             @Override
@@ -102,9 +102,10 @@ public class MenuScreen implements Screen {
 
         stage.draw();
         game.batch.begin();
-            game.batch.setColor(Color.WHITE);
+            game.batch.setColor(Color.BLACK);
 //            game.batch.draw(Assets.textureBack, 0, 0);
-//          playButton.setFontScale(playButtonScale);
+            playButton.setFontScale(playButtonScale);
+            playButton.setPosition(Assets.screenSizeWidth/2-playButton.getWidth()/2*playButtonScale, Assets.screenSizeHeight/2+playButton.getHeight()/8*10*playButtonScale);
             playTextButton.setPosition(Assets.screenSizeWidth/2-playTextButton.getWidth()/2, Assets.screenSizeHeight/2-playTextButton.getHeight()/2);
 //            playButton.draw(game.batch, 1f);
 
