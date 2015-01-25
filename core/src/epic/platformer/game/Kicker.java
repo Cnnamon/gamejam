@@ -40,7 +40,7 @@ public class Kicker extends Mob {
                 this.y -= walkSpeed;
             }
         }
-        currentFrame = walkAnimation.getKeyFrame(delta, true);
+//        currentFrame = walkAnimation.getKeyFrame(delta, true);
 
     }
 
