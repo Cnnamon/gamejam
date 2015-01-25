@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
+import java.util.Random;
+
 /**
  * Created by god on 15.1.23.
  */
@@ -246,6 +248,11 @@ public class Player extends Mob {
     }
 
     public void getKicked() {
-
+        speedBuff = 2;
+        jumpBuff = 2;
+        Random rnd =  new Random();
+        if(rnd.nextInt(100) <= 5){
+            this.HP ++;
+        }
     }
 }
