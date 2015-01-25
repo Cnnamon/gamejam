@@ -125,6 +125,18 @@ public class Player extends Mob {
             isAlive = false;
         }
 
+        double min = Double.MAX_VALUE;
+        for(CollisionObject object : World.rectList)
+            if (min > getDist(object, x, y))
+                min = getDist(object, x, y);
+
+        if (min > 5 * Assets.screenSizeHeight)
+            isAlive = false;
+    }
+
+    private double getDist(CollisionObject object, float x, float y) {
+        return Math.hypot(x - object.x, y - object.y);
+
         if(aKey || dKey) {
             stateTime += Delta;
             currentSprite = walkingAnimation.getKeyFrame(stateTime, true);
