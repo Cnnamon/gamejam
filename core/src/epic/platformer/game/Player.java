@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
@@ -23,6 +25,10 @@ public class Player extends Mob {
 
     private boolean isAlive;
 
+    float stateTime;
+
+    public TextureRegion currentSprite;
+
 
     public Player(int x, int y, float width, float height, Texture icon){
         super(x, y, width, height, icon);
@@ -34,6 +40,10 @@ public class Player extends Mob {
         isAlive = true;
         HP = 3;
         lastTimeDamaged = 0; //System.currentTimeMillis();
+
+        walkingAnimation = Assets.playerWalkAnimation;
+        stateTime = 0f;
+        currentSprite = walkingAnimation.getKeyFrame(stateTime, true);
 
     }
 
@@ -122,10 +132,18 @@ public class Player extends Mob {
 
         if (min > 5 * Assets.screenSizeHeight)
             isAlive = false;
+
+        if(aKey || dKey) {
+            stateTime += Delta;
+            currentSprite = walkingAnimation.getKeyFrame(stateTime, true);
+        }
     }
 
     private double getDist(CollisionObject object, float x, float y) {
         return Math.hypot(x - object.x, y - object.y);
+
+
+
     }
 
     private void fallIfNotOnGround()
@@ -179,5 +197,9 @@ public class Player extends Mob {
 
     public boolean isAlive() {
         return isAlive;
+    }
+
+    public void drawPlayer(SpriteBatch batch){
+        batch.draw(currentSprite, x, y);
     }
 }

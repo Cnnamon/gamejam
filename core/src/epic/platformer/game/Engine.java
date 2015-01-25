@@ -35,7 +35,7 @@ public class Engine {
 
         this.game = game;
         mobList = new ArrayList<Mob>();
-        player = new Player(400, 400, 50, 50, Assets.playerSprite);
+        player = new Player(400, 400, 48, 40, Assets.playerSprite);
         World.player = player;
         player.group = 2;
         mobList.add(new Snail(snailSpawnX, snailSpawnY, snailWidth, snailHeight, Assets.enemySprite));
@@ -85,7 +85,7 @@ public class Engine {
         if(!player.isAlive())
         {
             // Exit everything, he fucking died. GAME OVER SCREEN.
-            gameOverScreen = new GameOverScreen(game); // Dominykas FTW
+            gameOverScreen = new GameOverScreen(game, GameScreen.score); // Dominykas FTW
 		    game.setScreen(gameOverScreen);
         }
         //updating cycle

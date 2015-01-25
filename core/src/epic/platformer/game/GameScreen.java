@@ -34,10 +34,12 @@ public class GameScreen implements Screen {
     public Rumble  rumble;
     public boolean doSomeRumble = false;
 
+    static public int level = 1;
+
 
 
     float scoreConstant; // zie more, zie better
-    float score; // zie more, zie better
+    static public float score; // zie more, zie better
     float timeConstant; // zie less, zie fastah
     static int timeLeft;
     int timeScale=5;
@@ -98,6 +100,8 @@ public class GameScreen implements Screen {
 
                 }
                 if(timeLeft <= 0) {
+                    level++;
+                    Gdx.app.log("Level:", ""+level);
                     timeLeft = timeMapSwap;
                     doSomeRumble = true;
                 }
@@ -138,8 +142,8 @@ public class GameScreen implements Screen {
             World.drawRect(game.batch, object);
         }
 
-        drawMob(engine.getPlayer());
-
+        //drawMob(engine.getPlayer());
+        engine.getPlayer().drawPlayer(game.batch);
         for(Mob m: engine.getMobList())
         drawMob(m);
 

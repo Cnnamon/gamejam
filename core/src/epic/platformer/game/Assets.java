@@ -44,6 +44,7 @@ public class Assets {
     public static Sprite spaceWallCorner;
 
     public static Texture kickerSheet;
+    public static Texture playerSheet;
 
     public static int screenSizeWidth;
     public static int screenSizeHeight;
@@ -52,9 +53,15 @@ public class Assets {
     public static TextureRegion[] kickerKickSprites;
     public static TextureRegion[] kickerFlipSprites;
 
+    public static TextureRegion[] playerWalkSprites;
+
     public static Animation kickerWalkAnimation;
     public static Animation kickerKickAnimation;
     public static Animation kickerFlipAnimation;
+
+
+
+    public static Animation playerWalkAnimation;
 
 
     public static void load(){
@@ -103,18 +110,26 @@ public class Assets {
 
 
         kickerSheet = new Texture(Gdx.files.internal("Kicker/KickerSheet.png"));
+        playerSheet = new Texture(Gdx.files.internal("Player/heroSheet.png"));
+
         kickerWalkSprites = new TextureRegion[2];
         kickerKickSprites = new TextureRegion[2];
         kickerFlipSprites = new TextureRegion[4];
+
+        playerWalkSprites = new TextureRegion[2];
 
 
         for(int i=0;i<2;i++) kickerWalkSprites[i] = new TextureRegion(kickerSheet, 48*i, 0, 48, 48);
         for(int i=0;i<2;i++) kickerKickSprites[i] = new TextureRegion(kickerSheet, 48*i, 96, 48, 48);
         for(int i=0;i<2;i++) kickerFlipSprites[i] = new TextureRegion(kickerSheet, 48*i, 48, 48, 48);
 
+        for(int i=0;i<2;i++) playerWalkSprites[i] = new TextureRegion(playerSheet, 48*i, 0, 48, 48);
+
         kickerWalkAnimation = new Animation(0.025f, kickerWalkSprites);
         kickerKickAnimation = new Animation(0.025f, kickerKickSprites);
         kickerFlipAnimation = new Animation(0.025f, kickerFlipSprites);
+
+        playerWalkAnimation = new Animation(0.3f, playerWalkSprites);
 
 
 
