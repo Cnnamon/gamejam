@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Timer;
 
@@ -17,8 +15,6 @@ import java.text.DecimalFormat;
 import java.util.Random;
 
 import static epic.platformer.game.Assets.timeMapSwap;
-import static epic.platformer.game.Assets.world;
-import static epic.platformer.game.Engine.player;
 
 
 /**
@@ -50,6 +46,7 @@ public class GameScreen implements Screen {
     Label scoreText;
 
     boolean ended;
+    static Timer.Task task;
 // neduoda pushint sry
 
     public GameScreen(Platformer game){
@@ -88,7 +85,7 @@ public class GameScreen implements Screen {
         score = 0f; // zie more, zie better
         timeConstant = 1f; // zie less, zie fastah
 
-        Timer.schedule(new Timer.Task() {
+        task = Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
                 timeLeft--;
@@ -204,7 +201,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void hide() {
-
+        World.rectList.clear();
+        task.cancel();
     }
 
     @Override
