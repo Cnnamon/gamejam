@@ -8,11 +8,11 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Snail extends Mob {
 
-    private float speed = 10.0f;
+    private float speed = 1.0f;
 
 
-    public Snail(int x, int y, float width, float height, Texture icon){
-        super(x, y, width, height, icon);
+    public Snail(int width, int height, Texture texture, CollisionObject o){
+        super((int)(o.getX()+o.getWidth()/2), (int)(o.getY()+o.getHeight()/2), width, height, texture);
 
     }
 
