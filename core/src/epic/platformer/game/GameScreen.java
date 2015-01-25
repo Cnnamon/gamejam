@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Timer;
 
 import java.text.DecimalFormat;
-import java.util.Random;
 
 import static epic.platformer.game.Assets.timeMapSwap;
 
@@ -26,7 +25,6 @@ import static epic.platformer.game.Assets.timeMapSwap;
 
 public class GameScreen implements Screen {
 
-    Random random;
 
     Platformer game;
     OrthographicCamera camera;
@@ -49,8 +47,6 @@ public class GameScreen implements Screen {
 
     boolean ended;
     static Timer.Task task;
-    World.worldType randomWorld;
-// neduoda pushint sry
 
     public GameScreen(Platformer game){
         World.changeWorld(World.getRandomWorld());
@@ -126,7 +122,6 @@ public class GameScreen implements Screen {
         camera.update();
 
         game.batch.setProjectionMatrix(camera.combined);
-        //drawMob(engine.getPlayer());
 
         engine.update(delta);
 
@@ -136,13 +131,10 @@ public class GameScreen implements Screen {
         game.batch.draw(Assets.textureBack, 0, 0);
 
 
-        //game.batch.draw(engine.getPlayer().getIcon(), engine.getPlayer().getX(), engine.getPlayer().getY());
-
         for(CollisionObject object: World.rectList){
             World.drawRect(game.batch, object);
         }
 
-        //drawMob(engine.getPlayer());
         engine.getPlayer().drawPlayer(game.batch);
         for(Mob m: engine.getMobList())
         drawMob(m);

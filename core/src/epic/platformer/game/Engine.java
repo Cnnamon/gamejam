@@ -38,10 +38,10 @@ public class Engine {
         player = new Player(400, 400, 48, 40, Assets.playerSprite);
         World.player = player;
         player.group = 2;
+        Random rand = new Random();
         for(int i = 0; i < 5; i++)
         {
-            Random rand = new Random();
-            Bat tempBat = new Bat(Assets.screenSizeHeight / 2 + rand.nextInt(2000), Assets.screenSizeWidth / 2 + rand.nextInt(2000), Assets.batSprite.getWidth()-70, Assets.batSprite.getHeight()-50, Assets.enemySprite);
+            Bat tempBat = new Bat(Assets.screenSizeHeight / 2 + rand.nextInt(2000), Assets.screenSizeWidth / 2 + rand.nextInt(2000), Assets.batSprite.getWidth()-70, Assets.batSprite.getHeight()-50, Assets.snailSprite);
             tempBat.speed = 1 + rand.nextFloat()%5;
             mobList.add(tempBat);
         }
@@ -90,11 +90,11 @@ public class Engine {
         if(lastTime != GameScreen.getTimeLeft()){
             lastTime = GameScreen.getTimeLeft();
             Random rn = new Random();
-        mobList.add(new Kicker(Assets.enemySprite.getWidth(), Assets.enemySprite.getHeight(), Assets.enemySprite, Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
+            mobList.add(new Kicker(Assets.snailSprite.getWidth(), Assets.snailSprite.getHeight(), Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
             mobList.get(mobList.size()-1).group = 1;
 
             for(int i=0; i<GameScreen.level; i++) { // levelis
-                mobList.add(new Snail(Assets.enemySprite.getWidth(), Assets.enemySprite.getHeight(), Assets.enemySprite, Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
+                mobList.add(new Snail(Assets.snailSprite.getWidth(), Assets.snailSprite.getHeight(), Assets.snailSprite, Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
             }
         }
 

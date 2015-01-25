@@ -17,7 +17,8 @@ public class Assets {
     public static Sprite spriteBack;
     public static Texture textureSheet;
     public static Texture playerSprite;
-    public static Texture enemySprite;
+    public static Texture snailSprite;
+    public static Texture kickerSprite;
     public static Texture reversedEnemySprite;
 
     public static Texture batSprite;
@@ -53,11 +54,19 @@ public class Assets {
     public static TextureRegion[] kickerKickSprites;
     public static TextureRegion[] kickerFlipSprites;
 
+    public static TextureRegion[] kickerWalkSpritesReverse;
+    public static TextureRegion[] kickerKickSpritesReverse;
+    public static TextureRegion[] kickerFlipSpritesReverse;
+
     public static TextureRegion[] playerWalkSprites;
 
     public static Animation kickerWalkAnimation;
     public static Animation kickerKickAnimation;
     public static Animation kickerFlipAnimation;
+
+    public static Animation kickerWalkAnimationReverse;
+    public static Animation kickerKickAnimationReverse;
+    public static Animation kickerFlipAnimationReverse;
 
 
 
@@ -86,8 +95,12 @@ public class Assets {
         playerSprite = new Texture(Gdx.files.internal("hero.png"));
         playerSprite.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
-        enemySprite = new Texture(Gdx.files.internal("snail.png"));
-        enemySprite.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        snailSprite = new Texture(Gdx.files.internal("snail.png"));
+        snailSprite.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        kickerSprite = new Texture(Gdx.files.internal("Kicker1.png"));
+        kickerSprite.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
 
         allySprite = new Sprite(textureSheet, 16*1, 0, 16, 16);
         wallSprite = new Sprite(textureSheet, 16*2, 0, 16, 16);
@@ -116,18 +129,30 @@ public class Assets {
         kickerKickSprites = new TextureRegion[2];
         kickerFlipSprites = new TextureRegion[4];
 
+        kickerWalkSpritesReverse = new TextureRegion[2];
+        kickerKickSpritesReverse = new TextureRegion[2];
+        kickerFlipSpritesReverse = new TextureRegion[4];
+
         playerWalkSprites = new TextureRegion[2];
 
 
         for(int i=0;i<2;i++) kickerWalkSprites[i] = new TextureRegion(kickerSheet, 48*i, 0, 48, 48);
         for(int i=0;i<2;i++) kickerKickSprites[i] = new TextureRegion(kickerSheet, 48*i, 96, 48, 48);
-        for(int i=0;i<2;i++) kickerFlipSprites[i] = new TextureRegion(kickerSheet, 48*i, 48, 48, 48);
+        for(int i=0;i<4;i++) kickerFlipSprites[i] = new TextureRegion(kickerSheet, 48*i, 48, 48, 48);
+
+        for(int i=2;i<4;i++) kickerWalkSpritesReverse[i-2] = new TextureRegion(kickerSheet, 48*i, 0, 48, 48);
+        for(int i=2;i<4;i++) kickerKickSpritesReverse[i-2] = new TextureRegion(kickerSheet, 48*i, 96, 48, 48);
+        for(int i=4;i<8;i++) kickerFlipSpritesReverse[i-4] = new TextureRegion(kickerSheet, 48*i, 48, 48, 48);
 
         for(int i=0;i<2;i++) playerWalkSprites[i] = new TextureRegion(playerSheet, 48*i, 0, 48, 48);
 
         kickerWalkAnimation = new Animation(0.025f, kickerWalkSprites);
         kickerKickAnimation = new Animation(0.025f, kickerKickSprites);
         kickerFlipAnimation = new Animation(0.025f, kickerFlipSprites);
+
+        kickerWalkAnimationReverse = new Animation(0.025f, kickerWalkSpritesReverse);
+        kickerKickAnimationReverse = new Animation(0.025f, kickerKickSpritesReverse);
+        kickerFlipAnimationReverse = new Animation(0.025f, kickerFlipSpritesReverse);
 
         playerWalkAnimation = new Animation(0.3f, playerWalkSprites);
 
