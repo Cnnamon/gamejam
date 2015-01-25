@@ -17,6 +17,9 @@ public class Player extends Mob {
     private boolean dKey;
     private boolean aKey;
     private boolean sKey;
+    public int HP;
+    public long lastTimeDamaged;
+    public static long damageEveryMills = 1500; // 1.5 sec
 
     private boolean isAlive;
 
@@ -29,6 +32,8 @@ public class Player extends Mob {
         sKey = false;
 
         isAlive = true;
+        HP = 3;
+        lastTimeDamaged = System.currentTimeMillis();
 
     }
 
@@ -135,6 +140,16 @@ public class Player extends Mob {
             }
         }
         return false;
+    }
+
+    public void damage(int damage)
+    {
+        if(System.currentTimeMillis() - lastTimeDamaged >= damageEveryMills)
+        {
+            HP -= damage;
+            lastTimeDamaged = System.currentTimeMillis();
+            if(HP <= 0) isAlive = false;
+        }
     }
 
     public boolean isAlive() {

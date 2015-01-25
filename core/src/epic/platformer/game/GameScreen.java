@@ -165,12 +165,7 @@ public class GameScreen implements Screen {
             World.rectList.clear();
             Map.generate();
             ended = true;
-
         }
-
-
-
-
     }
 
 
@@ -200,6 +195,15 @@ public class GameScreen implements Screen {
     }
 
     private void drawMob(Mob mob){
-        game.batch.draw(mob.getIcon(), mob.getX(), mob.getY());
+        if(mob instanceof Bat)
+        {
+            Bat temp = (Bat) mob;
+            temp.elapsedTime += Gdx.graphics.getDeltaTime();
+            game.batch.draw(temp.anim.getKeyFrame(temp.elapsedTime, true), temp.getX(), temp.getY());
+        }
+        else
+        {
+            game.batch.draw(mob.getIcon(), mob.getX(), mob.getY());
+        }
     }
 }

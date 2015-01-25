@@ -63,6 +63,19 @@ public class Engine {
     }
 
     public void update(float Delta){
+        // Test player-enemy collision
+        for(Mob mob:mobList)
+        {
+            if(player.collisionSide(mob) != CollisionObject.CollisionSide.NONE)
+            {
+                player.damage(1);
+            }
+        }
+
+        if(!player.isAlive())
+        {
+            // Exit everything, he fucking died. GAME OVER SCREEN.
+        }
         //updating cycle
 
         //chasing player

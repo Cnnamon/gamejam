@@ -61,7 +61,7 @@ public class Assets {
         textureBack = new Texture(Gdx.files.internal("Background.png"));
         textureBack.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
-        batSprite = new Texture(Gdx.files.internal("bat.png"));
+        batSprite = new Texture(Gdx.files.internal("bat_sheet.png"));
         batSprite.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         spriteBack = new Sprite(textureBack);
