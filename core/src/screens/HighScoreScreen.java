@@ -38,7 +38,7 @@ public class HighScoreScreen implements Screen {
 
     @Override
     public void show() {
-        scoreText = new Label("Best score: " + game.prefs.getInteger("score", 0), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scoreText = new Label("Score: \n" + new DecimalFormat("#").format(score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreText.setAlignment(Align.center);
     }
 

@@ -16,8 +16,8 @@ class Platform {
             // Change direction for overlapping
             if (!collObj.equals(obj) && obj.overlaps(collObj))
                 obj.xForce *= -1;
-            // and out of range
-            else if (obj.getX() < 0 || obj.getX() > Assets.screenSizeWidth)
+                // and out of range
+            else if (obj.getX() < 0 || obj.getX() > Assets.screenSizeWidth * 3)
                 obj.xForce *= -1;
         }
 
@@ -30,5 +30,9 @@ class Platform {
 
     public void setForce(float force) {
         obj.xForce = force;
+    }
+
+    public CollisionObject getCollisionObject() {
+        return obj;
     }
 }

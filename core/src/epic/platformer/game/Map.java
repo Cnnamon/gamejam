@@ -23,24 +23,24 @@ public class Map {
 
         int y = BUFFER;
 
-        while (y < Assets.screenSizeHeight*3) {
+        while (y < Assets.screenSizeHeight * 3) {
             Random rand = new Random();
             int x;
             y += HEIGHT;
             x = 0;
 
-            x += rand.nextInt(maxGapWidth/2 - minGapWidth);
+            x += rand.nextInt(maxGapWidth / 2 - minGapWidth);
             x += drawPlatform(x, y, h);
 
-            while (x < Assets.screenSizeWidth*3) {
+            while (x < Assets.screenSizeWidth * 3) {
                 x += minGapWidth + rand.nextInt(maxGapWidth - minGapWidth);
 
                 x += drawPlatform(x, y, h);
             }
         }
 
-        World.addRect(new CollisionObject(0, 0, 32, Assets.screenSizeHeight*4, 1));
-        World.addRect(new CollisionObject(Assets.screenSizeWidth*3, 0, 32, Assets.screenSizeHeight*4, 1));
+        World.addRect(new CollisionObject(0, 0, 32, Assets.screenSizeHeight * 4, 1));
+        World.addRect(new CollisionObject(Assets.screenSizeWidth * 3, 0, 32, Assets.screenSizeHeight * 4, 1));
     }
 
     private static int drawPlatform(int x, int y, int h) {
@@ -48,7 +48,10 @@ public class Map {
 
         int w = MIN_PLATFORM_WIDTH + rand.nextInt(MAX_PLATFORM_WIDTH - MIN_PLATFORM_WIDTH);
         int platformY = y - (HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS) / 2 + rand.nextInt(HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS);
-
+        if (x > Assets.screenSizeWidth * 3)
+            return 0;
+        if (x + w > Assets.screenSizeWidth * 3)
+            w = Assets.screenSizeWidth * 3 - x;
         CollisionObject colObj = new CollisionObject(x, platformY, w, h, 1);
         World.addRect(colObj);
 

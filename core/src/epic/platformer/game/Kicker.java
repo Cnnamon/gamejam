@@ -7,16 +7,30 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class Kicker extends Mob {
 
-    private CollisionObject collisionObject = null;
+    private CollisionObject platform = null;
     private float walkSpeed = 1.0f;
+    private boolean goLeft = true;
 
-    public Kicker(int width, int height, Texture texture, CollisionObject collisionObject){
-        super((int)(collisionObject.getX()+collisionObject.getHeight()), (int)(collisionObject.getY()+collisionObject.getWidth()/2), width, height, texture);
-        this.collisionObject = collisionObject;
+    public Kicker(int width, int height, Texture texture, CollisionObject o){
+        super((int)(o.getX()+o.getWidth()/2), (int)(o.getY()+o.getHeight()/2), width, height, texture);
+        platform = o;
     }
 
-    public void update(){
-
+    public void update(float delta){
+        super.update(delta);
+        if(goLeft){
+            if(this.x + walkSpeed - this.width >= platform.getX() + platform.getWidth()){
+                goLeft = false;
+            }else{
+                this.x += walkSpeed;
+            }
+        }else{
+            if(this.x - walkSpeed < platform.getX()) {
+                goLeft = true;
+            }else{
+                this.y -= walkSpeed;
+            }
+        }
     }
 
 }

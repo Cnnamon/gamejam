@@ -12,8 +12,10 @@ public class Engine {
     private Platformer game;
     public static Player player;
 
+
     private static ArrayList<Mob> mobList;
 
+    private int lastTime = 0;
     private final int snailId = 0;
 
     private final int snailSpawnY = Assets.screenSizeHeight / 2;
@@ -29,13 +31,13 @@ public class Engine {
         World.player = player;
         player.group = 2;
         mobList.add(new Snail(snailSpawnX, snailSpawnY, snailWidth, snailHeight, Assets.enemySprite));
-        for(int i = 0; i < 1000; i++)
+        /*for(int i = 0; i < 1000; i++)
         {
             Random rand = new Random();
             Bat tempBat = new Bat(Assets.screenSizeHeight / 2 + rand.nextInt(2000), Assets.screenSizeWidth / 2 + rand.nextInt(2000), 16, 16, Assets.enemySprite);
             tempBat.speed = 1 + rand.nextFloat()%5;
             mobList.add(tempBat);
-        }
+        }*/
         //for(CollisionObject o in Map.){
 
         //}
@@ -64,7 +66,12 @@ public class Engine {
         //updating cycle
 
         //chasing player
-
+        if(lastTime != GameScreen.getTimeLeft()){
+            lastTime = GameScreen.getTimeLeft();
+            Random rn = new Random();
+            mobList.add(new Kicker(16, 16, Assets.enemySprite, Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
+            mobList.get(mobList.size()-1).group = 1;
+        }
 
         for (Mob b: mobList){
             b.update(Delta);

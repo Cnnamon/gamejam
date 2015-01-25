@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class World {
 
-
+    public static ArrayList<Mob> mobList; // all mobs without player (AI)
     public static Player player;
     public static float gravity = 1.0F; //on world switch, change gravity
     public static int worldType = 1; //todo implement enum for different world types (for better perception)
