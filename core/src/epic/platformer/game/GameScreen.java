@@ -138,8 +138,8 @@ public class GameScreen implements Screen {
             World.drawRect(game.batch, object);
         }
 
-        drawMob(engine.getPlayer());
-
+        //drawMob(engine.getPlayer());
+        engine.getPlayer().drawPlayer(game.batch);
         for(Mob m: engine.getMobList())
         drawMob(m);
 
