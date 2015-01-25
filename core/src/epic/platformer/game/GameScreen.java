@@ -55,7 +55,7 @@ public class GameScreen implements Screen {
     public GameScreen(Platformer game){
         Map.generate();
         random = new Random();
-        World.changeWorld(random.nextInt(4)+1);
+        World.changeWorld(random.nextInt(4) + 1);
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
@@ -169,6 +169,11 @@ public class GameScreen implements Screen {
         scoreText.setFontScale(timeScale, timeScale);
         scoreText.setPosition(Assets.screenSizeWidth/2-(scoreText.getWidth()*timeScale)/2, Assets.screenSizeHeight-(scoreText.getHeight()*timeScale));
         scoreText.draw(game.batch, 1f);
+
+        for(int i = 0; i < Engine.player.HP; i++)
+        {
+            game.batch.draw(Assets.heart, 5 + Assets.heart.getWidth() * i, Assets.screenSizeHeight - 5 - Assets.heart.getHeight());
+        }
 
         game.batch.end();
 
