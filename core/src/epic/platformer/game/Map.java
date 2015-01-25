@@ -13,20 +13,21 @@ public class Map {
     static final int MIN_PLATFORM_WIDTH = 85;
     static final int MAX_PLATFORM_WIDTH = 300;
     static final int MIN_VERT_DIST_BETWEEN_PLATFORMS = 100;
-    static final int BUFFER = 20;
     static final int HEIGHT = 110;
+    static int maxY;
+    static CollisionObject tallest;
 
     static void generate() {
         int minGapWidth = 80;
         int maxGapWidth = 380;
         int h = 32;
-
-        int y = BUFFER;
+        int y = 0;
 
         while (y < Assets.screenSizeHeight * 3) {
             Random rand = new Random();
             int x;
             y += HEIGHT;
+            maxY = y;
             x = 0;
 
             x += rand.nextInt(maxGapWidth / 2 - minGapWidth);
@@ -39,6 +40,7 @@ public class Map {
             }
         }
 
+        tallest = World.rectList.get(World.rectList.size()-1);
         World.addRect(new CollisionObject(0, 0, 32, Assets.screenSizeHeight * 4, 1));
         World.addRect(new CollisionObject(Assets.screenSizeWidth * 3, 0, 32, Assets.screenSizeHeight * 4, 1));
 
@@ -58,7 +60,30 @@ public class Map {
             default:
                 World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
                 break;
+
+    static void generateMore() {
+        int minGapWidth = 80;
+        int maxGapWidth = 380;
+        int h = 32;
+        int y = (int) tallest.y;
+
+        for (int i = 1; i <= 8; i++) {
+            Random rand = new Random();
+            int x;
+            y += HEIGHT;
+            maxY = y;
+            x = 0;
+
+            x += rand.nextInt(maxGapWidth / 2 - minGapWidth);
+            x += drawPlatform(x, y, h);
+
+            while (x < Assets.screenSizeWidth * 3) {
+                x += minGapWidth + rand.nextInt(maxGapWidth - minGapWidth);
+
+                x += drawPlatform(x, y, h);
+            }
         }
+        tallest = World.rectList.get(World.rectList.size()-1);
     }
 
     private static int drawPlatform(int x, int y, int h) {
