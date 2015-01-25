@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import java.util.Random;
 
@@ -16,6 +17,7 @@ import java.util.Random;
 public class Player extends Mob {
 
     private Animation walkingAnimation;
+    private float MAXSPEED = 300;
 
     private boolean wKey;
     private boolean dKey;
@@ -28,6 +30,7 @@ public class Player extends Mob {
     private boolean isAlive;
     private float heat;
 
+    private long gotBuffed;
     public float speedBuff;
     public float jumpBuff;
 
@@ -48,9 +51,13 @@ public class Player extends Mob {
         lastTimeDamaged = 0; //System.currentTimeMillis();
         heat = 0;
 
+        jumpBuff = 1;
+        speedBuff = 1;
+
         walkingAnimation = Assets.playerWalkAnimation;
         stateTime = 0f;
         currentSprite = walkingAnimation.getKeyFrame(stateTime, true);
+        gotBuffed = 0;
 
     }
 
@@ -76,7 +83,10 @@ public class Player extends Mob {
     public void update(float Delta){
         super.update(Delta);
         handleInput();
-
+        if(TimeUtils.nanoTime() - gotBuffed > 10000000){
+            jumpBuff = 1;
+            speedBuff = 1;
+        }
         if(wKey){
             inAir = true;
             yForce += 450;
@@ -87,20 +97,20 @@ public class Player extends Mob {
         {
             //x += 200*Delta;
             if(World.currentWorldType == World.worldType.ICE_WORLD){
-                if(xForce<300) xForce+=120*Delta;
-                else if(xForce>= 300) xForce = 300;
+                if(xForce<(MAXSPEED+100)*speedBuff) xForce+=120*Delta;
+                else if(xForce>= (MAXSPEED+100)*speedBuff) xForce = (MAXSPEED+100)*speedBuff;
             }
-            else xForce = 200;
+            else xForce = MAXSPEED*speedBuff;
             fallIfNotOnGround();
         }
         if(aKey)
         {
             //x -= 200*Delta;
             if(World.currentWorldType == World.worldType.ICE_WORLD){
-                if(xForce> -300) xForce-=120*Delta;
-                else if(x<= -300) xForce = -300;
+                if(xForce> -(MAXSPEED+100)*speedBuff) xForce-=120*Delta;
+                else if(x<= -(MAXSPEED+100)*speedBuff) xForce = -(MAXSPEED+100)*speedBuff;
             }
-            else xForce = -200;
+            else xForce = -MAXSPEED*speedBuff;
             fallIfNotOnGround();
         }
         if(!aKey && !dKey)
@@ -248,6 +258,7 @@ public class Player extends Mob {
     }
 
     public void getKicked() {
+        gotBuffed = TimeUtils.nanoTime();
         speedBuff = 2;
         jumpBuff = 2;
         Random rnd =  new Random();
