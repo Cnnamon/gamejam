@@ -1,9 +1,10 @@
 package epic.platformer.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
  * Created by god on 14.12.31.
@@ -41,8 +42,19 @@ public class Assets {
     public static Sprite spaceWall;
     public static Sprite spaceWallCorner;
 
+    public static Texture kickerSheet;
+
     public static int screenSizeWidth;
     public static int screenSizeHeight;
+
+    public static TextureRegion[] kickerWalkSprites;
+    public static TextureRegion[] kickerKickSprites;
+    public static TextureRegion[] kickerFlipSprites;
+
+    public static Animation kickerWalkAnimation;
+    public static Animation kickerKickAnimation;
+    public static Animation kickerFlipAnimation;
+
 
     public static void load(){
 
@@ -86,6 +98,19 @@ public class Assets {
         iceWallRightCorner = new Sprite(textureSheet, 32*3, 32*2, 32, 32);
 
 
+        kickerSheet = new Texture(Gdx.files.internal("Kicker/KickerSheet.png"));
+        kickerWalkSprites = new TextureRegion[2];
+        kickerKickSprites = new TextureRegion[2];
+        kickerFlipSprites = new TextureRegion[4];
+
+
+        for(int i=0;i<2;i++) kickerWalkSprites[i] = new TextureRegion(kickerSheet, 48*i, 0, 48, 48);
+        for(int i=0;i<2;i++) kickerKickSprites[i] = new TextureRegion(kickerSheet, 48*i, 96, 48, 48);
+        for(int i=0;i<2;i++) kickerFlipSprites[i] = new TextureRegion(kickerSheet, 48*i, 48, 48, 48);
+
+        kickerWalkAnimation = new Animation(0.025f, kickerWalkSprites);
+        kickerKickAnimation = new Animation(0.025f, kickerKickSprites);
+        kickerFlipAnimation = new Animation(0.025f, kickerFlipSprites);
 
 
 

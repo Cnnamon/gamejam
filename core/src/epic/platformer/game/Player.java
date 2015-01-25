@@ -3,12 +3,15 @@ package epic.platformer.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Created by god on 15.1.23.
  */
 public class Player extends Mob {
+
+    private Animation walkingAnimation;
 
     private boolean wKey;
     private boolean dKey;
