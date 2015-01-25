@@ -7,10 +7,16 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import epic.platformer.game.Assets;
 import epic.platformer.game.GameScreen;
 import epic.platformer.game.Platformer;
+
 
 /**
  * Created by d.vilimas on 2015.01.24.
@@ -18,6 +24,9 @@ import epic.platformer.game.Platformer;
 public class MenuScreen implements Screen {
 
     Platformer game;
+    Stage stage;
+
+    ClickListener playButtonClickListener;
 
 
     OrthographicCamera camera;
@@ -27,33 +36,50 @@ public class MenuScreen implements Screen {
 
     public MenuScreen(Platformer game) {
         this.game = game;
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
     };
 
 //test
     @Override
     public void show() {
-        playButton = new Label("Press any key to play", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        playButton = new Label("Play", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        stage = new Stage();
+        camera = new OrthographicCamera();
+        this.camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
+        stage.getViewport().setCamera(camera);
+        Gdx.input.setInputProcessor(stage);
+        playButton.addListener(playButtonClickListener = new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new GameScreen(game));
+                playButton.removeListener(playButtonClickListener);
+                super.clicked(event, x, y);
+            }
+        });
+
+        stage.addActor(playButton);
     }
 
     @Override
     public void render(float delta) {
 
-        if(Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
-            game.setScreen(new GameScreen(game));
-        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
+//            game.setScreen(new GameScreen(game));
+//        }
 
-        camera.update();
+
 
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
             game.batch.draw(Assets.textureBack, 0, 0);
-            playButton.setFontScale(playButtonScale);
+//            playButton.setFontScale(playButtonScale);
             playButton.setPosition((float) Assets.screenSizeWidth/2-(float)playButton.getWidth()*playButtonScale/2, (float)Assets.screenSizeHeight/2-(float)playButton.getHeight()*playButtonScale/2);
             playButton.draw(game.batch, 1f);
+
         game.batch.end();
+        stage.draw();
+        stage.act(delta);
+        camera.update();
     }
 
     @Override
@@ -78,6 +104,6 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }
