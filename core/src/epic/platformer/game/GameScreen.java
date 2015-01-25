@@ -18,6 +18,7 @@ import java.util.Random;
 
 import static epic.platformer.game.Assets.timeMapSwap;
 import static epic.platformer.game.Assets.world;
+import static epic.platformer.game.Engine.player;
 
 
 /**
@@ -34,6 +35,7 @@ public class GameScreen implements Screen {
     Platformer game;
     OrthographicCamera camera;
     Engine engine;
+    public Rumble  rumble;
 
 
 
@@ -63,8 +65,7 @@ public class GameScreen implements Screen {
 
         //World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.playerSprite.getHeight(), 1));
 
-//
-       Sounds.playGameMusic();
+        Sounds.playGameMusic();
     }
 
     public static int getTimeLeft(){
@@ -73,6 +74,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
+
+        this.rumble = new Rumble();
 
         Timer.schedule(new Timer.Task() {
             @Override
@@ -106,7 +109,8 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0F, 0F, 0F, 1F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
+        rumble.rumble(10.2f, 10.1f);
+        rumble.tick(Gdx.graphics.getDeltaTime(), camera, player);
 
         camera.update();
 
