@@ -1,6 +1,7 @@
 package epic.platformer.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -28,20 +29,34 @@ public class Kicker extends Mob {
     public void update(float delta){
         super.update(delta);
         if(goLeft){
-            if(this.x + walkSpeed - this.width >= platform.getX() + platform.getWidth()){
+            if(this.x + walkSpeed + this.width >= platform.getX() + platform.getWidth() ){
                 goLeft = false;
             }else{
                 this.x += walkSpeed;
             }
         }else{
-            if(this.x - walkSpeed < platform.getX()) {
+            if(this.x - walkSpeed  < platform.getX()) {
                 goLeft = true;
             }else{
-                this.y -= walkSpeed;
+                this.x -= walkSpeed;
             }
         }
-//        currentFrame = walkAnimation.getKeyFrame(delta, true);
+        fallIfNotOnGround();
+    }
 
+    private void fallIfNotOnGround()
+    {
+        if(inAir) return;
+        //Fails if trying to jump while moving, collects yForce.TODO Should fix this
+        if(yForce > 0) { return; }
+        inAir = true;
+        for(CollisionObject obj : World.rectList) {
+            Rectangle rectangle = new Rectangle(x, y, width, height);
+            if (rectangle.overlaps(obj)) {
+                inAir = false;
+                break;
+            }
+        }
     }
 
 }
