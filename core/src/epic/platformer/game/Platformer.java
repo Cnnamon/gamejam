@@ -24,8 +24,8 @@ public class Platformer extends Game {
 	 */
 
 //	GameScreen gameScreen;
-	GameOverScreen gameOverScreen;
-//	MenuScreen menuScreen;
+//	GameOverScreen gameOverScreen;
+	MenuScreen menuScreen;
 //	HighScoreScreen highScoreScreen;
 	public SpriteBatch batch;
 
@@ -47,11 +47,11 @@ public class Platformer extends Game {
 //		setScreen(gameScreen);
 		batch = new SpriteBatch();
 
-		gameOverScreen = new GameOverScreen(this, 5270); // Dominykas FTW
-		setScreen(gameOverScreen);
+//		gameOverScreen = new GameOverScreen(this, 5270); // Dominykas FTW
+//		setScreen(gameOverScreen);
 //aaa
-//		menuScreen = new MenuScreen(this); // Dominykas FTW 2
-//		setScreen(menuScreen);
+		menuScreen = new MenuScreen(this); // Dominykas FTW 2
+		setScreen(menuScreen);
 //aaa
 //		highScoreScreen = new HighScoreScreen(this, 502f); // Dominykas FTW 3
 //		setScreen(highScoreScreen);
