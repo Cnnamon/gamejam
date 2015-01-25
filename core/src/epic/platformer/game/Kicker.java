@@ -19,9 +19,17 @@ public class Kicker extends Mob {
     private float kickStateTime;
     private float flipStateTime;
 
+    private float walkStateTimeReverse;
+    private float kickStateTimeReverse;
+    private float flipStateTimeReverse;
+
     private Animation walkAnimation;
     private Animation kickAnimation;
     private Animation flipAnimation;
+
+    private Animation walkAnimationReverse;
+    private Animation kickAnimationReverse;
+    private Animation flipAnimationReverse;
 
     TextureRegion currentFrame;
 
@@ -37,6 +45,10 @@ public class Kicker extends Mob {
         walkAnimation = Assets.kickerWalkAnimation;
         kickAnimation = Assets.kickerKickAnimation;
         flipAnimation = Assets.kickerFlipAnimation;
+
+        walkAnimationReverse = Assets.kickerWalkAnimationReverse;
+        kickAnimationReverse = Assets.kickerKickAnimationReverse;
+        flipAnimationReverse = Assets.kickerFlipAnimationReverse;
 
         isKicking = false;
         isFliping = false;
@@ -62,10 +74,8 @@ public class Kicker extends Mob {
         fallIfNotOnGround();
         if(walkSpeed != 0 && !isKicking && !isFliping){
             walkStateTime += delta;
-            currentFrame = walkAnimation.getKeyFrame(walkStateTime);
-            if (goLeft){
-                currentFrame.flip(true, false);
-            }
+            if(goLeft) currentFrame = walkAnimation.getKeyFrame(walkStateTime);
+            else currentFrame = walkAnimationReverse.getKeyFrame(walkStateTime);
         }
     }
 
