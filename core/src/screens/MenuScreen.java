@@ -79,14 +79,19 @@ public class MenuScreen implements Screen {
 
         game.batch.setProjectionMatrix(camera.combined);
 
+        stage.draw();
         game.batch.begin();
+            game.batch.setColor(Color.WHITE);
             game.batch.draw(Assets.textureBack, 0, 0);
-//            playButton.setFontScale(playButtonScale);
-            playButton.setPosition((float) Assets.screenSizeWidth/2-(float)playButton.getWidth()*playButtonScale/2, (float)Assets.screenSizeHeight/2-(float)playButton.getHeight()*playButtonScale/2);
+//          playButton.setFontScale(playButtonScale);
+            playButton.setPosition(Assets.screenSizeWidth/2-playButton.getWidth()/2, Assets.screenSizeHeight/2-playButton.getHeight()/2);
             playButton.draw(game.batch, 1f);
 
+
+//        font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+//        font.draw(game.batch, "my-string", 500, 500);
         game.batch.end();
-        stage.draw();
+
         stage.act(delta);
         camera.update();
     }
