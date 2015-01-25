@@ -140,17 +140,10 @@ public class GameScreen implements Screen {
 
         game.batch.draw(World.background, 0, 0);
 
-        float maxY = 0;
-        CollisionObject tallest = null;
-
         for(CollisionObject object: World.rectList){
             World.drawRect(game.batch, object);
-            if (maxY < object.getY()) {
-                maxY = object.getY();
-                tallest = object;
-            }
         }
-        System.out.println("player " + World.player.y);
+
         if (engine.getPlayer().getY() > Map.tallest.y - 400)
             Map.generateMore();
 
