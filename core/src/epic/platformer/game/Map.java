@@ -1,5 +1,6 @@
 package epic.platformer.game;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -42,23 +43,28 @@ public class Map {
         World.addRect(new CollisionObject(0, 0, 32, Assets.screenSizeHeight * 4, 1));
         World.addRect(new CollisionObject(Assets.screenSizeWidth * 3, 0, 32, Assets.screenSizeHeight * 4, 1));
 
+        CollisionObject ground;
+
         switch(World.currentWorldType){
             case LAVA_WORLD: //fire
-                World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                ground = (new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
                 break;
             case EARTH_WORLD: //
-                World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                ground = (new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
                 break;
             case ICE_WORLD:
-                World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                ground = (new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
                 break;
             case SPACE_WORLD:
-                World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                ground = (new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
                 break;
             default:
-                World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                ground = (new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
                 break;
         }
+
+        World.ground = ground;
+        World.addRect(ground);
     }
 
     private static int drawPlatform(int x, int y, int h) {

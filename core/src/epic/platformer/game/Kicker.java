@@ -77,7 +77,6 @@ public class Kicker extends Mob {
             if(goLeft) currentFrame = walkAnimation.getKeyFrame(walkStateTime, true);
             else {
                 currentFrame = walkAnimationReverse.getKeyFrame(walkStateTime, true);
-                System.out.println("wtf");
             }
         }
     }
