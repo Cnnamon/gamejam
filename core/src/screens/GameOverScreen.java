@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Timer;
 import epic.platformer.game.Assets;
 import epic.platformer.game.GameScreen;
 import epic.platformer.game.Platformer;
@@ -25,6 +26,8 @@ public class GameOverScreen implements Screen {
 
     Platformer game;
     Stage stage;
+
+    public boolean doSomeRenderingToAnothaWindow = false;
 
     ClickListener playButtonClickListener;
 
@@ -47,6 +50,13 @@ public class GameOverScreen implements Screen {
         this.camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
         stage.getViewport().setCamera(camera);
         Gdx.input.setInputProcessor(stage);
+
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                doSomeRenderingToAnothaWindow = true;
+            }
+        }, 2);
     }
 
     @Override
@@ -56,7 +66,8 @@ public class GameOverScreen implements Screen {
         Gdx.graphics.getGL20().glClearColor( 0, 0, 0, 1 );
         Gdx.graphics.getGL20().glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
-        if(Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
+
+        if((Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) || Gdx.input.isButtonPressed(Input.Buttons.RIGHT))) && doSomeRenderingToAnothaWindow) {
             game.setScreen(new MenuScreen(game));
         }
 

@@ -36,13 +36,14 @@ public class GameScreen implements Screen {
     OrthographicCamera camera;
     Engine engine;
     public Rumble  rumble;
+    public boolean doSomeRumble = false;
 
 
 
     float scoreConstant = 1f; // zie more, zie better
     float score = 0f; // zie more, zie better
     float timeConstant = 1f; // zie less, zie fastah
-    static int timeLeft=20;
+    static int timeLeft;
     int timeScale=5;
 
     Label timeText;
@@ -75,7 +76,13 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
 
+        timeText = new Label("00:00", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scoreText = new Label("0", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+
         this.rumble = new Rumble();
+        this.timeLeft = 20;
+
+        this.timeText.setColor(Color.WHITE);
 
         Timer.schedule(new Timer.Task() {
             @Override
@@ -91,6 +98,7 @@ public class GameScreen implements Screen {
                 }
                 if(timeLeft <= 0) {
                     timeLeft = timeMapSwap;
+                    doSomeRumble = true;
                 }
                 score = score + 10 * scoreConstant;
             }
@@ -99,13 +107,14 @@ public class GameScreen implements Screen {
                 , timeConstant    //    (seconds)
         );
 
-        timeText = new Label("00:00", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        scoreText = new Label("0", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-
     }
 
     @Override
     public void render(float delta) {
+//        if(doSomeRumble) {
+//            rumble.rumble(10.2f, 10.1f);
+//            rumble.tick(Gdx.graphics.getDeltaTime(), camera, player);
+//        }
         Gdx.gl.glClearColor(0F, 0F, 0F, 1F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

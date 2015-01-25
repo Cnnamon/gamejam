@@ -1,6 +1,8 @@
 package epic.platformer.game;
 
 
+import screens.GameOverScreen;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,6 +13,8 @@ public class Engine {
 
     private Platformer game;
     public static Player player;
+
+    GameOverScreen gameOverScreen;
 
 
     private static ArrayList<Mob> mobList;
@@ -75,6 +79,8 @@ public class Engine {
         if(!player.isAlive())
         {
             // Exit everything, he fucking died. GAME OVER SCREEN.
+            gameOverScreen = new GameOverScreen(game); // Dominykas FTW
+		    game.setScreen(gameOverScreen);
         }
         //updating cycle
 
