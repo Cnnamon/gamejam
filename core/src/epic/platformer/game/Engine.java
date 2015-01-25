@@ -38,7 +38,7 @@ public class Engine {
         for(int i = 0; i < 5; i++)
         {
             Random rand = new Random();
-            Bat tempBat = new Bat(Assets.screenSizeHeight / 2 + rand.nextInt(2000), Assets.screenSizeWidth / 2 + rand.nextInt(2000), 16, 16, Assets.enemySprite);
+            Bat tempBat = new Bat(Assets.screenSizeHeight / 2 + rand.nextInt(2000), Assets.screenSizeWidth / 2 + rand.nextInt(2000), Assets.batSprite.getWidth(), Assets.batSprite.getHeight(), Assets.enemySprite);
             tempBat.speed = 1 + rand.nextFloat()%5;
             mobList.add(tempBat);
         }
@@ -54,7 +54,9 @@ public class Engine {
         Relations.addCollision(1, 2);
         Relations.addCollision(2, 1);
         Relations.addCollision(1, 1);
-        Relations.addCollision(3, 0);
+        Relations.addCollision(2, 3);
+        Relations.addCollision(3, 2);
+
 
 
     }
@@ -70,7 +72,7 @@ public class Engine {
         // Test player-enemy collision
         for(Mob mob:mobList)
         {
-            if(player.collisionSide(mob) != CollisionObject.CollisionSide.NONE)
+            if(player.overlaps(mob))
             {
                 player.damage(1);
             }
