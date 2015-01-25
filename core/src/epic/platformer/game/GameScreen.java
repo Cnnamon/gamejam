@@ -42,6 +42,7 @@ public class GameScreen implements Screen {
     float timeConstant; // zie less, zie fastah
     static int timeLeft;
     int timeScale=5;
+    int k = 0;
 
     Label timeText;
     Label scoreText;
@@ -82,12 +83,17 @@ public class GameScreen implements Screen {
 
         scoreConstant = 1f; // zie more, zie better
         score = 0f; // zie more, zie better
-        timeConstant = 1f; // zie less, zie fastah
+        timeConstant = 0.1f; // zie less, zie fastah
+        k = 0; // skaiciuos kada praeina sekunde
 
         task = Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
-                timeLeft--;
+                k++;
+                if(k==10) {
+                    timeLeft--;
+                    k = 0;
+                }
                 if(timeLeft <= 9) {
                     if((timeLeft%2)==0) {
                         timeText.setColor(Color.WHITE);
@@ -102,7 +108,7 @@ public class GameScreen implements Screen {
                     timeLeft = timeMapSwap;
                     doSomeRumble = true;
                 }
-                score = (score + 10) * scoreConstant;
+                score = (float)((score + 1 + ((level * 0.1))));
             }
         }
                 , 0    //    (delay)
