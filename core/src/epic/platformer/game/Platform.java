@@ -17,7 +17,7 @@ class Platform {
             if (!collObj.equals(obj) && obj.overlaps(collObj))
                 obj.xForce *= -1;
                 // and out of range
-            else if (obj.getX() < 0 || obj.getX() > Assets.screenSizeWidth * 3)
+            else if (obj.getX() < 0 || obj.getX() + obj.getWidth() > Assets.screenSizeWidth * 3)
                 obj.xForce *= -1;
         }
 
