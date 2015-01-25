@@ -185,7 +185,7 @@ public class GameScreen implements Screen {
         if(timeLeft >= 10) ended = false;
         if(timeLeft == 1 && !ended){
             World.changeWorld(World.getRandomWorld());
-            World.changeWorld(World.worldType.LAVA_WORLD);
+            World.changeWorld(World.worldType.ICE_WORLD);
             World.rectList.clear();
             Map.generate();
             ended = true;

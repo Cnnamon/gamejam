@@ -81,13 +81,21 @@ public class Player extends Mob {
         if(dKey)
         {
             //x += 200*Delta;
-            xForce = 200;
+            if(World.currentWorldType == World.worldType.ICE_WORLD){
+                if(xForce<300) xForce+=120*Delta;
+                else if(xForce>= 300) xForce = 300;
+            }
+            else xForce = 200;
             fallIfNotOnGround();
         }
         if(aKey)
         {
             //x -= 200*Delta;
-            xForce = -200;
+            if(World.currentWorldType == World.worldType.ICE_WORLD){
+                if(xForce> -300) xForce-=120*Delta;
+                else if(x<= -300) xForce = -300;
+            }
+            else xForce = -200;
             fallIfNotOnGround();
         }
         if(!aKey && !dKey)
@@ -157,7 +165,7 @@ public class Player extends Mob {
             if(y-World.ground.y <= 50){
                 World.player.damage(3);
             }
-            if(y - World.ground.y > 200){
+            if(y - World.ground.y > 300){
                 heat = heat - heat/20;
             }
         }
