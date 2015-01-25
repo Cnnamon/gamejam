@@ -30,12 +30,14 @@ public class Sounds {
     }
     public static void playHurt() { hurt.play(); }
     public static void playGameMusic() {
+        gameMusic.stop();
         gameMusic.setLooping(true);
         gameMusic.play();
         menuMusic.stop();
 
     }
     public static void playMenuMusic() {
+        menuMusic.stop();
         menuMusic.setLooping(true);
         menuMusic.play();
         gameMusic.stop();

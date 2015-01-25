@@ -18,6 +18,8 @@ import epic.platformer.game.Assets;
 import epic.platformer.game.GameScreen;
 import epic.platformer.game.Platformer;
 
+import java.text.DecimalFormat;
+
 
 /**
  * Created by d.vilimas on 2015.01.24.
@@ -37,8 +39,11 @@ public class GameOverScreen implements Screen {
     Label playButton;
     float playButtonScale = 5;
 
-    public GameOverScreen(Platformer game) {
+    Label scoreText;
+
+    public GameOverScreen(Platformer game, float score) {
         this.game = game;
+        this.scoreText = new Label("Score: " + (new DecimalFormat("#").format(score)), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
     };
 
     //test
@@ -56,7 +61,7 @@ public class GameOverScreen implements Screen {
             public void run() {
                 doSomeRenderingToAnothaWindow = true;
             }
-        }, 2);
+        }, 1);
     }
 
     @Override
@@ -67,7 +72,7 @@ public class GameOverScreen implements Screen {
         Gdx.graphics.getGL20().glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
 
-        if((Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) || Gdx.input.isButtonPressed(Input.Buttons.RIGHT))) && doSomeRenderingToAnothaWindow) {
+        if((Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || (Gdx.input.isButtonPressed(Input.Buttons.LEFT) || Gdx.input.isButtonPressed(Input.Buttons.RIGHT))) && doSomeRenderingToAnothaWindow) {
             game.setScreen(new MenuScreen(game));
         }
 
@@ -76,9 +81,13 @@ public class GameOverScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
+
+        scoreText.setPosition(Assets.screenSizeWidth / 2 - playButton.getWidth() / 2, Assets.screenSizeHeight*3/10 - playButton.getHeight()*3/10);
+        scoreText.draw(game.batch, 0.5f);
+
 //        game.batch.draw(Assets.textureBack, 0, 0);
 //            playButton.setFontScale(playButtonScale);
-        playButton.setPosition((float) Assets.screenSizeWidth/2-(float)playButton.getWidth()/2, (float)Assets.screenSizeHeight/2-(float)playButton.getHeight()/2);
+        playButton.setPosition(Assets.screenSizeWidth / 2 - playButton.getWidth() / 2, Assets.screenSizeHeight / 2 - playButton.getHeight() / 2);
         playButton.draw(game.batch, 1f);
 
         game.batch.end();

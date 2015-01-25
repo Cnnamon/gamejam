@@ -53,5 +53,6 @@ public class Platformer extends Game {
 	public void dispose() {
 		prefs.flush();
 		super.dispose();
+
 	}
 }
