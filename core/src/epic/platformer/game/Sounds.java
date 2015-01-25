@@ -1,6 +1,7 @@
 package epic.platformer.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 /**
@@ -10,6 +11,7 @@ public class Sounds {
     private static Sound jump = Gdx.audio.newSound(Gdx.files.internal("jump.wav"));
     private static Sound hitTop = Gdx.audio.newSound(Gdx.files.internal("hit_top.wav"));
     private static Sound select = Gdx.audio.newSound(Gdx.files.internal("select.wav"));
+    private static Music gameMusic = Gdx.audio.newMusic(Gdx.files.internal("02.wav"));
 
 
     public static void playJump()
@@ -23,5 +25,9 @@ public class Sounds {
     public static void playSelect()
     {
         select.play();
+    }
+    public static void playGameMusic() {
+        gameMusic.setLooping(true);
+        gameMusic.play();
     }
 }

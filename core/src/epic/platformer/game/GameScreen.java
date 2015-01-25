@@ -54,7 +54,7 @@ public class GameScreen implements Screen {
         //World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.playerSprite.getHeight(), 1));
         World.changeWorld(1);
 //
-
+       Sounds.playGameMusic();
     }
 
     public static int getTimeLeft(){
