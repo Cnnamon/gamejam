@@ -17,8 +17,8 @@ public class Map {
     static final int HEIGHT = 110;
 
     static void generate() {
-        int minGapWidth = 60;
-        int maxGapWidth = 300;
+        int minGapWidth = 80;
+        int maxGapWidth = 380;
         int h = 32;
 
         int y = BUFFER;
