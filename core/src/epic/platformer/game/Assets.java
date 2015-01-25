@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Assets {
 
     public static final int timeMapSwap = 60;
+    public static final int gameMapHeight = 3200;
+    public static final int gameMapWidth = 4992;
 
     public static Texture textureBack;
     public static Sprite spriteBack;
