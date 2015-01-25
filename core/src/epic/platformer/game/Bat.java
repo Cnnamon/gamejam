@@ -13,6 +13,7 @@ public class Bat extends Mob {
     public Bat(int x, int y, float width, float height, Texture icon) {
         super(x, y, width, height, icon);
         inAir = false;
+        this.icon = Assets.batSprite;
         group = 3;
     }
 

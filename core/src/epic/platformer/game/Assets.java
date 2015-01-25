@@ -19,6 +19,8 @@ public class Assets {
     public static Texture enemySprite;
     public static Texture reversedEnemySprite;
 
+    public static Texture batSprite;
+
     public static Sprite allySprite;
     public static Sprite wallSprite;
     public static Sprite edgeSprite;
@@ -46,6 +48,9 @@ public class Assets {
 
         textureBack = new Texture(Gdx.files.internal("Background.png"));
         textureBack.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        batSprite = new Texture(Gdx.files.internal("bat.png"));
+        batSprite.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         spriteBack = new Sprite(textureBack);
         spriteBack.flip(false, true);
