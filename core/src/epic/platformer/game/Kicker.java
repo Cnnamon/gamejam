@@ -1,6 +1,8 @@
 package epic.platformer.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
  * Created by tautvis on 15.1.24.
@@ -8,6 +10,13 @@ import com.badlogic.gdx.graphics.Texture;
 public class Kicker extends Mob {
 
     private CollisionObject platform = null;
+    private Animation walkAnimation;
+    private Animation kickAnimation;
+    private Animation flipAnimation;
+
+    TextureRegion currentFrame;
+
+    private CollisionObject collisionObject = null;
     private float walkSpeed = 1.0f;
     private boolean goLeft = true;
 
@@ -31,6 +40,8 @@ public class Kicker extends Mob {
                 this.y -= walkSpeed;
             }
         }
+        currentFrame = walkAnimation.getKeyFrame(delta, true);
+
     }
 
 }
