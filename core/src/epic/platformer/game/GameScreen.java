@@ -213,6 +213,9 @@ public class GameScreen implements Screen {
             temp.elapsedTime += Gdx.graphics.getDeltaTime();
             game.batch.draw(temp.anim.getKeyFrame(temp.elapsedTime, true), temp.getX(), temp.getY());
         }
+        else if (mob instanceof Kicker){
+            game.batch.draw(((Kicker) mob).currentFrame, mob.getX(), mob.getY());
+        }
         else
         {
             game.batch.draw(mob.getIcon(), mob.getX(), mob.getY());

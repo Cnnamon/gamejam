@@ -72,10 +72,13 @@ public class Kicker extends Mob {
             }
         }
         fallIfNotOnGround();
-        if(walkSpeed != 0 && !isKicking && !isFliping){
+        if(!isKicking && !isFliping){
             walkStateTime += delta;
-            if(goLeft) currentFrame = walkAnimation.getKeyFrame(walkStateTime);
-            else currentFrame = walkAnimationReverse.getKeyFrame(walkStateTime);
+            if(goLeft) currentFrame = walkAnimation.getKeyFrame(walkStateTime, true);
+            else {
+                currentFrame = walkAnimationReverse.getKeyFrame(walkStateTime, true);
+                System.out.println("wtf");
+            }
         }
     }
 

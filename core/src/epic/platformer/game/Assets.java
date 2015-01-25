@@ -129,11 +129,11 @@ public class Assets {
 
         for(int i=0;i<2;i++) playerWalkSprites[i] = new TextureRegion(playerSheet, 48*i, 0, 48, 48);
 
-        kickerWalkAnimation = new Animation(0.025f, kickerWalkSprites);
+        kickerWalkAnimation = new Animation(0.3f, kickerWalkSprites);
         kickerKickAnimation = new Animation(0.025f, kickerKickSprites);
         kickerFlipAnimation = new Animation(0.025f, kickerFlipSprites);
 
-        kickerWalkAnimationReverse = new Animation(0.025f, kickerWalkSpritesReverse);
+        kickerWalkAnimationReverse = new Animation(0.3f, kickerWalkSpritesReverse);
         kickerKickAnimationReverse = new Animation(0.025f, kickerKickSpritesReverse);
         kickerFlipAnimationReverse = new Animation(0.025f, kickerFlipSpritesReverse);
 
