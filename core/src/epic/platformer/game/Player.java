@@ -132,15 +132,17 @@ public class Player extends Mob {
 
         if (min > 5 * Assets.screenSizeHeight)
             isAlive = false;
-    }
-
-    private double getDist(CollisionObject object, float x, float y) {
-        return Math.hypot(x - object.x, y - object.y);
 
         if(aKey || dKey) {
             stateTime += Delta;
             currentSprite = walkingAnimation.getKeyFrame(stateTime, true);
         }
+    }
+
+    private double getDist(CollisionObject object, float x, float y) {
+        return Math.hypot(x - object.x, y - object.y);
+
+
 
     }
 
