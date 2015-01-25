@@ -1,6 +1,5 @@
 package epic.platformer.game;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -64,7 +63,7 @@ public class Map {
         }
 
         World.ground = ground;
-        World.addRect(ground);
+//        World.addRect(ground);
     }
 
     private static int drawPlatform(int x, int y, int h) {

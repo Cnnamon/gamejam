@@ -51,7 +51,7 @@ public class Engine {
         //}
         //Todo delete these before launch
         // Bottom border.
-        World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth * 3, 16, 1));
+//        World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth * 3, 16, 1));
 
         //Required for working. Do not touch
         Relations.addCollision(1, 2);
