@@ -40,9 +40,9 @@ public class GameScreen implements Screen {
 
 
 
-    float scoreConstant = 1f; // zie more, zie better
-    float score = 0f; // zie more, zie better
-    float timeConstant = 1f; // zie less, zie fastah
+    float scoreConstant; // zie more, zie better
+    float score; // zie more, zie better
+    float timeConstant; // zie less, zie fastah
     static int timeLeft;
     int timeScale=5;
 
@@ -83,6 +83,10 @@ public class GameScreen implements Screen {
         this.timeLeft = 20;
 
         this.timeText.setColor(Color.WHITE);
+
+        scoreConstant = 1f; // zie more, zie better
+        score = 0f; // zie more, zie better
+        timeConstant = 1f; // zie less, zie fastah
 
         Timer.schedule(new Timer.Task() {
             @Override
