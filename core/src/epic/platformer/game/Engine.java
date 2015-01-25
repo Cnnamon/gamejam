@@ -82,7 +82,7 @@ public class Engine {
         if(!player.isAlive())
         {
             // Exit everything, he fucking died. GAME OVER SCREEN.
-            gameOverScreen = new GameOverScreen(game); // Dominykas FTW
+            gameOverScreen = new GameOverScreen(game, GameScreen.score); // Dominykas FTW
 		    game.setScreen(gameOverScreen);
         }
         //updating cycle
