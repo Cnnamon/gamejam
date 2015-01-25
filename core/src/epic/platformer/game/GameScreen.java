@@ -36,7 +36,7 @@ public class GameScreen implements Screen {
     float scoreConstant = 1f; // zie more, zie better
     float score = 0f; // zie more, zie better
     float timeConstant = 1f; // zie less, zie fastah
-    int timeLeft=20;
+    static int timeLeft=20;
     int timeScale=5;
 
     Label timeText;
@@ -57,8 +57,13 @@ public class GameScreen implements Screen {
 
     }
 
+    public static int getTimeLeft(){
+        return timeLeft;
+    }
+
     @Override
     public void show() {
+
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {

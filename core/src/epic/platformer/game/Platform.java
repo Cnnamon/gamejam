@@ -31,4 +31,8 @@ class Platform {
     public void setForce(float force) {
         obj.xForce = force;
     }
+
+    public CollisionObject getCollisionObject(){
+        return obj;
+    }
 }
