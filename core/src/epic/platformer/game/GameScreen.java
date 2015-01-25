@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Timer;
 
+
 import java.text.DecimalFormat;
 
 import static epic.platformer.game.Assets.timeMapSwap;
@@ -33,14 +34,15 @@ public class GameScreen implements Screen {
     public boolean doSomeRumble = false;
 
     static public int level = 1; //----------- LEVEL
+    static public float scoreConstant; // zie more, zie better
 
 
 
-    float scoreConstant; // zie more, zie better
     static public float score; // zie more, zie better
     float timeConstant; // zie less, zie fastah
     static int timeLeft;
     int timeScale=5;
+    int k = 0;
 
     Label timeText;
     Label scoreText;
@@ -81,12 +83,17 @@ public class GameScreen implements Screen {
 
         scoreConstant = 1f; // zie more, zie better
         score = 0f; // zie more, zie better
-        timeConstant = 1f; // zie less, zie fastah
+        timeConstant = 0.1f; // zie less, zie fastah
+        k = 0; // skaiciuos kada praeina sekunde
 
         task = Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
-                timeLeft--;
+                k++;
+                if(k==10) {
+                    timeLeft--;
+                    k = 0;
+                }
                 if(timeLeft <= 9) {
                     if((timeLeft%2)==0) {
                         timeText.setColor(Color.WHITE);
@@ -97,11 +104,11 @@ public class GameScreen implements Screen {
                 }
                 if(timeLeft <= 0) {
                     level++;
-                    Gdx.app.log("Level:", ""+level);
+//                    Gdx.app.log("Level:", ""+level);
                     timeLeft = timeMapSwap;
                     doSomeRumble = true;
                 }
-                score = score + 10 * scoreConstant;
+                score = (float)((score + 1 + ((level * 0.1))));
             }
         }
                 , 0    //    (delay)
@@ -128,7 +135,10 @@ public class GameScreen implements Screen {
         Map.updateMovingPlatforms(delta);
 
         game.batch.begin();
-        game.batch.draw(Assets.textureBack, 0, 0);
+
+        //game.batch.draw(Assets.textureBack, 0, 0);
+
+        game.batch.draw(World.background, 0, 0);
 
         float maxY = 0;
         CollisionObject tallest = null;
@@ -164,12 +174,12 @@ public class GameScreen implements Screen {
         }
 
         timeText.setFontScale(timeScale, timeScale);
-        timeText.setPosition(Assets.screenSizeWidth-timeText.getWidth()*timeScale, Assets.screenSizeHeight-timeText.getHeight()*timeScale);
+        timeText.setPosition(Assets.screenSizeWidth-timeText.getWidth()*timeScale-10, Assets.screenSizeHeight-timeText.getHeight()*timeScale);
         timeText.draw(game.batch, 1f);
 
         scoreText.setText(new DecimalFormat("#").format(score));
         scoreText.setFontScale(timeScale, timeScale);
-        scoreText.setPosition(Assets.screenSizeWidth/2-(scoreText.getWidth()*timeScale)/2, Assets.screenSizeHeight-(scoreText.getHeight()*timeScale));
+        scoreText.setPosition((Assets.screenSizeWidth/2)-(scoreText.getWidth()/2*timeScale), Assets.screenSizeHeight-(scoreText.getHeight()*timeScale));
         scoreText.draw(game.batch, 1f);
 
         for(int i = 0; i < Engine.player.HP; i++)
@@ -177,11 +187,14 @@ public class GameScreen implements Screen {
             game.batch.draw(Assets.heart, 5 + Assets.heart.getWidth() * i, Assets.screenSizeHeight - 5 - Assets.heart.getHeight());
         }
 
+//        game.font.draw(game.batch, "00:00", 500, 500);
+
         game.batch.end();
 
         if(timeLeft >= 10) ended = false;
         if(timeLeft == 1 && !ended){
             World.changeWorld(World.getRandomWorld());
+            World.changeWorld(World.worldType.ICE_WORLD);
             World.rectList.clear();
             Map.generate();
             ended = true;
@@ -221,6 +234,9 @@ public class GameScreen implements Screen {
             Bat temp = (Bat) mob;
             temp.elapsedTime += Gdx.graphics.getDeltaTime();
             game.batch.draw(temp.anim.getKeyFrame(temp.elapsedTime, true), temp.getX(), temp.getY());
+        }
+        else if (mob instanceof Kicker){
+            game.batch.draw(((Kicker) mob).currentFrame, mob.getX(), mob.getY());
         }
         else
         {

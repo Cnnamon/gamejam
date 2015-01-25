@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.TimeUtils;
+
+import java.util.Random;
 
 /**
  * Created by god on 15.1.23.
@@ -14,6 +17,7 @@ import com.badlogic.gdx.math.Rectangle;
 public class Player extends Mob {
 
     private Animation walkingAnimation;
+    private float MAXSPEED = 300;
 
     private boolean wKey;
     private boolean dKey;
@@ -24,6 +28,11 @@ public class Player extends Mob {
     public static long damageEveryMills = 1500; // 1.5 sec
 
     private boolean isAlive;
+    private float heat;
+
+    private long gotBuffed;
+    public float speedBuff;
+    public float jumpBuff;
 
     float stateTime;
 
@@ -40,10 +49,15 @@ public class Player extends Mob {
         isAlive = true;
         HP = 3;
         lastTimeDamaged = 0; //System.currentTimeMillis();
+        heat = 0;
+
+        jumpBuff = 1;
+        speedBuff = 1;
 
         walkingAnimation = Assets.playerWalkAnimation;
         stateTime = 0f;
         currentSprite = walkingAnimation.getKeyFrame(stateTime, true);
+        gotBuffed = 0;
 
     }
 
@@ -69,7 +83,10 @@ public class Player extends Mob {
     public void update(float Delta){
         super.update(Delta);
         handleInput();
-
+        if(TimeUtils.nanoTime() - gotBuffed > 10000000){
+            jumpBuff = 1;
+            speedBuff = 1;
+        }
         if(wKey){
             inAir = true;
             yForce += 450;
@@ -79,18 +96,31 @@ public class Player extends Mob {
         if(dKey)
         {
             //x += 200*Delta;
-            xForce = 200;
+            if(World.currentWorldType == World.worldType.ICE_WORLD){
+                if(xForce<(MAXSPEED+100)*speedBuff) xForce+=120*Delta;
+                else if(xForce>= (MAXSPEED+100)*speedBuff) xForce = (MAXSPEED+100)*speedBuff;
+            }
+            else xForce = MAXSPEED*speedBuff;
             fallIfNotOnGround();
         }
         if(aKey)
         {
             //x -= 200*Delta;
-            xForce = -200;
+            if(World.currentWorldType == World.worldType.ICE_WORLD){
+                if(xForce> -(MAXSPEED+100)*speedBuff) xForce-=120*Delta;
+                else if(x<= -(MAXSPEED+100)*speedBuff) xForce = -(MAXSPEED+100)*speedBuff;
+            }
+            else xForce = -MAXSPEED*speedBuff;
             fallIfNotOnGround();
         }
         if(!aKey && !dKey)
         {
-            xForce = 0;
+            if(World.currentWorldType == World.worldType.ICE_WORLD){
+                xForce = xForce - xForce/20;
+                if(xForce<30 && xForce>-30) xForce = 0;
+            }
+            else xForce = 0;
+            //todo manage sliding
             fallIfNotOnGround();
         }
         if(sKey && !inAir) y -= 1000*Delta;
@@ -137,6 +167,30 @@ public class Player extends Mob {
             stateTime += Delta;
             currentSprite = walkingAnimation.getKeyFrame(stateTime, true);
         }
+
+
+        if(World.currentWorldType == World.worldType.LAVA_WORLD){
+            if(y - World.ground.y <= 200){
+                heat += 20*Delta;
+                if(heat >= 100) {
+                    World.player.damage(1);
+                    heat = 0;
+                }
+            }
+            if(y-World.ground.y <= 50){
+                World.player.damage(3);
+            }
+            if(y - World.ground.y > 300){
+                heat = heat - heat/20;
+            }
+        }
+
+        for(SupplementaryObject sup: World.suppplementList){
+            if(this.overlaps(sup)){
+                //use the power of the sup
+            }
+        }
+
     }
 
     private double getDist(CollisionObject object, float x, float y) {
@@ -201,5 +255,15 @@ public class Player extends Mob {
 
     public void drawPlayer(SpriteBatch batch){
         batch.draw(currentSprite, x, y);
+    }
+
+    public void getKicked() {
+        gotBuffed = TimeUtils.nanoTime();
+        speedBuff = 2;
+        jumpBuff = 2;
+        Random rnd =  new Random();
+        if(rnd.nextInt(100) <= 5){
+            this.HP ++;
+        }
     }
 }

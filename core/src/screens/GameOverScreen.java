@@ -7,11 +7,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Timer;
 import epic.platformer.game.Assets;
@@ -41,10 +44,19 @@ public class GameOverScreen implements Screen {
 
     Label scoreText;
 
+    TextButton playTextButton;
+    TextButton.TextButtonStyle playTextButtonStyle;
+    BitmapFont font;
+    Skin skin;
+    TextureAtlas buttonAtlas;
+
+
     public GameOverScreen(Platformer game, float score) {
         this.game = game;
         this.scoreText = new Label("Score: " + (new DecimalFormat("#").format(score)), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
     };
+
+
 
     //test
     @Override
@@ -55,6 +67,26 @@ public class GameOverScreen implements Screen {
         this.camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
         stage.getViewport().setCamera(camera);
         Gdx.input.setInputProcessor(stage);
+
+        skin = new Skin();
+        buttonAtlas = new TextureAtlas(Gdx.files.internal("mainButtons.pack"));
+        skin.addRegions(buttonAtlas);
+        playTextButtonStyle = new TextButton.TextButtonStyle();
+        playTextButtonStyle.font = new BitmapFont();
+        playTextButtonStyle.up = skin.getDrawable("Back");
+        playTextButtonStyle.down = skin.getDrawable("BakcP");
+        playTextButtonStyle.checked = skin.getDrawable("BakcP");
+        playTextButton = new TextButton(null, playTextButtonStyle);
+        stage.addActor(playTextButton);
+
+        playTextButton.addListener(playButtonClickListener = new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new MenuScreen(game));
+                playTextButton.removeListener(playButtonClickListener);
+                super.clicked(event, x, y);
+            }
+        });
 
         Timer.schedule(new Timer.Task() {
             @Override
@@ -72,9 +104,9 @@ public class GameOverScreen implements Screen {
         Gdx.graphics.getGL20().glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
 
-        if((Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || (Gdx.input.isButtonPressed(Input.Buttons.LEFT) || Gdx.input.isButtonPressed(Input.Buttons.RIGHT))) && doSomeRenderingToAnothaWindow) {
-            game.setScreen(new MenuScreen(game));
-        }
+//        if((Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || (Gdx.input.isButtonPressed(Input.Buttons.LEFT) || Gdx.input.isButtonPressed(Input.Buttons.RIGHT))) && doSomeRenderingToAnothaWindow) {
+//            game.setScreen(new MenuScreen(game));
+//        }
 
 
 
@@ -82,15 +114,23 @@ public class GameOverScreen implements Screen {
 
         game.batch.begin();
 
-        scoreText.setPosition(Assets.screenSizeWidth / 2 - playButton.getWidth() / 2, Assets.screenSizeHeight*3/10 - playButton.getHeight()*3/10);
+        scoreText.setFontScale(5);
+        scoreText.setPosition(Assets.screenSizeWidth/2 - scoreText.getWidth()/2*5, Assets.screenSizeHeight*2/10 - playButton.getHeight()*2/10*5);
         scoreText.draw(game.batch, 0.5f);
 
 //        game.batch.draw(Assets.textureBack, 0, 0);
-//            playButton.setFontScale(playButtonScale);
-        playButton.setPosition(Assets.screenSizeWidth / 2 - playButton.getWidth() / 2, Assets.screenSizeHeight / 2 - playButton.getHeight() / 2);
+        playButton.setFontScale(5);
+        playButton.setPosition(Assets.screenSizeWidth/2 - playButton.getWidth()/2*5, Assets.screenSizeHeight*8/10 - playButton.getHeight()*8/10*5);
         playButton.draw(game.batch, 1f);
 
+//        game.font.setColor(1.0f, 0f, 1.0f, 1.0f);
+//        game.font.draw(game.batch, "my-string", 0, 0);
+
+        playTextButton.setPosition(Assets.screenSizeWidth/2-playTextButton.getWidth()/2, Assets.screenSizeHeight/2-playTextButton.getHeight()/2);
+
         game.batch.end();
+
+
         stage.draw();
         stage.act(delta);
         camera.update();

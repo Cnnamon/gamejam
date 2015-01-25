@@ -9,9 +9,11 @@ import com.badlogic.gdx.math.Vector2;
  * Created by god on 15.1.23.
  */
 public abstract class Mob extends CollisionObject{
+
     protected Texture icon;
     protected boolean inAir;
-
+    protected String type;
+    protected boolean dealsDmg;
 
     public Mob(int x, int y, float width, float height, Texture icon){
         this.icon = icon;
@@ -27,6 +29,10 @@ public abstract class Mob extends CollisionObject{
 
     public Texture getIcon() {
         return icon;
+    }
+
+    public String getType(){
+        return type;
     }
 
     public void update(float Delta){

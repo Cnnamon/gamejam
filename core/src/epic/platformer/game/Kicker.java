@@ -19,13 +19,20 @@ public class Kicker extends Mob {
     private float kickStateTime;
     private float flipStateTime;
 
+    private float walkStateTimeReverse;
+    private float kickStateTimeReverse;
+    private float flipStateTimeReverse;
+
     private Animation walkAnimation;
     private Animation kickAnimation;
     private Animation flipAnimation;
 
+    private Animation walkAnimationReverse;
+    private Animation kickAnimationReverse;
+    private Animation flipAnimationReverse;
+
     TextureRegion currentFrame;
 
-    private CollisionObject collisionObject = null;
     private float walkSpeed = 1.0f;
     private boolean goLeft = true;
 
@@ -38,10 +45,16 @@ public class Kicker extends Mob {
         kickAnimation = Assets.kickerKickAnimation;
         flipAnimation = Assets.kickerFlipAnimation;
 
+        walkAnimationReverse = Assets.kickerWalkAnimationReverse;
+        kickAnimationReverse = Assets.kickerKickAnimationReverse;
+        flipAnimationReverse = Assets.kickerFlipAnimationReverse;
+
         isKicking = false;
         isFliping = false;
 
         currentFrame = walkAnimation.getKeyFrame(walkStateTime, true);
+        type = "kicker";
+        dealsDmg = false;
     }
 
     public void update(float delta){
@@ -53,18 +66,18 @@ public class Kicker extends Mob {
                 this.x += walkSpeed;
             }
         }else{
-            if(this.x - walkSpeed  < platform.getX()) {
+            if(this.x - walkSpeed  <= platform.getX()) {
                 goLeft = true;
             }else{
                 this.x -= walkSpeed;
             }
         }
         fallIfNotOnGround();
-        if(walkSpeed != 0 && !isKicking && !isFliping){
+        if(!isKicking && !isFliping){
             walkStateTime += delta;
-            currentFrame = walkAnimation.getKeyFrame(walkStateTime);
-            if (goLeft){
-                currentFrame.flip(true, false);
+            if(goLeft) currentFrame = walkAnimation.getKeyFrame(walkStateTime, true);
+            else {
+                currentFrame = walkAnimationReverse.getKeyFrame(walkStateTime, true);
             }
         }
     }
@@ -72,7 +85,6 @@ public class Kicker extends Mob {
     private void fallIfNotOnGround()
     {
         if(inAir) return;
-        //Fails if trying to jump while moving, collects yForce.TODO Should fix this
         if(yForce > 0) { return; }
         inAir = true;
         for(CollisionObject obj : World.rectList) {

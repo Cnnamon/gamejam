@@ -3,6 +3,7 @@ package epic.platformer.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import screens.GameOverScreen;
 import screens.MenuScreen;
@@ -30,16 +31,23 @@ public class Platformer extends Game {
 
 	public Preferences prefs;
 
+//	public BitmapFont font;
+
 	@Override
 	public void create() {
+
 		prefs = Gdx.app.getPreferences("Platformer");
+
+//		font = new BitmapFont(Gdx.files.internal("mainFont.fnt"), Gdx.files.internal("mainFont.png"), false);
+
+
 
 		Assets.load();
 //		gameScreen = new GameScreen(this);
 //		setScreen(gameScreen);
 		batch = new SpriteBatch();
 
-//		gameOverScreen = new GameOverScreen(this); // Dominykas FTW
+//		gameOverScreen = new GameOverScreen(this, 5270); // Dominykas FTW
 //		setScreen(gameOverScreen);
 //aaa
 		menuScreen = new MenuScreen(this); // Dominykas FTW 2
