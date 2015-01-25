@@ -1,6 +1,7 @@
 package epic.platformer.game;
 
 
+import com.badlogic.gdx.graphics.Color;
 import screens.GameOverScreen;
 
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ public class Engine {
 
     private Platformer game;
     public static Player player;
+
+    private Color defaultColor;
+    private boolean colorIsRestored;
 
     GameOverScreen gameOverScreen;
 
@@ -58,7 +62,8 @@ public class Engine {
         Relations.addCollision(3, 2);
 
 
-
+        defaultColor = new Color(game.batch.getColor());
+        colorIsRestored = true;
     }
 
     public void addMob(Mob mob, int x, int y){
@@ -99,7 +104,18 @@ public class Engine {
         }
 
         player.update(Delta);
-
+        if(!player.isInDamageCooldown())
+        {
+            colorIsRestored = false;
+            float colorRatio = (float) player.timeAfterDamage() / (float)player.damageEveryMills;
+            float cooldownRatio = (float) player.damageCooldown() / (float)player.damageEveryMills;
+            game.batch.setColor(1, defaultColor.g * colorRatio, defaultColor.b * colorRatio, 1);
+        }
+        else if (!colorIsRestored)
+        {
+            game.batch.setColor(defaultColor);
+            defaultColor = new Color(game.batch.getColor());
+        }
     }
 
     public Player getPlayer() {
@@ -109,5 +125,4 @@ public class Engine {
     static public ArrayList<Mob> getMobList() {
         return mobList;
     }
-
 }

@@ -33,7 +33,7 @@ public class Player extends Mob {
 
         isAlive = true;
         HP = 3;
-        lastTimeDamaged = System.currentTimeMillis();
+        lastTimeDamaged = 0; //System.currentTimeMillis();
 
     }
 
@@ -110,9 +110,6 @@ public class Player extends Mob {
             y = 350;
         }
 
-
-
-
         //if below zero, game over screen
         if(y<0){
             isAlive = false;
@@ -149,7 +146,23 @@ public class Player extends Mob {
             HP -= damage;
             lastTimeDamaged = System.currentTimeMillis();
             if(HP <= 0) isAlive = false;
+            Sounds.playHurt();
         }
+    }
+
+    public boolean isInDamageCooldown()
+    {
+        return System.currentTimeMillis() - lastTimeDamaged >= damageEveryMills;
+    }
+
+    public long timeAfterDamage()
+    {
+        return System.currentTimeMillis() - lastTimeDamaged;
+    }
+
+    public long damageCooldown()
+    {
+        return damageEveryMills - System.currentTimeMillis() - lastTimeDamaged;
     }
 
     public boolean isAlive() {

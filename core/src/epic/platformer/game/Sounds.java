@@ -13,6 +13,7 @@ public class Sounds {
     private static Sound select = Gdx.audio.newSound(Gdx.files.internal("select.wav"));
     private static Music menuMusic = Gdx.audio.newMusic(Gdx.files.internal("01.wav"));
     private static Music gameMusic = Gdx.audio.newMusic(Gdx.files.internal("02.wav"));
+    private static Music hurt = Gdx.audio.newMusic(Gdx.files.internal("hurt.wav"));
 
 
     public static void playJump()
@@ -27,6 +28,7 @@ public class Sounds {
     {
         select.play();
     }
+    public static void playHurt() { hurt.play(); }
     public static void playGameMusic() {
         gameMusic.setLooping(true);
         gameMusic.play();
