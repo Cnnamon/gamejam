@@ -33,10 +33,10 @@ public class GameScreen implements Screen {
     public boolean doSomeRumble = false;
 
     static public int level = 1; //----------- LEVEL
+    static public float scoreConstant; // zie more, zie better
 
 
 
-    float scoreConstant; // zie more, zie better
     static public float score; // zie more, zie better
     float timeConstant; // zie less, zie fastah
     static int timeLeft;
@@ -101,7 +101,7 @@ public class GameScreen implements Screen {
                     timeLeft = timeMapSwap;
                     doSomeRumble = true;
                 }
-                score = score + 10 * scoreConstant;
+                score = (score + 10) * scoreConstant;
             }
         }
                 , 0    //    (delay)
