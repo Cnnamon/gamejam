@@ -44,14 +44,14 @@ public class Engine {
         {
             Bat tempBat = new Bat(Assets.screenSizeHeight / 2 + rand.nextInt(2000), Assets.screenSizeWidth / 2 + rand.nextInt(2000), Assets.batSprite.getWidth()-70, Assets.batSprite.getHeight()-50, Assets.snailSprite);
             tempBat.speed = 1 + rand.nextFloat()%5;
-            mobList.add(tempBat);
+//            mobList.add(tempBat);
         }
         //for(CollisionObject o in Map.){
 
         //}
         //Todo delete these before launch
         // Bottom border.
-        World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth * 3, 16, 1));
+//        World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth * 3, 16, 1));
 
         //Required for working. Do not touch
         Relations.addCollision(1, 2);
@@ -68,7 +68,7 @@ public class Engine {
     public void addMob(Mob mob, int x, int y){
        // mobList.add();
 
-        mobList.add(mob);
+//        mobList.add(mob);
 
     }
 
@@ -104,11 +104,11 @@ public class Engine {
         if(lastTime != GameScreen.getTimeLeft()){
             lastTime = GameScreen.getTimeLeft();
             Random rn = new Random();
-            mobList.add(new Kicker(Assets.snailSprite.getWidth(), Assets.snailSprite.getHeight(), Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
-            mobList.get(mobList.size()-1).group = 1;
+//            mobList.add(new Kicker(Assets.snailSprite.getWidth(), Assets.snailSprite.getHeight(), Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
+//            mobList.get(mobList.size()-1).group = 1;
 
             for(int i=0; i<GameScreen.level; i++) { // levelis
-                mobList.add(new Snail(Assets.snailSprite.getWidth(), Assets.snailSprite.getHeight(), Assets.snailSprite, Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
+//                mobList.add(new Snail(Assets.snailSprite.getWidth(), Assets.snailSprite.getHeight(), Assets.snailSprite, Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
             }
         }
 

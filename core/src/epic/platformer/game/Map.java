@@ -90,6 +90,14 @@ public class Map {
             }
         }
         tallest = World.rectList.get(World.rectList.size()-1);
+//
+//        World.addRect(new CollisionObject(0, 0, 32, Assets.screenSizeHeight * 4, 1));
+//        World.addRect(new CollisionObject(Assets.screenSizeWidth * 3, 0, 32, Assets.screenSizeHeight * 4, 1));
+
+        ArrayList<CollisionObject> rects = World.rectList;
+        for (int i = 0; i < rects.size(); i++)
+            System.out.println(i + ") " + rects.get(i).y);
+
     }
 
     private static int drawPlatform(int x, int y, int h) {

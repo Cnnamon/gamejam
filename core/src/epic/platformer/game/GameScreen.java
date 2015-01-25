@@ -135,10 +135,13 @@ public class GameScreen implements Screen {
         Map.updateMovingPlatforms(delta);
 
         game.batch.begin();
-
         //game.batch.draw(Assets.textureBack, 0, 0);
 
         game.batch.draw(World.background, 0, 0);
+
+
+        float maxY = 0;
+        CollisionObject tallest = null;
 
         for(CollisionObject object: World.rectList){
             World.drawRect(game.batch, object);
