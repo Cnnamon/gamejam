@@ -31,13 +31,13 @@ public class Engine {
         World.player = player;
         player.group = 2;
         mobList.add(new Snail(snailSpawnX, snailSpawnY, snailWidth, snailHeight, Assets.enemySprite));
-        /*for(int i = 0; i < 1000; i++)
+        for(int i = 0; i < 5; i++)
         {
             Random rand = new Random();
             Bat tempBat = new Bat(Assets.screenSizeHeight / 2 + rand.nextInt(2000), Assets.screenSizeWidth / 2 + rand.nextInt(2000), 16, 16, Assets.enemySprite);
             tempBat.speed = 1 + rand.nextFloat()%5;
             mobList.add(tempBat);
-        }*/
+        }
         //for(CollisionObject o in Map.){
 
         //}
