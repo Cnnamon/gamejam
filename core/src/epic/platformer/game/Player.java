@@ -26,6 +26,8 @@ public class Player extends Mob {
     private boolean isAlive;
     private float heat;
 
+    private float speedBuff;
+
     float stateTime;
 
     public TextureRegion currentSprite;
@@ -169,6 +171,13 @@ public class Player extends Mob {
                 heat = heat - heat/20;
             }
         }
+
+        for(SupplementaryObject sup: World.suppplementList){
+            if(this.overlaps(sup)){
+                //use the power of the sup
+            }
+        }
+
     }
 
     private double getDist(CollisionObject object, float x, float y) {

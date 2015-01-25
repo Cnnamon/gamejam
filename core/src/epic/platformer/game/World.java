@@ -14,6 +14,7 @@ import java.util.Random;
 public class World {
 
     public static ArrayList<Mob> mobList; // all mobs without player (AI)
+    public static ArrayList<SupplementaryObject> suppplementList = new ArrayList<SupplementaryObject>();
     public static Player player;
     public static float gravity = 1.0F; //on world switch, change gravity
     public static Texture background = Assets.textureBack;
@@ -36,6 +37,7 @@ public class World {
     }
     public static worldType currentWorldType;
     public static ArrayList<CollisionObject> rectList = new ArrayList<CollisionObject>();
+
     /*
     *Possible world types:
     * 1. Normal (nothing out of the ordinary)
