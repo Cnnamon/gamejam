@@ -24,13 +24,6 @@ public class Assets {
     public static Texture batSprite;
     public static Texture heart;
 
-    public static Sprite allySprite;
-    public static Sprite wallSprite;
-    public static Sprite edgeSprite;
-    public static Sprite sunSprite;
-    public static Sprite darkEdgeSprite;
-    public static Texture badLogic;
-    public static int[][] world;
 
     public static Sprite fireWall;
     public static Sprite fireWallCorner;
@@ -89,10 +82,8 @@ public class Assets {
 
         textureSheet = new Texture(Gdx.files.internal("Test sheet.png"));
 
-        badLogic = new Texture(Gdx.files.internal("badlogic.jpg"));
-        badLogic.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
-        playerSprite = new Texture(Gdx.files.internal("hero.png"));
+        playerSprite = new Texture(Gdx.files.internal("Player/hero1.png"));
         playerSprite.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         snailSprite = new Texture(Gdx.files.internal("snail.png"));
@@ -100,14 +91,6 @@ public class Assets {
 
         kickerSprite = new Texture(Gdx.files.internal("Kicker1.png"));
         kickerSprite.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-
-
-        allySprite = new Sprite(textureSheet, 16*1, 0, 16, 16);
-        wallSprite = new Sprite(textureSheet, 16*2, 0, 16, 16);
-        edgeSprite = new Sprite(textureSheet, 16*3, 0, 16, 16);
-
-        sunSprite = new Sprite(textureSheet, 16*5, 0, 16, 16);
-        darkEdgeSprite = new Sprite(textureSheet, 16*6, 0, 16, 16);
 
         fireWall = new Sprite(textureSheet, 32*0, 32*0, 32, 32);
         fireWallCorner = new Sprite(textureSheet, 32*0, 32*1, 32, 32);
