@@ -34,7 +34,7 @@ public class GameScreen implements Screen {
     public Rumble  rumble;
     public boolean doSomeRumble = false;
 
-    static public int level = 1;
+    static public int level = 1; //----------- LEVEL
 
 
 

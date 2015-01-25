@@ -38,7 +38,6 @@ public class Engine {
         player = new Player(400, 400, 48, 40, Assets.playerSprite);
         World.player = player;
         player.group = 2;
-        mobList.add(new Snail(snailSpawnX, snailSpawnY, snailWidth, snailHeight, Assets.enemySprite));
         for(int i = 0; i < 5; i++)
         {
             Random rand = new Random();
@@ -91,8 +90,12 @@ public class Engine {
         if(lastTime != GameScreen.getTimeLeft()){
             lastTime = GameScreen.getTimeLeft();
             Random rn = new Random();
-            mobList.add(new Kicker(16, 16, Assets.enemySprite, Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
+        mobList.add(new Kicker(Assets.enemySprite.getWidth(), Assets.enemySprite.getHeight(), Assets.enemySprite, Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
             mobList.get(mobList.size()-1).group = 1;
+
+            for(int i=0; i<GameScreen.level; i++) { // levelis
+                mobList.add(new Snail(Assets.enemySprite.getWidth(), Assets.enemySprite.getHeight(), Assets.enemySprite, Map.platforms.get(rn.nextInt(Map.platforms.size())).getCollisionObject()));
+            }
         }
 
         for (Mob b: mobList){
@@ -113,6 +116,7 @@ public class Engine {
             defaultColor = new Color(game.batch.getColor());
         }
     }
+
 
     public Player getPlayer() {
         return player;
