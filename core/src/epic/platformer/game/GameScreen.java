@@ -47,12 +47,12 @@ public class GameScreen implements Screen {
 
     boolean ended;
     static Timer.Task task;
+    World.worldType randomWorld;
 // neduoda pushint sry
 
     public GameScreen(Platformer game){
+        World.changeWorld(World.getRandomWorld());
         Map.generate();
-        random = new Random();
-        World.changeWorld(random.nextInt(4) + 1);
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
@@ -176,7 +176,7 @@ public class GameScreen implements Screen {
 
         if(timeLeft >= 10) ended = false;
         if(timeLeft == 1 && !ended){
-            World.changeWorld(random.nextInt(4)+1);
+            World.changeWorld(World.getRandomWorld());
             World.rectList.clear();
             Map.generate();
             ended = true;

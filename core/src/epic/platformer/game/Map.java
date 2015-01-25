@@ -42,16 +42,19 @@ public class Map {
         World.addRect(new CollisionObject(0, 0, 32, Assets.screenSizeHeight * 4, 1));
         World.addRect(new CollisionObject(Assets.screenSizeWidth * 3, 0, 32, Assets.screenSizeHeight * 4, 1));
 
-        switch(World.worldType){
-            case 1: //fire
+        switch(World.currentWorldType){
+            case LAVA_WORLD: //fire
                 World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
                 break;
-            case 2: //
-
-            case 3:
-
-            case 4:
-
+            case EARTH_WORLD: //
+                World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                break;
+            case ICE_WORLD:
+                World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                break;
+            case SPACE_WORLD:
+                World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                break;
             default:
                 World.addRect(new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
                 break;
