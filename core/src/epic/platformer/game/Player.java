@@ -26,7 +26,8 @@ public class Player extends Mob {
     private boolean isAlive;
     private float heat;
 
-    private float speedBuff;
+    public float speedBuff;
+    public float jumpBuff;
 
     float stateTime;
 
