@@ -14,8 +14,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Timer;
 
 import java.text.DecimalFormat;
+import java.util.Random;
 
 import static epic.platformer.game.Assets.timeMapSwap;
+import static epic.platformer.game.Assets.world;
 
 
 /**
@@ -26,6 +28,8 @@ import static epic.platformer.game.Assets.timeMapSwap;
 // prefs.putInteger("score", 99);
 
 public class GameScreen implements Screen {
+
+    Random random;
 
     Platformer game;
     OrthographicCamera camera;
@@ -41,18 +45,24 @@ public class GameScreen implements Screen {
 
     Label timeText;
     Label scoreText;
+
+    boolean ended;
 // neduoda pushint sry
 
     public GameScreen(Platformer game){
+        Map.generate();
+        random = new Random();
+        World.changeWorld(random.nextInt(4)+1);
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
         game.batch = new SpriteBatch();
         engine = new Engine(game);
+        ended = true;
         //Gdx.graphics.setContinuousRendering(false);
-        Map.generate();
+
         //World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.playerSprite.getHeight(), 1));
-        World.changeWorld(1);
+
 //
        Sounds.playGameMusic();
     }
@@ -147,6 +157,16 @@ public class GameScreen implements Screen {
         scoreText.draw(game.batch, 1f);
 
         game.batch.end();
+
+        if(timeLeft >= 10) ended = false;
+        if(timeLeft == 1 && !ended){
+            World.changeWorld(random.nextInt(4)+1);
+            World.rectList.clear();
+            Map.generate();
+            ended = true;
+
+        }
+
 
 
 
