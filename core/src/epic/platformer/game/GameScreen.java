@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Timer;
 
+
 import java.text.DecimalFormat;
 
 import static epic.platformer.game.Assets.timeMapSwap;
@@ -129,7 +130,9 @@ public class GameScreen implements Screen {
 
         game.batch.begin();
 
-        game.batch.draw(Assets.textureBack, 0, 0);
+        //game.batch.draw(Assets.textureBack, 0, 0);
+
+        game.batch.draw(World.background, 0, 0);
 
 
         for(CollisionObject object: World.rectList){
@@ -176,6 +179,7 @@ public class GameScreen implements Screen {
         if(timeLeft >= 10) ended = false;
         if(timeLeft == 1 && !ended){
             World.changeWorld(World.getRandomWorld());
+            World.changeWorld(World.worldType.LAVA_WORLD);
             World.rectList.clear();
             Map.generate();
             ended = true;

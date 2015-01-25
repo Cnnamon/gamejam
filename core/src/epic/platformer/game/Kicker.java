@@ -85,7 +85,6 @@ public class Kicker extends Mob {
     private void fallIfNotOnGround()
     {
         if(inAir) return;
-        //Fails if trying to jump while moving, collects yForce.TODO Should fix this
         if(yForce > 0) { return; }
         inAir = true;
         for(CollisionObject obj : World.rectList) {

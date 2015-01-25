@@ -1,5 +1,7 @@
 package epic.platformer.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -14,6 +16,7 @@ public class World {
     public static ArrayList<Mob> mobList; // all mobs without player (AI)
     public static Player player;
     public static float gravity = 1.0F; //on world switch, change gravity
+    public static Texture background = Assets.textureBack;
 
     public static CollisionObject ground;
     //public static int worldType = 1; //todo implement enum for different world types (for better perception)
@@ -29,6 +32,7 @@ public class World {
             this.value = value;
         }
 
+
     }
     public static worldType currentWorldType;
     public static ArrayList<CollisionObject> rectList = new ArrayList<CollisionObject>();
@@ -43,6 +47,8 @@ public class World {
     static Sprite wall;
     static Sprite lCorner;
     static Sprite rCorner;
+
+
 
     public static void addRect(CollisionObject object) {
         rectList.add(object);
@@ -63,6 +69,8 @@ public class World {
                 lCorner = Assets.earthWallCorner;
                 rCorner = Assets.earthWallRightCorner;
                 gravity = 1f;
+                background = new Texture(Gdx.files.internal("Background/EarthBg.png"));
+
                 break;
             case ICE_WORLD:
                 wall = Assets.iceWall;

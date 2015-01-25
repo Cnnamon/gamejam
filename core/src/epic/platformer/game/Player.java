@@ -24,6 +24,7 @@ public class Player extends Mob {
     public static long damageEveryMills = 1500; // 1.5 sec
 
     private boolean isAlive;
+    private float heat;
 
     float stateTime;
 
@@ -40,6 +41,7 @@ public class Player extends Mob {
         isAlive = true;
         HP = 3;
         lastTimeDamaged = 0; //System.currentTimeMillis();
+        heat = 0;
 
         walkingAnimation = Assets.playerWalkAnimation;
         stateTime = 0f;
@@ -90,7 +92,12 @@ public class Player extends Mob {
         }
         if(!aKey && !dKey)
         {
-            xForce = 0;
+            if(World.currentWorldType == World.worldType.ICE_WORLD){
+                xForce = xForce - xForce/20;
+                if(xForce<30 && xForce>-30) xForce = 0;
+            }
+            else xForce = 0;
+            //todo manage sliding
             fallIfNotOnGround();
         }
         if(sKey && !inAir) y -= 1000*Delta;
@@ -136,6 +143,23 @@ public class Player extends Mob {
         if(aKey || dKey) {
             stateTime += Delta;
             currentSprite = walkingAnimation.getKeyFrame(stateTime, true);
+        }
+
+
+        if(World.currentWorldType == World.worldType.LAVA_WORLD){
+            if(y - World.ground.y <= 200){
+                heat += 20*Delta;
+                if(heat >= 100) {
+                    World.player.damage(1);
+                    heat = 0;
+                }
+            }
+            if(y-World.ground.y <= 50){
+                World.player.damage(3);
+            }
+            if(y - World.ground.y > 200){
+                heat = heat - heat/20;
+            }
         }
     }
 

@@ -68,7 +68,7 @@ public class Assets {
 
     public static void load(){
 
-        textureBack = new Texture(Gdx.files.internal("Background.png"));
+        textureBack = new Texture(Gdx.files.internal("Background/Background.png"));
         textureBack.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         heart = new Texture(Gdx.files.internal("heart.png"));
