@@ -109,9 +109,6 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0F, 0F, 0F, 1F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        rumble.rumble(10.2f, 10.1f);
-        rumble.tick(Gdx.graphics.getDeltaTime(), camera, player);
-
         camera.update();
 
         game.batch.setProjectionMatrix(camera.combined);
