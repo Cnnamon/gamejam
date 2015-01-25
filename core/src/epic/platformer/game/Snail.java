@@ -8,20 +8,38 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Snail extends Mob {
 
-    private float speed = 1.0f;
+    private CollisionObject platform = null;
+    private float walkSpeed = 1.0f;
+    private boolean goLeft = true;
 
 
     public Snail(int width, int height, Texture texture, CollisionObject o){
         super((int)(o.getX()+o.getWidth()/2), (int)(o.getY()+o.getHeight()/2), width, height, texture);
-
+        platform = o;
+        type = "snail";
+        dealsDmg = true;
     }
 
     public void update(float delta){
         super.update(delta);
 
-        float distance = Engine.player.getX() - this.getX();
+        /*float distance = Engine.player.getX() - this.getX();
         xForce = speed * ((distance)/(Math.abs(distance)));
-        x += xForce * delta;
+        x += xForce * delta;*/
+
+        if(goLeft){
+            if(this.x + walkSpeed + this.width >= platform.getX() + platform.getWidth() ){
+                goLeft = false;
+            }else{
+                this.x += walkSpeed;
+            }
+        }else{
+            if(this.x - walkSpeed  < platform.getX()) {
+                goLeft = true;
+            }else{
+                this.x -= walkSpeed;
+            }
+        }
 
         fallIfNotOnGround();
     }

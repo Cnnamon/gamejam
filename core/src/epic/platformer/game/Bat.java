@@ -32,7 +32,8 @@ public class Bat extends Mob {
         tempRegion = new TextureRegion(Assets.batSprite, 65, 0, 64, 43);
         atlas.addRegion("bat3", tempRegion);
         anim = new Animation(0.05f, atlas.getRegions(), Animation.PlayMode.LOOP_PINGPONG);
-
+        type = "bat";
+        dealsDmg = true;
     }
 
     @Override

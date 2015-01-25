@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import screens.GameOverScreen;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -73,11 +74,21 @@ public class Engine {
 
     public void update(float Delta){
         // Test player-enemy collision
-        for(Mob mob:mobList)
+        //ArrayList<Mob> deleteMobs = ArrayList<Mob>();
+        for(Iterator iterator = mobList.iterator(); iterator.hasNext(); )
         {
-            if(player.overlaps(mob))
-            {
-                player.damage(1);
+            Mob mob = (Mob)iterator.next();
+            if(mob.type == "kicker" && mob.inAir){ //remove kickers if they fall ;/
+                //mobList.indexOf(mob);
+                //iterator.remove();
+            }else {
+                if (player.overlaps(mob) && mob.dealsDmg) {
+                    player.damage(1);
+                }
+
+                if (player.overlaps(mob) && mob.type == "kicker") {
+                    player.getKicked(/*needs direction!!!!*/);
+                }
             }
         }
 

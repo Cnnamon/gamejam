@@ -202,4 +202,8 @@ public class Player extends Mob {
     public void drawPlayer(SpriteBatch batch){
         batch.draw(currentSprite, x, y);
     }
+
+    public void getKicked() {
+
+    }
 }

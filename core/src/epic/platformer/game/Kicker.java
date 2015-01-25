@@ -33,7 +33,6 @@ public class Kicker extends Mob {
 
     TextureRegion currentFrame;
 
-    private CollisionObject collisionObject = null;
     private float walkSpeed = 1.0f;
     private boolean goLeft = true;
 
@@ -54,6 +53,8 @@ public class Kicker extends Mob {
         isFliping = false;
 
         currentFrame = walkAnimation.getKeyFrame(walkStateTime, true);
+        type = "kicker";
+        dealsDmg = false;
     }
 
     public void update(float delta){
@@ -65,7 +66,7 @@ public class Kicker extends Mob {
                 this.x += walkSpeed;
             }
         }else{
-            if(this.x - walkSpeed  < platform.getX()) {
+            if(this.x - walkSpeed  <= platform.getX()) {
                 goLeft = true;
             }else{
                 this.x -= walkSpeed;
