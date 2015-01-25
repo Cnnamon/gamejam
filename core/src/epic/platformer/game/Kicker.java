@@ -80,6 +80,9 @@ public class Kicker extends Mob {
                 currentFrame = walkAnimationReverse.getKeyFrame(walkStateTime, true);
             }
         }
+        if(World.player.overlaps(this)){
+            World.player.getKicked();
+        }
     }
 
     private void fallIfNotOnGround()

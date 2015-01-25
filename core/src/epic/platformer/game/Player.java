@@ -83,7 +83,7 @@ public class Player extends Mob {
     public void update(float Delta){
         super.update(Delta);
         handleInput();
-        if(TimeUtils.nanoTime() - gotBuffed > 10000000){
+        if(TimeUtils.nanoTime() - gotBuffed > 1000000000000l){
             jumpBuff = 1;
             speedBuff = 1;
         }
@@ -97,7 +97,7 @@ public class Player extends Mob {
         {
             //x += 200*Delta;
             if(World.currentWorldType == World.worldType.ICE_WORLD){
-                if(xForce<(MAXSPEED+100)*speedBuff) xForce+=120*Delta;
+                if(xForce<(MAXSPEED+100)*speedBuff) xForce+=120*speedBuff*Delta;
                 else if(xForce>= (MAXSPEED+100)*speedBuff) xForce = (MAXSPEED+100)*speedBuff;
             }
             else xForce = MAXSPEED*speedBuff;
@@ -107,7 +107,7 @@ public class Player extends Mob {
         {
             //x -= 200*Delta;
             if(World.currentWorldType == World.worldType.ICE_WORLD){
-                if(xForce> -(MAXSPEED+100)*speedBuff) xForce-=120*Delta;
+                if(xForce> -(MAXSPEED+100)*speedBuff) xForce-=120*speedBuff*Delta;
                 else if(x<= -(MAXSPEED+100)*speedBuff) xForce = -(MAXSPEED+100)*speedBuff;
             }
             else xForce = -MAXSPEED*speedBuff;
@@ -258,6 +258,7 @@ public class Player extends Mob {
     }
 
     public void getKicked() {
+
         gotBuffed = TimeUtils.nanoTime();
         speedBuff = 2;
         jumpBuff = 2;
