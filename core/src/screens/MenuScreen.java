@@ -1,17 +1,13 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -36,6 +32,8 @@ public class MenuScreen implements Screen {
 
     OrthographicCamera camera;
 
+    Label bestScoreText;
+    String bestScoreString;
     Label playButton;
     float playButtonScale = 5;
     TextButton playTextButton;
@@ -52,6 +50,12 @@ public class MenuScreen implements Screen {
     @Override
     public void show() {
         playButton = new Label("CHALLENGED pLATFORMER", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        if(game.prefs.getInteger("highscore", 0) != 0) {
+            bestScoreString = "Your best: " + game.prefs.getInteger("highscore", 0);
+        } else {
+            bestScoreString = "";
+        }
+        bestScoreText = new Label(bestScoreString, new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         stage = new Stage();
         camera = new OrthographicCamera();
         this.camera.setToOrtho(false, Assets.screenSizeWidth, Assets.screenSizeHeight);
@@ -69,6 +73,7 @@ public class MenuScreen implements Screen {
         playTextButton = new TextButton(null, playTextButtonStyle);
         stage.addActor(playTextButton);
         stage.addActor(playButton);
+        stage.addActor(bestScoreText);
 
         playTextButton.addListener(playButtonClickListener = new ClickListener(){
             @Override
@@ -100,6 +105,9 @@ public class MenuScreen implements Screen {
 
         game.batch.setProjectionMatrix(camera.combined);
 
+        bestScoreText.setFontScale(3);
+        bestScoreText.setPosition(Assets.screenSizeWidth/2-bestScoreText.getWidth()*3/2, 200);
+//        Gdx.app.log("" + Assets.screenSizeWidth, "" + Assets.screenSizeHeight);
         stage.draw();
         game.batch.begin();
             game.batch.setColor(Color.BLACK);
@@ -107,6 +115,7 @@ public class MenuScreen implements Screen {
             playButton.setFontScale(playButtonScale);
             playButton.setPosition(Assets.screenSizeWidth/2-playButton.getWidth()/2*playButtonScale, Assets.screenSizeHeight/2+playButton.getHeight()/8*10*playButtonScale);
             playTextButton.setPosition(Assets.screenSizeWidth/2-playTextButton.getWidth()/2, Assets.screenSizeHeight/2-playTextButton.getHeight()/2);
+
 //            playButton.draw(game.batch, 1f);
 
 

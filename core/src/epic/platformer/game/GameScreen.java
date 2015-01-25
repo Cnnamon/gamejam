@@ -36,8 +36,6 @@ public class GameScreen implements Screen {
     static public int level = 1; //----------- LEVEL
     static public float scoreConstant; // zie more, zie better
 
-
-
     static public float score; // zie more, zie better
     float timeConstant; // zie less, zie fastah
     static int timeLeft;

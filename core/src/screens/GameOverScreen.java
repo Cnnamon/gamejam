@@ -54,6 +54,7 @@ public class GameOverScreen implements Screen {
     public GameOverScreen(Platformer game, float score) {
         this.game = game;
         this.scoreText = new Label("Score: " + (new DecimalFormat("#").format(score)), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        game.prefs.putInteger("highscore", (int)Math.round(score));
     };
 
 
@@ -61,6 +62,7 @@ public class GameOverScreen implements Screen {
     //test
     @Override
     public void show() {
+
         playButton = new Label("Game Over", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         stage = new Stage();
         camera = new OrthographicCamera();

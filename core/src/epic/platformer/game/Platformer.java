@@ -40,8 +40,6 @@ public class Platformer extends Game {
 
 //		font = new BitmapFont(Gdx.files.internal("mainFont.fnt"), Gdx.files.internal("mainFont.png"), false);
 
-
-
 		Assets.load();
 //		gameScreen = new GameScreen(this);
 //		setScreen(gameScreen);
