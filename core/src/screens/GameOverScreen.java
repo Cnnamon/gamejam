@@ -46,6 +46,8 @@ public class GameOverScreen implements Screen {
         this.scoreText = new Label("Score: " + (new DecimalFormat("#").format(score)), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
     };
 
+
+
     //test
     @Override
     public void show() {
@@ -82,15 +84,21 @@ public class GameOverScreen implements Screen {
 
         game.batch.begin();
 
-        scoreText.setPosition(Assets.screenSizeWidth / 2 - playButton.getWidth() / 2, Assets.screenSizeHeight*3/10 - playButton.getHeight()*3/10);
+        scoreText.setFontScale(5);
+        scoreText.setPosition(Assets.screenSizeWidth / 2 - scoreText.getWidth() / 2*5, Assets.screenSizeHeight*3/10 - playButton.getHeight()*3/10*5);
         scoreText.draw(game.batch, 0.5f);
 
 //        game.batch.draw(Assets.textureBack, 0, 0);
-//            playButton.setFontScale(playButtonScale);
-        playButton.setPosition(Assets.screenSizeWidth / 2 - playButton.getWidth() / 2, Assets.screenSizeHeight / 2 - playButton.getHeight() / 2);
+        playButton.setFontScale(5);
+        playButton.setPosition(Assets.screenSizeWidth / 2 - playButton.getWidth() / 2*5, Assets.screenSizeHeight / 2 - playButton.getHeight() / 2*5);
         playButton.draw(game.batch, 1f);
 
+//        game.font.setColor(1.0f, 0f, 1.0f, 1.0f);
+//        game.font.draw(game.batch, "my-string", 0, 0);
+
         game.batch.end();
+
+
         stage.draw();
         stage.act(delta);
         camera.update();

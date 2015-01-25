@@ -97,7 +97,7 @@ public class GameScreen implements Screen {
                 }
                 if(timeLeft <= 0) {
                     level++;
-                    Gdx.app.log("Level:", ""+level);
+//                    Gdx.app.log("Level:", ""+level);
                     timeLeft = timeMapSwap;
                     doSomeRumble = true;
                 }
@@ -128,6 +128,7 @@ public class GameScreen implements Screen {
         Map.updateMovingPlatforms(delta);
 
         game.batch.begin();
+
         game.batch.draw(Assets.textureBack, 0, 0);
 
 
@@ -155,18 +156,20 @@ public class GameScreen implements Screen {
         }
 
         timeText.setFontScale(timeScale, timeScale);
-        timeText.setPosition(Assets.screenSizeWidth-timeText.getWidth()*timeScale, Assets.screenSizeHeight-timeText.getHeight()*timeScale);
+        timeText.setPosition(Assets.screenSizeWidth-timeText.getWidth()*timeScale-10, Assets.screenSizeHeight-timeText.getHeight()*timeScale);
         timeText.draw(game.batch, 1f);
 
         scoreText.setText(new DecimalFormat("#").format(score));
         scoreText.setFontScale(timeScale, timeScale);
-        scoreText.setPosition(Assets.screenSizeWidth/2-(scoreText.getWidth()*timeScale)/2, Assets.screenSizeHeight-(scoreText.getHeight()*timeScale));
+        scoreText.setPosition((Assets.screenSizeWidth/2)-(scoreText.getWidth()/2*timeScale), Assets.screenSizeHeight-(scoreText.getHeight()*timeScale));
         scoreText.draw(game.batch, 1f);
 
         for(int i = 0; i < Engine.player.HP; i++)
         {
             game.batch.draw(Assets.heart, 5 + Assets.heart.getWidth() * i, Assets.screenSizeHeight - 5 - Assets.heart.getHeight());
         }
+
+//        game.font.draw(game.batch, "00:00", 500, 500);
 
         game.batch.end();
 
