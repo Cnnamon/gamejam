@@ -42,7 +42,7 @@ public class Engine {
         for(int i = 0; i < 5; i++)
         {
             Random rand = new Random();
-            Bat tempBat = new Bat(Assets.screenSizeHeight / 2 + rand.nextInt(2000), Assets.screenSizeWidth / 2 + rand.nextInt(2000), Assets.batSprite.getWidth(), Assets.batSprite.getHeight(), Assets.enemySprite);
+            Bat tempBat = new Bat(Assets.screenSizeHeight / 2 + rand.nextInt(2000), Assets.screenSizeWidth / 2 + rand.nextInt(2000), Assets.batSprite.getWidth()-70, Assets.batSprite.getHeight()-50, Assets.enemySprite);
             tempBat.speed = 1 + rand.nextFloat()%5;
             mobList.add(tempBat);
         }
