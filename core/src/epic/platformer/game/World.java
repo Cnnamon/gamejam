@@ -20,7 +20,6 @@ public class World {
     public static Texture background ;
 
     public static CollisionObject ground;
-    //public static int worldType = 1; //todo implement enum for different world types (for better perception)
     public static enum worldType {
         LAVA_WORLD(1),
         SPACE_WORLD(2),

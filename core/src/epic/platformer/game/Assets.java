@@ -8,19 +8,18 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
  * Created by god on 14.12.31.
+ * A static class, which is loaded once and holds all the graphical objects of the game (textures, sprites and etc.)
  */
 public class Assets {
 
     public static final int timeMapSwap = 60;
 
-    public static Texture textureBack;
     public static Texture iceBackground;
     public static Texture earthBackground;
     public static Texture lavaBackground;
     public static Texture spaceBackground;
 
 
-    public static Sprite spriteBack;
     public static Texture textureSheet;
     public static Texture playerSprite;
     public static Texture snailSprite;
