@@ -23,7 +23,7 @@ public class SupplementaryObject extends CollisionObject{
 
     private void getPower(Player player){
         switch (power){
-            case 1:
+            case 1: // teleportation
                 player.x = random.nextInt(Assets.gameMapWidth);
                 player.y = random.nextInt(Assets.gameMapHeight);
 
@@ -34,6 +34,9 @@ public class SupplementaryObject extends CollisionObject{
                     }
                 }
                 while(player.overlaps(collider)) player.y++;
+                break;
+            default:
+                break;
 
         }
 

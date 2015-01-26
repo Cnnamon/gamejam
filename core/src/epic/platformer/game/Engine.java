@@ -78,7 +78,7 @@ public class Engine {
         for(Iterator iterator = mobList.iterator(); iterator.hasNext(); )
         {
             Mob mob = (Mob)iterator.next();
-            if(mob.type == "kicker" && mob.inAir){ //remove kickers if they fall ;/
+            if(mob instanceof Kicker && mob.inAir){ //remove kickers if they fall ;/
                 //mobList.indexOf(mob);
                 //iterator.remove();
             }else {
@@ -86,7 +86,7 @@ public class Engine {
                     player.damage(1);
                 }
 
-                if (player.overlaps(mob) && mob.type == "kicker") {
+                if (player.overlaps(mob) && mob instanceof Kicker) {
                     player.getKicked(/*needs direction!!!!*/);
                 }
             }
