@@ -46,8 +46,12 @@ public class Assets {
     public static Texture kickerSheet;
     public static Texture playerSheet;
 
+
+    public static int gameMapHeight;
+    public static int gameMapWidth;
     public static int screenSizeWidth;
     public static int screenSizeHeight;
+
 
     public static TextureRegion[] kickerWalkSprites;
     public static TextureRegion[] kickerKickSprites;
@@ -156,6 +160,9 @@ public class Assets {
 
         screenSizeWidth = 1280;
         screenSizeHeight = 720;
+
+        gameMapHeight = 4000;
+        gameMapWidth = 6200;
 
 
     }
