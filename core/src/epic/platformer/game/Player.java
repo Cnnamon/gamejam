@@ -168,19 +168,21 @@ public class Player extends Mob {
         }
 
 
-        if(World.currentWorldType == World.worldType.LAVA_WORLD){
-            if(y - World.ground.y <= 200){
-                heat += 20*Delta;
-                if(heat >= 100) {
-                    World.player.damage(1);
-                    heat = 0;
+        if(World.ground != null) {
+            if (World.currentWorldType == World.worldType.LAVA_WORLD) {
+                if (y - World.ground.y <= 200) {
+                    heat += 20 * Delta;
+                    if (heat >= 100) {
+                        World.player.damage(1);
+                        heat = 0;
+                    }
                 }
-            }
-            if(y-World.ground.y <= 50){
-                World.player.damage(3);
-            }
-            if(y - World.ground.y > 300){
-                heat = heat - heat/20;
+                if (y - World.ground.y <= 50) {
+                    World.player.damage(3);
+                }
+                if (y - World.ground.y > 300) {
+                    heat = heat - heat / 20;
+                }
             }
         }
 

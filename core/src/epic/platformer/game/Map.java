@@ -23,7 +23,7 @@ public class Map {
 
         int y = BUFFER;
 
-        while (y < Assets.screenSizeHeight * 3) {
+        while (y < Assets.gameMapHeight) {
             Random rand = new Random();
             int x;
             y += HEIGHT;
@@ -32,7 +32,7 @@ public class Map {
             x += rand.nextInt(maxGapWidth / 2 - minGapWidth);
             x += drawPlatform(x, y, h);
 
-            while (x < Assets.screenSizeWidth * 3) {
+            while (x < Assets.gameMapWidth) {
                 x += minGapWidth + rand.nextInt(maxGapWidth - minGapWidth);
 
                 x += drawPlatform(x, y, h);
@@ -46,24 +46,24 @@ public class Map {
 
         switch(World.currentWorldType){
             case LAVA_WORLD: //fire
-                ground = (new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                ground = (new CollisionObject(0,0,Assets.gameMapWidth, 32, 1));
                 break;
             case EARTH_WORLD: //
-                ground = (new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                ground = (new CollisionObject(0,0,Assets.gameMapWidth, 32, 1));
                 break;
             case ICE_WORLD:
-                ground = (new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                ground = (new CollisionObject(0,0,Assets.gameMapWidth, 32, 1));
                 break;
             case SPACE_WORLD:
-                ground = (new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                ground = null;
                 break;
             default:
-                ground = (new CollisionObject(0,0,Assets.screenSizeWidth*3, 32, 1));
+                ground = (new CollisionObject(0,0,Assets.gameMapWidth, 32, 1));
                 break;
         }
 
         World.ground = ground;
-//        World.addRect(ground);
+        if(ground != null) World.addRect(ground);
     }
 
     private static int drawPlatform(int x, int y, int h) {

@@ -17,6 +17,8 @@ public class Platformer extends Game {
 	*	Todo: add random properties to those items(it may be beneficial or detrimental
 	*	Todo: return the ceiling grappling move
 	*	Todo: add a status system for the different worlds (do they affect all mobs?)
+	*	Todo: player doesn't always land normally (keeps bouncing)
+	*	Todo: while on platforms, the screen keeps shaking
 	*
 	*
 	 */

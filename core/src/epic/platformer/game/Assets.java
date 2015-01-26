@@ -162,7 +162,7 @@ public class Assets {
         screenSizeHeight = 720;
 
         gameMapHeight = 4000;
-        gameMapWidth = 6200;
+        gameMapWidth = 6400;
 
 
     }
