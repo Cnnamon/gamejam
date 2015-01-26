@@ -39,8 +39,8 @@ public class Map {
             }
         }
 
-        World.addRect(new CollisionObject(0, 0, 32, Assets.screenSizeHeight * 4, 1));
-        World.addRect(new CollisionObject(Assets.screenSizeWidth * 3, 0, 32, Assets.screenSizeHeight * 4, 1));
+        World.addRect(new CollisionObject(0, 0, 32, Assets.gameMapHeight, 1));
+        World.addRect(new CollisionObject(Assets.gameMapWidth, 0, 32, Assets.gameMapHeight, 1));
 
         CollisionObject ground;
 

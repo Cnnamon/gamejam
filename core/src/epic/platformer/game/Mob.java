@@ -77,7 +77,7 @@ public abstract class Mob extends CollisionObject{
         }
         if(inAir)
         {
-            yForce -= 9.8 * World.gravity;
+            yForce -= 15 * World.gravity;
             y += yForce * Delta;
         }
         if(playerFoundation != null) {

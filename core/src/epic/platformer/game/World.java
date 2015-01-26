@@ -84,7 +84,7 @@ public class World {
                 wall = Assets.spaceWall;
                 lCorner = Assets.spaceWallCorner;
                 rCorner = Assets.spaceWallCorner;
-                gravity = 0.4f;
+                gravity = 0.6f;
                 background = Assets.spaceBackground;
                 break;
             default:

@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Timer;
 
 import java.text.DecimalFormat;
 
+import static epic.platformer.game.Assets.load;
 import static epic.platformer.game.Assets.timeMapSwap;
 
 
@@ -34,6 +35,7 @@ public class GameScreen implements Screen {
     public boolean doSomeRumble = false;
 
     static public int level = 1; //----------- LEVEL
+    private boolean loading;
     static public float scoreConstant; // zie more, zie better
 
     static public float score; // zie more, zie better
@@ -122,6 +124,32 @@ public class GameScreen implements Screen {
 //            rumble.tick(Gdx.graphics.getDeltaTime(), camera, player);
 //        }
 
+//        if(loading){
+//            //start the loading screen animation
+//
+//            //if the animation is done, launch the thread to load the new world
+//
+//            //wait for it to complete
+//        }
+//         if(!loading){ //maybe check for animation stages instead of loading?
+//             //move the world shift code here
+//
+//             //start the load screen animation change
+//         }
+//
+//
+//        if( ended && timeLeft >= 10) ended = false;
+//        if(!ended && timeLeft == 1 ){
+//            //launch a new thread that disposes of what is no longer necessary and generate all the new objects
+//
+//            World.changeWorld(World.getRandomWorld());
+//            World.rectList.clear();
+//            Map.generate();
+//            ended = true;
+//        }
+
+
+
         Gdx.gl.glClearColor(0F, 0F, 0F, 1F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -181,13 +209,7 @@ public class GameScreen implements Screen {
 
         game.batch.end();
 
-        if(timeLeft >= 10) ended = false;
-        if(timeLeft == 1 && !ended){
-            World.changeWorld(World.getRandomWorld());
-            World.rectList.clear();
-            Map.generate();
-            ended = true;
-        }
+
     }
 
 
