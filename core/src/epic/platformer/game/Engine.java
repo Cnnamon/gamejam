@@ -49,7 +49,6 @@ public class Engine {
         //for(CollisionObject o in Map.){
 
         //}
-        //Todo delete these before launch
         // Bottom border.
 //        World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth * 3, 16, 1));
 

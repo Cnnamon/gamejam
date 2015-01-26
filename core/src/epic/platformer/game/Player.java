@@ -120,7 +120,6 @@ public class Player extends Mob {
                 if(xForce<30 && xForce>-30) xForce = 0;
             }
             else xForce = 0;
-            //todo manage sliding
             fallIfNotOnGround();
         }
         if(sKey && !inAir) y -= 1000*Delta;
