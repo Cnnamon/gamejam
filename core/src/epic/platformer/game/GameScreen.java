@@ -138,15 +138,15 @@ public class GameScreen implements Screen {
 //         }
 //
 //
-//        if( ended && timeLeft >= 10) ended = false;
-//        if(!ended && timeLeft == 1 ){
-//            //launch a new thread that disposes of what is no longer necessary and generate all the new objects
-//
-//            World.changeWorld(World.getRandomWorld());
-//            World.rectList.clear();
-//            Map.generate();
-//            ended = true;
-//        }
+        if( ended && timeLeft >= 10) ended = false;
+        if(!ended && timeLeft == 1 ){
+            //launch a new thread that disposes of what is no longer necessary and generate all the new objects
+
+            World.changeWorld(World.getRandomWorld());
+            World.rectList.clear();
+            Map.generate();
+            ended = true;
+        }
 
 
 
