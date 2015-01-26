@@ -12,10 +12,14 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Assets {
 
     public static final int timeMapSwap = 60;
-    public static final int gameMapHeight = 3200;
-    public static final int gameMapWidth = 4992;
 
     public static Texture textureBack;
+    public static Texture iceBackground;
+    public static Texture earthBackground;
+    public static Texture lavaBackground;
+    public static Texture spaceBackground;
+
+
     public static Sprite spriteBack;
     public static Texture textureSheet;
     public static Texture playerSprite;
@@ -70,17 +74,24 @@ public class Assets {
 
     public static void load(){
 
-        textureBack = new Texture(Gdx.files.internal("Background/Background.png"));
-        textureBack.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        iceBackground = new Texture(Gdx.files.internal("Background/IceBG.png"));
+        iceBackground.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        earthBackground = new Texture(Gdx.files.internal("Background/EarthBG.png"));
+        earthBackground.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        lavaBackground = new Texture(Gdx.files.internal("Background/LavaBG.png"));
+        lavaBackground.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        spaceBackground = new Texture(Gdx.files.internal("Background/SpaceBG.png"));
+        spaceBackground.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
 
         heart = new Texture(Gdx.files.internal("heart.png"));
         heart.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         batSprite = new Texture(Gdx.files.internal("bat_sheet.png"));
         batSprite.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-
-        spriteBack = new Sprite(textureBack);
-        spriteBack.flip(false, true);
 
         textureSheet = new Texture(Gdx.files.internal("Test sheet.png"));
 

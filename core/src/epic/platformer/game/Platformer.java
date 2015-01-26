@@ -23,10 +23,10 @@ public class Platformer extends Game {
 	*
 	 */
 
-//	GameScreen gameScreen;
+	//	GameScreen gameScreen;
 //	GameOverScreen gameOverScreen;
 	MenuScreen menuScreen;
-//	HighScoreScreen highScoreScreen;
+	//	HighScoreScreen highScoreScreen;
 	public SpriteBatch batch;
 
 	public Preferences prefs;

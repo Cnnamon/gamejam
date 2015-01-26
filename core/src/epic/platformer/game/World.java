@@ -17,7 +17,7 @@ public class World {
     public static ArrayList<SupplementaryObject> suppplementList = new ArrayList<SupplementaryObject>();
     public static Player player;
     public static float gravity = 1.0F; //on world switch, change gravity
-    public static Texture background = Assets.textureBack;
+    public static Texture background ;
 
     public static CollisionObject ground;
     //public static int worldType = 1; //todo implement enum for different world types (for better perception)
@@ -65,32 +65,35 @@ public class World {
                 lCorner = Assets.fireWallCorner;
                 rCorner = Assets.fireWallRightCorner;
                 gravity = 0.8f;
+                background = Assets.lavaBackground;
                 break;
             case EARTH_WORLD:
                 wall = Assets.earthWall;
                 lCorner = Assets.earthWallCorner;
                 rCorner = Assets.earthWallRightCorner;
                 gravity = 1f;
-                background = new Texture(Gdx.files.internal("Background/EarthBg.png"));
-
+                background = Assets.earthBackground;
                 break;
             case ICE_WORLD:
                 wall = Assets.iceWall;
                 lCorner = Assets.iceWallCorner;
                 rCorner = Assets.iceWallRightCorner;
                 gravity = 1.2f;
+                background = Assets.iceBackground;
                 break;
             case SPACE_WORLD:
                 wall = Assets.spaceWall;
                 lCorner = Assets.spaceWallCorner;
                 rCorner = Assets.spaceWallCorner;
                 gravity = 0.4f;
+                background = Assets.spaceBackground;
                 break;
             default:
                 wall = Assets.earthWall;
                 lCorner = Assets.earthWallCorner;
                 rCorner = Assets.earthWallCorner;
                 gravity = 1f;
+                background = Assets.earthBackground;
                 break;
         }
     }

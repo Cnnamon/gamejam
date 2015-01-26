@@ -121,6 +121,7 @@ public class GameScreen implements Screen {
 //            rumble.rumble(10.2f, 10.1f);
 //            rumble.tick(Gdx.graphics.getDeltaTime(), camera, player);
 //        }
+
         Gdx.gl.glClearColor(0F, 0F, 0F, 1F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
