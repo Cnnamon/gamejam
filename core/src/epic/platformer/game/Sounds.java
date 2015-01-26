@@ -11,9 +11,9 @@ public class Sounds {
     private static Sound jump = Gdx.audio.newSound(Gdx.files.internal("jump.wav"));
     private static Sound hitTop = Gdx.audio.newSound(Gdx.files.internal("hit_top.wav"));
     private static Sound select = Gdx.audio.newSound(Gdx.files.internal("select.wav"));
-    private static Music menuMusic = Gdx.audio.newMusic(Gdx.files.internal("01.wav"));
-    private static Music gameMusic = Gdx.audio.newMusic(Gdx.files.internal("02.wav"));
-    private static Music hurt = Gdx.audio.newMusic(Gdx.files.internal("hurt.wav"));
+    private static Sound menuMusic = Gdx.audio.newSound(Gdx.files.internal("01.wav"));
+    private static Sound gameMusic = Gdx.audio.newSound(Gdx.files.internal("02.wav"));
+    private static Sound hurt = Gdx.audio.newSound(Gdx.files.internal("hurt.wav"));
 
 
     public static void playJump()
@@ -31,14 +31,14 @@ public class Sounds {
     public static void playHurt() { hurt.play(); }
     public static void playGameMusic() {
         gameMusic.stop();
-        gameMusic.setLooping(true);
+        gameMusic.loop();
         gameMusic.play();
         menuMusic.stop();
 
     }
     public static void playMenuMusic() {
         menuMusic.stop();
-        menuMusic.setLooping(true);
+        menuMusic.loop();
         menuMusic.play();
         gameMusic.stop();
     }
