@@ -9,12 +9,13 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.Timer;
 
 
 import java.text.DecimalFormat;
 
-import static epic.platformer.game.Assets.load;
+
 import static epic.platformer.game.Assets.timeMapSwap;
 
 
@@ -50,6 +51,9 @@ public class GameScreen implements Screen {
     boolean ended;
     static Timer.Task task;
 
+    int frames;
+    long frameTime;
+
     public GameScreen(Platformer game){
         World.changeWorld(World.getRandomWorld());
         Map.generate();
@@ -59,6 +63,8 @@ public class GameScreen implements Screen {
         game.batch = new SpriteBatch();
         engine = new Engine(game);
         ended = true;
+        frames = 0;
+        frameTime = TimeUtils.nanoTime();
         //Gdx.graphics.setContinuousRendering(false);
 
         //World.addRect(new CollisionObject(0, 0, Assets.screenSizeWidth, Assets.playerSprite.getHeight(), 1));
@@ -138,16 +144,25 @@ public class GameScreen implements Screen {
 //         }
 //
 //
-
 //        if(timeLeft <= 5){
 //            //draw
 //        }
+        frames++;
+        if(TimeUtils.nanoTime() - frameTime >= 1e+9){
+            System.out.println(frames);
+            frames = 0;
+            frameTime = TimeUtils.nanoTime();
+        }
+
+
+
         if( ended && timeLeft >= 10) ended = false;
         if(!ended && timeLeft == 1 ){
             //launch a new thread that disposes of what is no longer necessary and generate all the new objects
 
             World.changeWorld(World.getRandomWorld());
             World.rectList.clear();
+            Engine.getMobList().clear();
             Map.generate();
             ended = true;
         }

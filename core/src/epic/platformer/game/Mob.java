@@ -85,4 +85,8 @@ public abstract class Mob extends CollisionObject{
         }
         x += xForce * Delta;
     }
+
+    public void dispose(){
+
+    }
 }
