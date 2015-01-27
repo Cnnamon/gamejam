@@ -19,6 +19,8 @@ public class Platformer extends Game {
 	*	Todo: add a status system for the different worlds (do they affect all mobs?)
 	*	Todo: player doesn't always land normally (keeps bouncing)
 	*	Todo: while on platforms, the screen keeps shaking
+	*	Todo: high score keeps resetting (smaller value overrides bigger one)
+	*
 	*
 	*
 	 */
