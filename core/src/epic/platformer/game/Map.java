@@ -71,10 +71,10 @@ public class Map {
 
         int w = MIN_PLATFORM_WIDTH + rand.nextInt(MAX_PLATFORM_WIDTH - MIN_PLATFORM_WIDTH);
         int platformY = y - (HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS) / 2 + rand.nextInt(HEIGHT - MIN_VERT_DIST_BETWEEN_PLATFORMS);
-        if (x > Assets.screenSizeWidth * 3)
+        if (x > Assets.gameMapWidth)
             return 0;
-        if (x + w > Assets.screenSizeWidth * 3)
-            w = Assets.screenSizeWidth * 3 - x;
+        if (x + w > Assets.gameMapWidth)
+            w = Assets.gameMapWidth - x;
         CollisionObject colObj = new CollisionObject(x, platformY, w, h, 1);
         World.addRect(colObj);
 

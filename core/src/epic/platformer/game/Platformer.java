@@ -18,8 +18,9 @@ public class Platformer extends Game {
 	*	Todo: return the ceiling grappling move
 	*	Todo: add a status system for the different worlds (do they affect all mobs?)
 	*	Todo: player doesn't always land normally (keeps bouncing)
-	*	Todo: while on platforms, the screen keeps shaking
+	*	Todo: while on moving platforms, the screen keeps shaking
 	*	Todo: high score keeps resetting (smaller value overrides bigger one)
+	*	Todo: a lot of memory gets allocated = the longer the game goes on, the more lag comes up (maybe we should dispose stuff properly?)
 	*
 	*
 	*

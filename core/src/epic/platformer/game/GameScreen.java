@@ -138,6 +138,10 @@ public class GameScreen implements Screen {
 //         }
 //
 //
+
+//        if(timeLeft <= 5){
+//            //draw
+//        }
         if( ended && timeLeft >= 10) ended = false;
         if(!ended && timeLeft == 1 ){
             //launch a new thread that disposes of what is no longer necessary and generate all the new objects
@@ -152,6 +156,31 @@ public class GameScreen implements Screen {
 
         Gdx.gl.glClearColor(0F, 0F, 0F, 1F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        //time control
+        if(((timeLeft/60 <= 9) && (timeLeft%60 > 9)) || (((timeLeft/60 > 9) && (timeLeft%60 <= 9)))) {
+            if(timeLeft/60 <= 9) {
+                timeText.setText("0"+(timeLeft/60)+":"+(timeLeft%60));
+            }
+            if(timeLeft%60 <= 9) {
+                timeText.setText((timeLeft/60)+":0"+(timeLeft%60));
+            }
+        }
+        if(timeLeft/60 > 9 && timeLeft%60 > 9) {
+            timeText.setText((timeLeft/60)+":"+(timeLeft%60));
+        }
+        if(timeLeft/60 <= 9 && timeLeft%60 <= 9) {
+            timeText.setText("0"+(timeLeft/60)+":0"+(timeLeft%60));
+        }
+
+        timeText.setFontScale(timeScale, timeScale);
+        timeText.setPosition(Assets.screenSizeWidth-timeText.getWidth()*timeScale-10, Assets.screenSizeHeight-timeText.getHeight()*timeScale);
+
+
+        scoreText.setText(new DecimalFormat("#").format(score));
+        scoreText.setFontScale(timeScale, timeScale);
+        scoreText.setPosition((Assets.screenSizeWidth/2)-(scoreText.getWidth()/2*timeScale), Assets.screenSizeHeight-(scoreText.getHeight()*timeScale));
+        //time control ends
 
         camera.update();
 
@@ -176,28 +205,7 @@ public class GameScreen implements Screen {
         for(Mob m: engine.getMobList())
         drawMob(m);
 
-        if(((timeLeft/60 <= 9) && (timeLeft%60 > 9)) || (((timeLeft/60 > 9) && (timeLeft%60 <= 9)))) {
-            if(timeLeft/60 <= 9) {
-                timeText.setText("0"+(timeLeft/60)+":"+(timeLeft%60));
-            }
-            if(timeLeft%60 <= 9) {
-                timeText.setText((timeLeft/60)+":0"+(timeLeft%60));
-            }
-        }
-        if(timeLeft/60 > 9 && timeLeft%60 > 9) {
-            timeText.setText((timeLeft/60)+":"+(timeLeft%60));
-        }
-        if(timeLeft/60 <= 9 && timeLeft%60 <= 9) {
-            timeText.setText("0"+(timeLeft/60)+":0"+(timeLeft%60));
-        }
-
-        timeText.setFontScale(timeScale, timeScale);
-        timeText.setPosition(Assets.screenSizeWidth-timeText.getWidth()*timeScale-10, Assets.screenSizeHeight-timeText.getHeight()*timeScale);
         timeText.draw(game.batch, 1f);
-
-        scoreText.setText(new DecimalFormat("#").format(score));
-        scoreText.setFontScale(timeScale, timeScale);
-        scoreText.setPosition((Assets.screenSizeWidth/2)-(scoreText.getWidth()/2*timeScale), Assets.screenSizeHeight-(scoreText.getHeight()*timeScale));
         scoreText.draw(game.batch, 1f);
 
         for(int i = 0; i < Engine.player.HP; i++)

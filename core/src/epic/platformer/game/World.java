@@ -63,7 +63,7 @@ public class World {
                 wall = Assets.fireWall;
                 lCorner = Assets.fireWallCorner;
                 rCorner = Assets.fireWallRightCorner;
-                gravity = 0.8f;
+                gravity = 0.95f;
                 background = Assets.lavaBackground;
                 break;
             case EARTH_WORLD:
@@ -77,7 +77,7 @@ public class World {
                 wall = Assets.iceWall;
                 lCorner = Assets.iceWallCorner;
                 rCorner = Assets.iceWallRightCorner;
-                gravity = 1.2f;
+                gravity = 1.1f;
                 background = Assets.iceBackground;
                 break;
             case SPACE_WORLD:
